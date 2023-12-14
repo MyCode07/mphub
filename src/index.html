@@ -10,7 +10,7 @@
         <div class="hero__container" data-replace-new-position="beforeend">
             <div class="hero__image">
                 <video preload="none" autoplay playsinline poster="img/hom-hero.png" muted loop>
-                    <source src="files/header.mp4" type="video/mp4">
+                    <source src="files/scaled/header.mp4" type="video/mp4">
                 </video>
             </div>
             <div class="hero__body">
@@ -18,14 +18,14 @@
                     <h1>Доставка на <br> маркетплейсы</h1>
                     <p>Доставим и сдадим ваши грузы на склад Вайлдберриз, Ozon, Яндекс.Маркет, KazanExpress,
                         и другие маркетплейсы безупречно</p>
-                    <button class="_btn _btn-orange" data-replace-element>Рассчитать стоимость доставки
+                    <a href="" class="_btn _btn-orange" data-replace-element>Рассчитать стоимость доставки
                         <svg viewBox="0 0 22 16">
                             <use xlink:href="@img/svg/icons.svg#btn-arrow"></use>
                         </svg>
-                    </button>
+                    </a>
                 </div>
             </div>
-            @@include('./html/parts/hero-slider.html')
+            @@include('./html/parts/hero-slider.html', {"icon-type":"white"})
         </div>
     </section>
 
@@ -146,12 +146,12 @@
                 <div class="pagination">
                 </div>
                 <div class="section__btns">
-                    <button class="_btn _btn-orange">Рассчитать стоимость доставки
+                    <a href="" class="_btn _btn-orange">Рассчитать стоимость доставки
                         <svg viewBox="0 0 22 16">
                             <use xlink:href="@img/svg/icons.svg#btn-arrow"></use>
                         </svg>
-                    </button>
-                    <button class="_btn">Связаться с нами</button>
+                    </a>
+                    <button class="_btn" data-open-popup data-id="callback">Связаться с нами</button>
                 </div>
             </div>
         </div>
