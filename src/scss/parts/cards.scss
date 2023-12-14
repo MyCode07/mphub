@@ -182,7 +182,7 @@
 
             @media (max-width: 992px) {
                 max-width: none;
-                min-width: none;
+                min-width: unset;
             }
 
             & > :not(:last-child) {
