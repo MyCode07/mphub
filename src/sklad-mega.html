@@ -1,0 +1,592 @@
+@@include('./html/head.html', {
+"title":"Sklad",
+})
+
+@@include('./html/header.html')
+
+<main>
+
+    <section class="hero _sklad-hero _mega-hero" data-replace-width="768">
+        <div class="hero__container" data-replace-new-position="beforeend">
+            <div class="hero__image hom__image">
+                <img src="img/sklad-bgi.png" alt="">
+            </div>
+            <div class="hero__body">
+                <div class="hero-slide  _container" data-replace-old-position="beforeend">
+                    <h1>Доставка на склад <br>
+                        <span>Мегамаркет</span>
+                    </h1>
+                    <p>Доставим и сдадим ваши грузы на склад Мегамаркет и другие маркетплейсы безупречно</p>
+                    <button class="_btn _btn-orange" data-replace-element>Рассчитать стоимость доставки
+                        <svg viewBox="0 0 22 16">
+                            <use xlink:href="@img/svg/icons.svg#btn-arrow"></use>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            @@include('./html/parts/hero-slider.html')
+        </div>
+    </section>
+
+
+    @@include('./html/parts/geo.html', {
+    "class":"geo-bgi _mega-sklad no-bgc",
+    })
+
+    @@include('./html/parts/delivery.html',{
+    "class":"sklad-delivery",
+    "class-2":"_mega-delivery",
+    "text":"Доставим ваши товары из Москвы на склады Вайдлберриз в следующих городах:",
+    })
+
+    <section class="section run" id="run">
+        <div class="section__container _container">
+            <div class="section__body">
+                <div class="section__top">
+                    <h2>C нами вы сэкономите <br> силы, время и деньги</h2>
+                    <label class="label">Работайте с нами по принципу</label>
+                </div>
+                <div class="section__content">
+                    <div class="text-wrap">
+                        <ol>
+                            <li>
+                                <div class="line"></div>
+                                <div class="dot"></div>
+                                <span>Сдали груз</span>
+                            </li>
+                            <li>
+                                <div class="line"></div>
+                                <div class="dot"></div>
+                                <span>Забыли о нем</span>
+                            </li>
+                            <li>
+                                <div class="line"></div>
+                                <div class="dot"></div>
+                                <span>Получили сообщение о сдаче груза на маркетплейс</span>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @@include('./html/parts/advantages.html')
+
+    @@include('./html/parts/big-container.html')
+
+    <section class="section consider _consider-sklade-pages _mega-consider">
+        <div class="section__container _container">
+            <div class="section__body">
+                <div class="section__top">
+                    <h2>Требования <span>Wildberries</span> <br>
+                        к доставке товаров</h2>
+                    <p> КОТОРЫЕ НАМ С ВАМИ НУЖНО НЕУКОСНИТЕЛЬНО ВЫПОЛНЯТЬ
+                    </p>
+                </div>
+
+                <div class="section__content">
+                    <div data-accordion data-width="10000" style="--data-width:10000">
+                        <div data-accordion-item>
+                            <div data-accordion-item-title>
+                                <div>
+                                    <img src="img/icons/black/system-regular-161-trending-flat.gif" alt="">
+                                    <span>Короб</span>
+                                </div>
+                                <button>
+                                    <span></span>
+                                    <span></span>
+                                </button>
+                            </div>
+                            <div data-accordion-item-body>
+                                <div data-accordion-item-height>
+                                    <div data-accordion-item-content>
+                                        <p>Максимальный размер короба: 120х80 см. (размер европалеты), вес - 25 кг.
+                                            Минимальный размер и вес не ограничиваются.
+                                        </p>
+                                        <p>Размер короба не должен существенно превышать размер находящегося в нём
+                                            товара. Пустое место в коробе запрещено
+                                            заполнять упаковочной бумагой или другими видами наполнителя для заполнения
+                                            свободного объёма.
+                                        </p>
+                                        <p>К поставке не принимаются каким-либо образом измененные короба (обрезка,
+                                            совмещение, склейка, спайка)
+                                            Материал короба — трехслойный гофрокартон. Наличие повреждений, следов
+                                            грязи, влаги не допускается
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div data-accordion-item>
+                            <div data-accordion-item-title>
+                                <div>
+                                    <img src="img/icons/black/system-regular-161-trending-flat.gif" alt="">
+                                    <span>Суперсейф</span>
+                                </div>
+                                <button>
+                                    <span></span>
+                                    <span></span>
+                                </button>
+                            </div>
+                            <div data-accordion-item-body>
+                                <div data-accordion-item-height>
+                                    <div data-accordion-item-content>
+                                        <p>Маркировка должна соответсвовать виду поставки: если это монокороб, то его
+                                            размеры 60x40x40 см. Паллеты – несколько
+                                            монокоробов, размещенных на паллете 120x80 см, от 1 м3, высотой до 1,7 м
+                                        </p>
+                                        <p>Грузы, обьемом свыше 1 м3 принимаются только на палете</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div data-accordion-item>
+                            <div data-accordion-item-title>
+                                <div>
+                                    <img src="img/icons/black/system-regular-161-trending-flat.gif" alt="">
+                                    <span>Монопалета</span>
+                                </div>
+                                <button>
+                                    <span></span>
+                                    <span></span>
+                                </button>
+                            </div>
+                            <div data-accordion-item-body>
+                                <div data-accordion-item-height>
+                                    <div data-accordion-item-content>
+                                        <p>Маркировка должна соответсвовать виду поставки: если это монокороб, то его
+                                            размеры 60x40x40 см. Паллеты – несколько
+                                            монокоробов, размещенных на паллете 120x80 см, от 1 м3, высотой до 1,7 м
+                                        </p>
+                                        <p>Грузы, обьемом свыше 1 м3 принимаются только на палете</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section separator-blok _mega-separator">
+        <div class="separator-images">
+            <img src="img/sklads/mega-separator.png" alt="">
+        </div>
+        <div class="section__container _container">
+            <div class="section__body">
+                <p>Поставки, которые не соответствуют правилам, <span>не допускаются к отгрузке</span> на складах
+                    Вайлдберриз</p>
+                <div class="separator">
+                    <span></span>
+                    <div>
+                        <img src="img/icons/colors/mega.gif" alt="">
+                    </div>
+                    <span></span>
+                </div>
+                <p>Но!
+                    Мы также можем помочь упаковать ваш груз в точном соответсвии требованиям <span>Вайлдберриз</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    @@include('./html/parts/how.html',{
+    "class":"sklad-how",
+    })
+
+    <section class="section pricing sklads-pricing _mega-pricing">
+        <div class="pricing-images">
+            <img src="img/pricing-bgi-mega.png" alt="">
+        </div>
+
+        <div class="section__container _container">
+            <div class="section__body">
+                <h2>Наши тарифы</h2>
+                <div class="swiper">
+                    <div class="grid grid-3 swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="pricing-card">
+                                <div class="pricing-card__top">
+                                    <svg class="svg" viewBox="0 0 60 60">
+                                        <use xlink:href="@img/svg/icons.svg#small-box"></use>
+                                    </svg>
+                                    <h3>Минимальный</h3>
+                                    <ol>
+                                        <li>до 5 коробов</li>
+                                    </ol>
+                                </div>
+                                <div class="pricing-card__price">
+                                    <span>от</span>
+                                    <label>370 P</label>
+                                </div>
+                                <div class="pricing-card__bottom">
+
+                                    <p>В минимальную стоимость входит только услуга базовой приемки на одном из наших
+                                        складов и
+                                        доставка до склада маркетплейса</p>
+                                    <button class="_btn _btn-orange">Рассчитать стоимость
+                                        <svg viewBox="0 0 22 16">
+                                            <use xlink:href="@img/svg/icons.svg#btn-arrow"></use>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="pricing-card">
+                                <div class="pricing-card__top">
+                                    <svg class="svg" viewBox="0 0 60 60">
+                                        <use xlink:href="@img/svg/icons.svg#pallets"></use>
+                                    </svg>
+                                    <h3>В паллетах</h3>
+                                    <ol>
+                                        <li>вес паллеты – не более 500 кг</li>
+                                        <li>высота – не более 180 см</h3>
+                                        </li>
+                                    </ol>
+                                </div>
+                                <div class="pricing-card__price">
+                                    <span>от</span>
+                                    <label>1600 P</label>
+                                </div>
+                                <div class="pricing-card__bottom">
+                                    <div class="sale">скидка 5%</div>
+                                    <p>При единовременной поставке в один склад и в одну дату более 2-х паллет
+                                        за раз</p>
+                                    <button class="_btn _btn-orange">Рассчитать стоимость
+                                        <svg viewBox="0 0 22 16">
+                                            <use xlink:href="@img/svg/icons.svg#btn-arrow"></use>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="pricing-card">
+                                <div class="pricing-card__top">
+                                    <svg class="svg" viewBox="0 0 60 60">
+                                        <use xlink:href="@img/svg/icons.svg#boxes"></use>
+                                    </svg>
+                                    <h3>В коробах</h3>
+                                    <ol>
+                                        <li>стоимость указана из расчета поставки 1 м3</li>
+                                    </ol>
+                                </div>
+                                <div class="pricing-card__price">
+                                    <span>от</span>
+                                    <label>3700 P</label>
+                                </div>
+                                <div class="pricing-card__bottom">
+                                    <p>Если объем коробок в поставке
+                                        более 1 м3, то необходимо произвести паллетирование и сдать данное количество
+                                        грузовых
+                                        мест на паллете</p>
+                                    <button class="_btn _btn-orange">Рассчитать стоимость
+                                        <svg viewBox="0 0 22 16">
+                                            <use xlink:href="@img/svg/icons.svg#btn-arrow"></use>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pagination">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section offers _mega-offers">
+        <div class="back-svg">
+            <svg width="1669" height="2762" viewBox="0 0 1669 2762" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path opacity="0.6"
+                    d="M120 1695V1997.68C120 2002.09 123.582 2005.68 128 2005.68H778C782.418 2005.68 786 2009.26 786 2013.68V2692"
+                    stroke="url(#paint0_linear_463_23568)" stroke-width="80" />
+                <path opacity="0.08" d="M784.5 2762L692 2692L877 2692L784.5 2762Z" fill="#6833B0" />
+                <path d="M0 1655H1559C1563.42 1655 1567 1651.42 1567 1647V871" stroke="url(#paint1_linear_463_23568)"
+                    stroke-opacity="0.06" stroke-width="80" />
+                <path opacity="0.4" d="M80 850H692C696.418 850 700 846.418 700 842V0"
+                    stroke="url(#paint2_linear_463_23568)" stroke-width="80" />
+                <path opacity="0.08" d="M10 851.5L80 759L80 944L10 851.5Z" fill="#6833B0" />
+                <path opacity="0.4" d="M1599 287L1319 287C1314.58 287 1311 290.582 1311 295L1311 698"
+                    stroke="url(#paint3_linear_463_23568)" stroke-width="80" />
+                <path d="M0 151L191 151C195.418 151 199 147.418 199 143L199 1.90735e-06"
+                    stroke="url(#paint4_linear_463_23568)" stroke-opacity="0.4" stroke-width="80" />
+                <path opacity="0.08" d="M1669 283.844L1599 375.688L1599 192L1669 283.844Z" fill="#6833B0" />
+                <defs>
+                    <linearGradient id="paint0_linear_463_23568" x1="401.673" y1="2317.4" x2="833.681" y2="2140.37"
+                        gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#6833B0" stop-opacity="0.1" />
+                        <stop offset="0.921547" stop-color="white" stop-opacity="0.4" />
+                    </linearGradient>
+                    <linearGradient id="paint1_linear_463_23568" x1="1267.07" y1="1531.63" x2="1227.27" y2="1038.38"
+                        gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#6833B0" />
+                        <stop offset="1" stop-color="white" stop-opacity="0.4" />
+                    </linearGradient>
+                    <linearGradient id="paint2_linear_463_23568" x1="342.218" y1="319.371" x2="733.567" y2="494.483"
+                        gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#6833B0" stop-opacity="0.2" />
+                        <stop offset="0.921547" stop-color="white" stop-opacity="0.4" />
+                    </linearGradient>
+                    <linearGradient id="paint3_linear_463_23568" x1="1477.2" y1="543.575" x2="1293.04" y2="464.413"
+                        gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#6833B0" stop-opacity="0.2" />
+                        <stop offset="0.921547" stop-color="white" stop-opacity="0.4" />
+                    </linearGradient>
+                    <linearGradient id="paint4_linear_463_23568" x1="84.1636" y1="56.7354" x2="175.335" y2="130.443"
+                        gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#6833B0" stop-opacity="0.2" />
+                        <stop offset="0.921547" stop-color="white" stop-opacity="0.4" />
+                    </linearGradient>
+                </defs>
+            </svg>
+
+        </div>
+
+        <div class="section__container _container">
+            <div class="section__body">
+                <div class="section__top">
+                    <h2>Наши<span>скидки</span>
+                        <br>
+                        на доставку товаров <br>
+                        на склады <label>Wildberries</label>
+                    </h2>
+                    <p>У нас действуют две системы скидок, которые можно суммировать</p>
+                    <div class="section__btns">
+                        <button class="_btn _btn-orange">
+                            <svg viewBox="0 0 16 16">
+                                <use xlink:href="@img/svg/icons.svg#percent"></use>
+                            </svg>
+                            Накопительная
+                        </button>
+                        <button class="_btn ">
+                            <svg viewBox="0 0 16 16">
+                                <use xlink:href="@img/svg/icons.svg#percent"></use>
+                            </svg>
+                            От количества перевозимого груза
+                        </button>
+                    </div>
+                </div>
+                <div class="section__content">
+                    <div class="offers__flex">
+                        <div class="offers__flex-left">
+                            <h3>Клиентская накопительная скидка</h3>
+                            <p>По всем заявкам за все время нашего сотрудничества</p>
+                        </div>
+                        <div class="offers__flex-right">
+                            <ol class="list">
+                                <li class="list__top">
+                                    <span>Накопительная выручка</span>
+                                    <span>Скидка</span>
+                                </li>
+                                <li>
+                                    <span>50 000 руб.</span><span>1%</span>
+                                </li>
+                                <li>
+                                    <span>100 000 руб.</span><span>2%</span>
+                                </li>
+                                <li>
+                                    <span>200 000 руб.</span><span>3%</span>
+                                </li>
+                                <li>
+                                    <span>350 000 руб.</span><span>4%</span>
+                                </li>
+                                <li>
+                                    <span>500 000 руб.</span><span>5%</span>
+                                </li>
+                                <li>
+                                    <span>800 000 руб.</span><span>6%</span>
+                                </li>
+                                <li>
+                                    <span>1 500 000 руб.</span><span>7%</span>
+                                </li>
+                                <li>
+                                    <span>2 500 000 руб.</span><span>8%</span>
+                                </li>
+                                <li>
+                                    <span>4 000 000 руб.</span><span>9%</span>
+                                </li>
+                                <li>
+                                    <span>6 000 000 руб.</span><span>10%</span>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="section offers  offers-2 sklad-offers">
+        <div class="section__container _container">
+            <div class="section__body">
+                <div class="section__top">
+                    <h2>Дополнительные услуги</h2>
+                </div>
+                <div class="section__content">
+                    <div class="offers__box">
+                        <div class="offers__flex-top">
+                            <h3>Стоимость забора груза</h3>
+                        </div>
+                        <div class="offers__flex-bottom">
+                            <ol class="list">
+                                <li class="list__top">
+                                    <span>Город</span>
+                                    <div>
+                                        <span>Цена забора до 10 коробок или до 1 м3</span>
+                                        <span>Цена за паллету</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="list__location">
+                                        <svg viewBox="0 0 12 16">
+                                            <use xlink:href="img/svg/icons.svg#geo"></use>
+                                        </svg>
+                                        <span>Краснодар</span>
+                                    </div>
+                                    <div class="list__price">
+                                        <span>от 600 руб.</span>
+                                        <span>от 1200 руб.</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="list__location">
+                                        <svg viewBox="0 0 12 16">
+                                            <use xlink:href="img/svg/icons.svg#geo"></use>
+                                        </svg>
+                                        <span>Краснодар</span>
+                                    </div>
+                                    <div class="list__price">
+                                        <span>от 600 руб.</span>
+                                        <span>от 1200 руб.</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="list__location">
+                                        <svg viewBox="0 0 12 16">
+                                            <use xlink:href="img/svg/icons.svg#geo"></use>
+                                        </svg>
+                                        <span>Краснодар</span>
+                                    </div>
+                                    <div class="list__price">
+                                        <span>от 600 руб.</span>
+                                        <span>от 1200 руб.</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="list__location">
+                                        <svg viewBox="0 0 12 16">
+                                            <use xlink:href="img/svg/icons.svg#geo"></use>
+                                        </svg>
+                                        <span>Краснодар</span>
+                                    </div>
+                                    <div class="list__price">
+                                        <span>от 600 руб.</span>
+                                        <span>от 1200 руб.</span>
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="offers__box">
+                        <div class="offers__flex-top">
+                            <h3>Тарифы на дополнительные услуги</h3>
+                        </div>
+                        <div class="offers__flex-bottom">
+                            <ol class="list">
+                                <li class="list__top">
+                                    <span>Город</span>
+                                    <div>
+                                        <span>стоимость паллеты + паллетирование</span>
+                                        <span>предоставление паллеты</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="list__location">
+                                        <svg viewBox="0 0 12 16">
+                                            <use xlink:href="img/svg/icons.svg#geo"></use>
+                                        </svg>
+                                        <span>Краснодар</span>
+                                    </div>
+                                    <div class="list__price">
+                                        <span>от 600 руб.</span>
+                                        <span>от 1200 руб.</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="list__location">
+                                        <svg viewBox="0 0 12 16">
+                                            <use xlink:href="img/svg/icons.svg#geo"></use>
+                                        </svg>
+                                        <span>Краснодар</span>
+                                    </div>
+                                    <div class="list__price">
+                                        <span>от 600 руб.</span>
+                                        <span>от 1200 руб.</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="list__location">
+                                        <svg viewBox="0 0 12 16">
+                                            <use xlink:href="img/svg/icons.svg#geo"></use>
+                                        </svg>
+                                        <span>Краснодар</span>
+                                    </div>
+                                    <div class="list__price">
+                                        <span>от 600 руб.</span>
+                                        <span>от 1200 руб.</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="list__location">
+                                        <svg viewBox="0 0 12 16">
+                                            <use xlink:href="img/svg/icons.svg#geo"></use>
+                                        </svg>
+                                        <span>Краснодар</span>
+                                    </div>
+                                    <div class="list__price">
+                                        <span>от 600 руб.</span>
+                                        <span>от 1200 руб.</span>
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @@include('./html/parts/map.html',{
+    "class":"sklad-map",
+    })
+
+    @@include('./html/parts/about.html')
+
+    @@include('./html/parts/clients.html')
+
+    @@include('./html/parts/guarantee.html')
+
+    @@include('./html/parts/services.html',{
+    "class":"mega-services",
+    "class-2":"sklads-page-services"
+    })
+
+    @@include('./html/parts/text.html')
+
+    @@include('./html/parts/reviews.html')
+
+    @@include('./html/parts/faq.html')
+
+    @@include('./html/parts/questions.html')
+
+
+</main>
+
+@@include('./html/footer.html')
+@@include('./html/scripts.html')

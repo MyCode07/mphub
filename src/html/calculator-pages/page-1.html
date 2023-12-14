@@ -1,0 +1,66 @@
+<div class="calculator-form__page page-calculator _active" data-page="1">
+    <div class="page-calculator__title">Доставка</div>
+    <div class="form__block">
+        <h3>В какой маркетплейс нужно доставить ваш груз?</h3>
+        <div class="form__item" data-required>
+            <label class="radio" for="wb">
+                <span>
+                    <i></i>
+                    Вайлдберриз
+                </span>
+                <input type="radio" id="wb" name="markteplace" value="Вайлдберриз" checked>
+                <img src="@img/form-wb.png" alt="">
+            </label>
+        </div>
+        <div class="form__item" data-required>
+            <label class="radio" for="ozon">
+                <span>
+                    <i></i>
+                    Озон
+                </span>
+                <input type="radio" id="ozon" name="markteplace" value="Озон">
+                <img src="@img/form-ozon.png" alt="">
+            </label>
+        </div>
+        <div class="form__item" data-required>
+            <label class="radio" for="ym">
+                <span>
+                    <i></i>
+                    Яндекс Маркет
+                </span>
+                <input type="radio" id="ym" name="markteplace" value="Яндекс Маркет">
+                <img src="@img/form-ym.png" alt="">
+            </label>
+        </div>
+        <div class="form__item" data-required>
+            <label class="radio" for="mm">
+                <span>
+                    <i></i>
+                    Мегамаркет
+                </span>
+                <input type="radio" id="mm" name="markteplace" value="Мегамаркет">
+                <img src="@img/form-mm.png" alt="">
+            </label>
+        </div>
+    </div>
+    <div class="form__block">
+        <h3>Откуда и куда доставить товар?</h3>
+        <div class="form__row">
+            <div class="form__item" data-required>
+                <label>Откуда</label>
+                <input type="text" name="from" placeholder="Точка А">
+            </div>
+            <div class="icon">
+                <svg width="18" height="20" viewBox="0 0 18 20" fill="none">
+                    <path
+                        d="M0.999999 15L13 15M0.999999 15L4.5 11.5M0.999999 15L4.5 18.5M4 5L17 5M17 5L13.5 1.5M17 5L13.5 8.5"
+                        stroke="#0E0E0E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </div>
+            <div class="form__item" data-required>
+                <label>Куда</label>
+                <input type="text" name="to" placeholder="Точка Б">
+            </div>
+        </div>
+    </div>
+</div>

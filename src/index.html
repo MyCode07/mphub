@@ -1,0 +1,380 @@
+@@include('./html/head.html', {
+"title":"Home",
+})
+
+@@include('./html/header.html')
+
+<main> 
+ 
+    <section class="hero" data-replace-width="768">
+        <div class="hero__container" data-replace-new-position="beforeend">
+            <div class="hero__image">
+                <video preload="none" autoplay playsinline poster="img/hom-hero.png" muted loop>
+                    <source src="files/header.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="hero__body">
+                <div class="hero-slide  _container" data-replace-old-position="beforeend">
+                    <h1>Доставка на <br> маркетплейсы</h1>
+                    <p>Доставим и сдадим ваши грузы на склад Вайлдберриз, Ozon, Яндекс.Маркет, KazanExpress,
+                        и другие маркетплейсы безупречно</p>
+                    <button class="_btn _btn-orange" data-replace-element>Рассчитать стоимость доставки
+                        <svg viewBox="0 0 22 16">
+                            <use xlink:href="@img/svg/icons.svg#btn-arrow"></use>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            @@include('./html/parts/hero-slider.html')
+        </div>
+    </section>
+
+    @@include('./html/parts/geo.html')
+
+    <section class="section delivery delivery-swiper" id="delivery">
+        <div class="section__container _container">
+            <div class="section__body">
+                <h2>Доставляем в: </h2>
+                <p class="subtitle">Доставим ваши товары из Москвы на склады маркетплейсов в следуюших городах:</p>
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <div class="_wb-card swiper-slide">
+                            <div class="delivery-card">
+                                <ol>
+                                    <li>
+                                        <svg viewBox="0 0 12 16">
+                                            <use xlink:href="@img/svg/icons.svg#geo"></use>
+                                        </svg>
+                                        Екатеринбург
+                                    </li>
+                                    <li>
+                                        <svg viewBox="0 0 12 16">
+                                            <use xlink:href="@img/svg/icons.svg#geo"></use>
+                                        </svg>
+                                        Казань
+                                    </li>
+                                    <li>
+                                        <svg viewBox="0 0 12 16">
+                                            <use xlink:href="@img/svg/icons.svg#geo"></use>
+                                        </svg>
+                                        Краснодар
+                                    </li>
+                                    <li>
+                                        <svg viewBox="0 0 12 16">
+                                            <use xlink:href="@img/svg/icons.svg#geo"></use>
+                                        </svg>
+                                        Санкт-Петербург, Шушары
+                                    </li>
+                                    <li>
+                                        <svg viewBox="0 0 12 16">
+                                            <use xlink:href="@img/svg/icons.svg#geo"></use>
+                                        </svg>
+                                        Санкт-Петербург, Уткина Заводь
+                                    </li>
+                                </ol>
+                                <a href="">
+                                    <img src="img/wb.png" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="_ozon-card swiper-slide">
+                            <div class="delivery-card">
+                                <ol>
+                                    <li>
+                                        <svg viewBox="0 0 12 16">
+                                            <use xlink:href="@img/svg/icons.svg#geo"></use>
+                                        </svg>
+                                        Екатеринбург
+                                    </li>
+                                    <li>
+                                        <svg viewBox="0 0 12 16">
+                                            <use xlink:href="@img/svg/icons.svg#geo"></use>
+                                        </svg>
+                                        Казань
+                                    </li>
+                                    <li>
+                                        <svg viewBox="0 0 12 16">
+                                            <use xlink:href="@img/svg/icons.svg#geo"></use>
+                                        </svg>
+                                        Краснодар
+                                    </li>
+                                    <li>
+                                        <svg viewBox="0 0 12 16">
+                                            <use xlink:href="@img/svg/icons.svg#geo"></use>
+                                        </svg>
+                                        Санкт-Петербург, Шушары
+                                    </li>
+                                    <li>
+                                        <svg viewBox="0 0 12 16">
+                                            <use xlink:href="@img/svg/icons.svg#geo"></use>
+                                        </svg>
+                                        Санкт-Петербург, Уткина Заводь
+                                    </li>
+                                </ol>
+                                <a href="">
+                                    <img src="img/ozon.png" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="_yandex-card swiper-slide">
+                            <div class="delivery-card">
+                                <ol>
+                                    <li class="empty">
+                                        Нет опций доставки
+                                    </li>
+                                </ol>
+                                <a href="">
+                                    <img src="img/yandex.png" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="_mega-card swiper-slide">
+                            <div class="delivery-card">
+                                <ol>
+                                    <li class="empty">
+                                        Нет опций доставки
+                                    </li>
+                                </ol>
+                                <a href="">
+                                    <img src="img/mega.png" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="pagination">
+                </div>
+                <div class="section__btns">
+                    <button class="_btn _btn-orange">Рассчитать стоимость доставки
+                        <svg viewBox="0 0 22 16">
+                            <use xlink:href="@img/svg/icons.svg#btn-arrow"></use>
+                        </svg>
+                    </button>
+                    <button class="_btn">Связаться с нами</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section title-big run" id="run">
+        <div class="section__container _container">
+            <div class="section__body">
+                <div class="section__top ">
+                    <h2>C нами вы сэкономите <br> силы, время и деньги</h2>
+                    <label class="label">Работайте с нами по принципу</label>
+                </div>
+                <div class="section__content">
+                    <div class="text-wrap">
+                        <ol>
+                            <li>
+                                <div class="line"></div>
+                                <div class="dot"></div>
+                                <span>Сдали груз</span>
+                            </li>
+                            <li>
+                                <div class="line"></div>
+                                <div class="dot"></div>
+                                <span>Забыли о нем</span>
+                            </li>
+                            <li>
+                                <div class="line"></div>
+                                <div class="dot"></div>
+                                <span>Получили сообщение о сдаче груза на маркетплейс</span>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @@include('./html/parts/advantages.html')
+
+    @@include('./html/parts/big-container.html')
+
+    @@include('./html/parts/how.html')
+
+    <section class="section support">
+        <div class="section__container _container">
+            <div class="section__body">
+                <h2>Обязательно поддержим вас <br> при необходимости</h2>
+                <div class="section__content">
+                    <div class="text-wrap">
+                        <div class="line">
+                            <div class="icon">
+                                <img src="img/icons/black/system-regular-158-support.gif" alt="">
+                            </div>
+                            <span></span>
+                        </div>
+                        <ol>
+                            <li>
+                                <div class="line"></div>
+                                <div class="dot"></div>
+                                <span><strong>Бесплатное хранение.</strong> 6 дней бесплатного хранения ваших товаров на
+                                    наших складах
+                                    6 дней бесплатного хранения ваших товаров на наших складах</span>
+                            </li>
+                            <li>
+                                <div class="line"></div>
+                                <div class="dot"></div>
+                                <span><strong>Дополнительная проверка.</strong> Дополнительно проверим упаковку и
+                                    маркировку ваших
+                                    товаров перед отгрузкой в маркетплейс
+                                    Дополнительно проверим упаковку и маркировку ваших товаров перед отгрузкой в
+                                    маркетплейс</span>
+                            </li>
+                            <li>
+                                <div class="line"></div>
+                                <div class="dot"></div>
+                                <span><strong>Решение проблем на месте.</strong> Сообщим о проблемах при приемке и
+                                    поможем решить их на
+                                    месте
+                                    Сообщим о проблемах при приемке и поможем решить их на месте</span>
+                            </li>
+                            <li>
+                                <div class="line"></div>
+                                <div class="dot"></div>
+                                <span><strong>Бесплатное хранение.</strong> 6 дней бесплатного хранения ваших товаров на
+                                    наших складах
+                                    6 дней бесплатного хранения ваших товаров на наших складах</span>
+                            </li>
+                            <li>
+                                <div class="line"></div>
+                                <div class="dot"></div>
+                                <span><strong>Дополнительная проверка.</strong> Дополнительно проверим упаковку и
+                                    маркировку ваших
+                                    товаров перед отгрузкой в маркетплейс
+                                    Дополнительно проверим упаковку и маркировку ваших товаров перед отгрузкой в
+                                    маркетплейс</span>
+                            </li>
+                            <li>
+                                <div class="line"></div>
+                                <div class="dot"></div>
+                                <span><strong>Решение проблем на месте.</strong> Сообщим о проблемах при приемке и
+                                    поможем решить их на
+                                    месте
+                                    Сообщим о проблемах при приемке и поможем решить их на месте</span>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @@include('./html/parts/pricing.html')
+
+    @@include('./html/parts/offers.html')
+
+    @@include('./html/parts/offers-2.html')
+
+    @@include('./html/parts/map.html')
+
+    <section class="section consider">
+        <div class="section__container _container">
+            <div class="section__body">
+                <div class="section__top">
+                    <h2>Что нужно учесть при отправке <br> грузов? </h2>
+                    <p> Необходимо учесть несколько моментов, от которых <br> напрямую зависит качество перевозки груза
+                    </p>
+                </div>
+
+                <div class="section__content">
+                    <div data-accordion data-width="10000" style="--data-width:10000">
+                        <div data-accordion-item>
+                            <div data-accordion-item-title>
+                                <div>
+                                    <img src="img/icons/black/system-regular-152-sticky-note.gif" alt="">
+                                    <span>Маркировка</span>
+                                </div>
+                                <button>
+                                    <span></span>
+                                    <span></span>
+                                </button>
+                            </div>
+                            <div data-accordion-item-body>
+                                <div data-accordion-item-height>
+                                    <div data-accordion-item-content>
+                                        <p>Маркировка должна соответсвовать виду поставки: если это монокороб, то его
+                                            размеры 60x40x40 см. Паллеты – несколько
+                                            монокоробов, размещенных на паллете 120x80 см, от 1 м3, высотой до 1,7 м
+                                        </p>
+                                        <p>Грузы, обьемом свыше 1 м3 принимаются только на палете</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div data-accordion-item>
+                            <div data-accordion-item-title>
+                                <div>
+                                    <img src="img/icons/black/system-regular-153-store.gif" alt="">
+                                    <span>Упаковка</span>
+                                </div>
+                                <button>
+                                    <span></span>
+                                    <span></span>
+                                </button>
+                            </div>
+                            <div data-accordion-item-body>
+                                <div data-accordion-item-height>
+                                    <div data-accordion-item-content>
+                                        <p>Маркировка должна соответсвовать виду поставки: если это монокороб, то его
+                                            размеры 60x40x40 см. Паллеты – несколько
+                                            монокоробов, размещенных на паллете 120x80 см, от 1 м3, высотой до 1,7 м
+                                        </p>
+                                        <p>Грузы, обьемом свыше 1 м3 принимаются только на палете</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div data-accordion-item>
+                            <div data-accordion-item-title>
+                                <div>
+                                    <img src="img/icons/black/system-regular-126-verified.gif" alt="">
+                                    <span>Страхование</span>
+                                </div>
+                                <button>
+                                    <span></span>
+                                    <span></span>
+                                </button>
+                            </div>
+                            <div data-accordion-item-body>
+                                <div data-accordion-item-height>
+                                    <div data-accordion-item-content>
+                                        <p>Маркировка должна соответсвовать виду поставки: если это монокороб, то его
+                                            размеры 60x40x40 см. Паллеты – несколько
+                                            монокоробов, размещенных на паллете 120x80 см, от 1 м3, высотой до 1,7 м
+                                        </p>
+                                        <p>Грузы, обьемом свыше 1 м3 принимаются только на палете</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    @@include('./html/parts/about.html')
+
+    @@include('./html/parts/clients.html')
+
+    @@include('./html/parts/guarantee.html')
+
+    @@include('./html/parts/services.html')
+
+    @@include('./html/parts/text.html')
+
+    @@include('./html/parts/reviews.html')
+
+    @@include('./html/parts/faq.html')
+
+    @@include('./html/parts/questions.html')
+
+</main>
+
+@@include('./html/footer.html')
+@@include('./html/scripts.html')

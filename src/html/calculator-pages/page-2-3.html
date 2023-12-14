@@ -1,0 +1,115 @@
+<div class="calculator-form__page page-calculator" data-page="4">
+    <div class="page-calculator__title">Форма отгрузки</div>
+
+    <div class="form__block">
+        <h3>В чем будете перевозить груз?</h3>
+        <div class="form__row" data-checkbox-container>
+            <div class="form__item">
+                <label class="radio" for="boxes3">
+                    <span>
+                        <i></i>
+                        В коробах
+                    </span>
+                    <input type="radio" id="boxes3" name="transporting3">
+                    <div class="large-icon">
+                        <img src="@img/icons/boxes.svg" alt="">
+                    </div>
+                </label>
+            </div>
+
+            <div class="form__item">
+                <label class="radio" for="pallets3">
+                    <span>
+                        <i></i>
+                        В паллетах
+                    </span>
+                    <input type="radio" id="pallets3" name="transporting3">
+                    <div class="large-icon">
+                        <img src="@img/icons/pallets.svg" alt="">
+                    </div>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="form__block boxes">
+        <h3>Какие размеры короба (см)?</h3>
+        <div class="form__row">
+            <div class="form__item">
+                <label>Длина</label>
+                <input type="text" name="length" placeholder="Длина">
+            </div>
+            <div class="cross">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                    <path d="M1.25 1.25L8.75 8.75M1.25 8.75L8.75 1.25" stroke="black" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </div>
+            <div class="form__item">
+                <label>Ширина</label>
+                <input type="text" name="width" placeholder="Ширина">
+            </div>
+            <div class="cross">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                    <path d="M1.25 1.25L8.75 8.75M1.25 8.75L8.75 1.25" stroke="black" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </div>
+            <div class="form__item">
+                <label>Высота</label>
+                <input type="text" name="height" placeholder="Высота">
+            </div>
+        </div>
+        <div class="form__row">
+            <div class="form__item">
+                <label>Вес</label>
+                <input type="text" name="weight" placeholder="Вес">
+            </div>
+            <div class="form__item">
+                <label>Количество коробов</label>
+                <input type="text" name="count" placeholder="Количество">
+            </div>
+        </div>
+        <div class="form__row">
+            <div class="form__item">
+                <label>Обьем (м<sup>3</sup>)</label>
+                <input type="text" name="volume" placeholder="(м3)">
+            </div>
+        </div>
+    </div>
+
+    <div class="form__block">
+        <h3>Дополнительные услуги</h3>
+        <div class="form__row">
+            <div class="form__item">
+                <label class="checkbox" for="more-pallets">
+                    <span>
+                        <i class="before">
+                            <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                                <path d="M1.5 3.9998L4.5 6.6998L10.5 1.2998" stroke="#0E0E0E" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </i>
+                        Паллета
+                    </span>
+                    <input type="radio" id="more-pallets" name="services" checked>
+                </label>
+            </div>
+            <div class="form__item">
+                <label class="checkbox" for="palleting">
+                    <span>
+                        <i class="before">
+                            <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                                <path d="M1.5 3.9998L4.5 6.6998L10.5 1.2998" stroke="#0E0E0E" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </i>
+                        Паллетирование
+                    </span>
+                    <input type="radio" id="palleting" name="services">
+                </label>
+            </div>
+        </div>
+    </div>
+
+</div>

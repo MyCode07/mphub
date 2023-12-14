@@ -1,0 +1,30 @@
+[data-accordion] {
+    [data-accordion-item] {
+        &[data-open] {
+            [data-accordion-item-body] {
+                grid-template-rows: 1fr;
+            }
+        }
+    }
+
+    [data-accordion-item-title] {
+        cursor: pointer;
+
+        * {
+            pointer-events: none;
+        }
+    }
+
+    [data-accordion-item-body] {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.3s;
+    }
+
+    [data-accordion-item-height] {
+        overflow: hidden;
+    }
+
+    [data-accordion-item-content] {
+    }
+}

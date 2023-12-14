@@ -1,0 +1,39 @@
+.grid {
+    display: grid;
+    grid-template-rows: auto;
+    gap: 20px;
+    width: 100%;
+
+    // .grid-4
+
+    &-4 {
+        grid-template-columns: repeat(4, 1fr);
+
+        @media (max-width: 1240px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (max-width: 768px) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    // .grid-3
+
+    &-3 {
+        grid-template-columns: repeat(3, 1fr);
+
+        @media (max-width: 1240px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (max-width: 768px) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    // .grid-item
+
+    &-item {
+    }
+}
