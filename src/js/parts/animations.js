@@ -14,18 +14,19 @@ if (headlines.length) {
                 trigger: elem,
                 start: "top center",
                 end: `+=${height}`,
-                scrub: 0.5,
+                scrub: 0,
                 onUpdate: self => {
                     line.style.height = self.progress * 100 + '%';
+                },
+                onEnter: () => {
+                    elem.classList.add('_active')
+                },
+                onLeaveBack: () => {
+                    elem.classList.remove('_active')
                 }
             }
         });
 
-        tl.to(dot, {
-            duration: 0.25, backgroundColor: "#0E0E0E",
-        }).to(elem, {
-            duration: 0.25, color: "#0E0E0E",
-        })
     });
 }
 
@@ -59,6 +60,7 @@ if (supportLines.length) {
     const line = document.querySelector('.support .line span');
     const list = document.querySelector('.support .text-wrap ol');
     const wrap = document.querySelector('.support .text-wrap');
+    const icon = wrap.querySelector('.icon img');
     const smallTimeline = gsap.timeline();
     const listHeight = list.getBoundingClientRect().height;
     const wrapHeight = wrap.getBoundingClientRect().height;
@@ -84,21 +86,25 @@ if (supportLines.length) {
 
     supportLines.forEach((elem, i) => {
         const height = elem.offsetHeight;
-
+        const img = elem.dataset.icon
 
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: elem,
                 start: "center 60%",
                 end: `+=${height}`,
-                // markers: true,
+                onEnter: () => {
+                    icon.src = img
+                },
+                onLeaveBack: () => {
+                    icon.src = img
+                }
             }
         });
 
         tl.to(elem, {
             autoAlpha: 1
         })
-
     });
 }
 

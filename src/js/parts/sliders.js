@@ -1,5 +1,5 @@
 import Swiper from 'swiper';
-import { Navigation, Pagination, Scrollbar } from 'swiper/modules';
+import { Navigation, Pagination, Scrollbar, Autoplay } from 'swiper/modules';
 
 const sliders = document.querySelectorAll('.swiper');
 if (sliders.length) {
@@ -12,11 +12,15 @@ if (sliders.length) {
 
         if (section.classList.contains('hero')) {
             new Swiper(slider, {
-                modules: [Pagination],
+                modules: [Pagination, Autoplay],
                 slidesPerView: 'auto',
                 spaceBetween: 20,
                 centeredSlides: true,
                 initialSlide: 1,
+                autoplay: {
+                    delay: 2000,
+                    pauseOnMouseEnter: true,
+                },
                 pagination: {
                     el: pagination,
                     clickable: true,

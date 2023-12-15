@@ -4,8 +4,8 @@
 
 @@include('./html/header.html')
 
-<main> 
- 
+<main>
+
     <section class="hero" data-replace-width="768">
         <div class="hero__container" data-replace-new-position="beforeend">
             <div class="hero__image">
@@ -36,114 +36,225 @@
             <div class="section__body">
                 <h2>Доставляем в: </h2>
                 <p class="subtitle">Доставим ваши товары из Москвы на склады маркетплейсов в следуюших городах:</p>
-                <div class="swiper">
-                    <div class="swiper-wrapper">
-                        <div class="_wb-card swiper-slide">
-                            <div class="delivery-card">
-                                <ol>
-                                    <li>
-                                        <svg viewBox="0 0 12 16">
-                                            <use xlink:href="@img/svg/icons.svg#geo"></use>
-                                        </svg>
-                                        Екатеринбург
-                                    </li>
-                                    <li>
-                                        <svg viewBox="0 0 12 16">
-                                            <use xlink:href="@img/svg/icons.svg#geo"></use>
-                                        </svg>
-                                        Казань
-                                    </li>
-                                    <li>
-                                        <svg viewBox="0 0 12 16">
-                                            <use xlink:href="@img/svg/icons.svg#geo"></use>
-                                        </svg>
-                                        Краснодар
-                                    </li>
-                                    <li>
-                                        <svg viewBox="0 0 12 16">
-                                            <use xlink:href="@img/svg/icons.svg#geo"></use>
-                                        </svg>
-                                        Санкт-Петербург, Шушары
-                                    </li>
-                                    <li>
-                                        <svg viewBox="0 0 12 16">
-                                            <use xlink:href="@img/svg/icons.svg#geo"></use>
-                                        </svg>
-                                        Санкт-Петербург, Уткина Заводь
-                                    </li>
-                                </ol>
-                                <a href="">
-                                    <img src="img/wb.png" alt="">
-                                </a>
+                <div class="delivery-tabs__content">
+                    <div class="delivery-tabs__content-item _active" data-id="1">
+                        <div class="swiper">
+                            <div class="swiper-wrapper">
+                                <div class="_wb-card swiper-slide">
+                                    <div class="delivery-card">
+                                        <ol>
+                                            <li>
+                                                <svg viewBox="0 0 12 16">
+                                                    <use xlink:href="@img/svg/icons.svg#geo"></use>
+                                                </svg>
+                                                Екатеринбург
+                                            </li>
+                                            <li>
+                                                <svg viewBox="0 0 12 16">
+                                                    <use xlink:href="@img/svg/icons.svg#geo"></use>
+                                                </svg>
+                                                Казань
+                                            </li>
+                                            <li>
+                                                <svg viewBox="0 0 12 16">
+                                                    <use xlink:href="@img/svg/icons.svg#geo"></use>
+                                                </svg>
+                                                Краснодар
+                                            </li>
+                                            <li>
+                                                <svg viewBox="0 0 12 16">
+                                                    <use xlink:href="@img/svg/icons.svg#geo"></use>
+                                                </svg>
+                                                Санкт-Петербург, Шушары
+                                            </li>
+                                            <li>
+                                                <svg viewBox="0 0 12 16">
+                                                    <use xlink:href="@img/svg/icons.svg#geo"></use>
+                                                </svg>
+                                                Санкт-Петербург, Уткина Заводь
+                                            </li>
+                                        </ol>
+                                        <a href="">
+                                            <img src="img/wb.png" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="_ozon-card swiper-slide">
+                                    <div class="delivery-card">
+                                        <ol>
+                                            <li>
+                                                <svg viewBox="0 0 12 16">
+                                                    <use xlink:href="@img/svg/icons.svg#geo"></use>
+                                                </svg>
+                                                Екатеринбург
+                                            </li>
+                                            <li>
+                                                <svg viewBox="0 0 12 16">
+                                                    <use xlink:href="@img/svg/icons.svg#geo"></use>
+                                                </svg>
+                                                Казань
+                                            </li>
+                                            <li>
+                                                <svg viewBox="0 0 12 16">
+                                                    <use xlink:href="@img/svg/icons.svg#geo"></use>
+                                                </svg>
+                                                Краснодар
+                                            </li>
+                                            <li>
+                                                <svg viewBox="0 0 12 16">
+                                                    <use xlink:href="@img/svg/icons.svg#geo"></use>
+                                                </svg>
+                                                Санкт-Петербург, Шушары
+                                            </li>
+                                            <li>
+                                                <svg viewBox="0 0 12 16">
+                                                    <use xlink:href="@img/svg/icons.svg#geo"></use>
+                                                </svg>
+                                                Санкт-Петербург, Уткина Заводь
+                                            </li>
+                                        </ol>
+                                        <a href="">
+                                            <img src="img/ozon.png" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="_yandex-card swiper-slide">
+                                    <div class="delivery-card">
+                                        <ol>
+                                            <li class="empty">
+                                                Нет опций доставки
+                                            </li>
+                                        </ol>
+                                        <a href="">
+                                            <img src="img/yandex.png" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="_mega-card swiper-slide">
+                                    <div class="delivery-card">
+                                        <ol>
+                                            <li class="empty">
+                                                Нет опций доставки
+                                            </li>
+                                        </ol>
+                                        <a href="">
+                                            <img src="img/mega.png" alt="">
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="_ozon-card swiper-slide">
-                            <div class="delivery-card">
-                                <ol>
-                                    <li>
-                                        <svg viewBox="0 0 12 16">
-                                            <use xlink:href="@img/svg/icons.svg#geo"></use>
-                                        </svg>
-                                        Екатеринбург
-                                    </li>
-                                    <li>
-                                        <svg viewBox="0 0 12 16">
-                                            <use xlink:href="@img/svg/icons.svg#geo"></use>
-                                        </svg>
-                                        Казань
-                                    </li>
-                                    <li>
-                                        <svg viewBox="0 0 12 16">
-                                            <use xlink:href="@img/svg/icons.svg#geo"></use>
-                                        </svg>
-                                        Краснодар
-                                    </li>
-                                    <li>
-                                        <svg viewBox="0 0 12 16">
-                                            <use xlink:href="@img/svg/icons.svg#geo"></use>
-                                        </svg>
-                                        Санкт-Петербург, Шушары
-                                    </li>
-                                    <li>
-                                        <svg viewBox="0 0 12 16">
-                                            <use xlink:href="@img/svg/icons.svg#geo"></use>
-                                        </svg>
-                                        Санкт-Петербург, Уткина Заводь
-                                    </li>
-                                </ol>
-                                <a href="">
-                                    <img src="img/ozon.png" alt="">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="_yandex-card swiper-slide">
-                            <div class="delivery-card">
-                                <ol>
-                                    <li class="empty">
-                                        Нет опций доставки
-                                    </li>
-                                </ol>
-                                <a href="">
-                                    <img src="img/yandex.png" alt="">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="_mega-card swiper-slide">
-                            <div class="delivery-card">
-                                <ol>
-                                    <li class="empty">
-                                        Нет опций доставки
-                                    </li>
-                                </ol>
-                                <a href="">
-                                    <img src="img/mega.png" alt="">
-                                </a>
-                            </div>
-                        </div>
+                        <div class="pagination"></div>
                     </div>
-
-                </div>
-                <div class="pagination">
+                    <div class="delivery-tabs__content-item" data-id="2">
+                        <div class="swiper">
+                            <div class="swiper-wrapper">
+                                <div class="_wb-card swiper-slide">
+                                    <div class="delivery-card">
+                                        <ol>
+                                            <li>
+                                                <svg viewBox="0 0 12 16">
+                                                    <use xlink:href="@img/svg/icons.svg#geo"></use>
+                                                </svg>
+                                                Екатеринбург
+                                            </li>
+                                            <li>
+                                                <svg viewBox="0 0 12 16">
+                                                    <use xlink:href="@img/svg/icons.svg#geo"></use>
+                                                </svg>
+                                                Казань
+                                            </li>
+                                            <li>
+                                                <svg viewBox="0 0 12 16">
+                                                    <use xlink:href="@img/svg/icons.svg#geo"></use>
+                                                </svg>
+                                                Краснодар
+                                            </li>
+                                            <li>
+                                                <svg viewBox="0 0 12 16">
+                                                    <use xlink:href="@img/svg/icons.svg#geo"></use>
+                                                </svg>
+                                                Санкт-Петербург, Шушары
+                                            </li>
+                                            <li>
+                                                <svg viewBox="0 0 12 16">
+                                                    <use xlink:href="@img/svg/icons.svg#geo"></use>
+                                                </svg>
+                                                Санкт-Петербург, Уткина Заводь
+                                            </li>
+                                        </ol>
+                                        <a href="">
+                                            <img src="img/wb.png" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="_ozon-card swiper-slide">
+                                    <div class="delivery-card">
+                                        <ol>
+                                            <li>
+                                                <svg viewBox="0 0 12 16">
+                                                    <use xlink:href="@img/svg/icons.svg#geo"></use>
+                                                </svg>
+                                                Екатеринбург
+                                            </li>
+                                            <li>
+                                                <svg viewBox="0 0 12 16">
+                                                    <use xlink:href="@img/svg/icons.svg#geo"></use>
+                                                </svg>
+                                                Казань
+                                            </li>
+                                            <li>
+                                                <svg viewBox="0 0 12 16">
+                                                    <use xlink:href="@img/svg/icons.svg#geo"></use>
+                                                </svg>
+                                                Краснодар
+                                            </li>
+                                            <li>
+                                                <svg viewBox="0 0 12 16">
+                                                    <use xlink:href="@img/svg/icons.svg#geo"></use>
+                                                </svg>
+                                                Санкт-Петербург, Шушары
+                                            </li>
+                                            <li>
+                                                <svg viewBox="0 0 12 16">
+                                                    <use xlink:href="@img/svg/icons.svg#geo"></use>
+                                                </svg>
+                                                Санкт-Петербург, Уткина Заводь
+                                            </li>
+                                        </ol>
+                                        <a href="">
+                                            <img src="img/ozon.png" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="_yandex-card swiper-slide">
+                                    <div class="delivery-card">
+                                        <ol>
+                                            <li class="empty">
+                                                Нет опций доставки
+                                            </li>
+                                        </ol>
+                                        <a href="">
+                                            <img src="img/yandex.png" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="_mega-card swiper-slide">
+                                    <div class="delivery-card">
+                                        <ol>
+                                            <li class="empty">
+                                                Нет опций доставки
+                                            </li>
+                                        </ol>
+                                        <a href="">
+                                            <img src="img/mega.png" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pagination"></div>
+                    </div>
                 </div>
                 <div class="section__btns">
                     <a href="" class="_btn _btn-orange">Рассчитать стоимость доставки
@@ -158,6 +269,9 @@
     </section>
 
     <section class="section title-big run" id="run">
+        <div class="section__image">
+            <img src="img/run.png" alt="">
+        </div>
         <div class="section__container _container">
             <div class="section__body">
                 <div class="section__top ">
@@ -208,14 +322,14 @@
                             <span></span>
                         </div>
                         <ol>
-                            <li>
+                            <li data-icon="img/icons/black/system-regular-158-support.gif">
                                 <div class="line"></div>
                                 <div class="dot"></div>
                                 <span><strong>Бесплатное хранение.</strong> 6 дней бесплатного хранения ваших товаров на
                                     наших складах
                                     6 дней бесплатного хранения ваших товаров на наших складах</span>
                             </li>
-                            <li>
+                            <li data-icon="img/icons/black/system-regular-152-sticky-note.gif">
                                 <div class="line"></div>
                                 <div class="dot"></div>
                                 <span><strong>Дополнительная проверка.</strong> Дополнительно проверим упаковку и
@@ -224,7 +338,7 @@
                                     Дополнительно проверим упаковку и маркировку ваших товаров перед отгрузкой в
                                     маркетплейс</span>
                             </li>
-                            <li>
+                            <li data-icon="img/icons/black/system-regular-153-store.gif">
                                 <div class="line"></div>
                                 <div class="dot"></div>
                                 <span><strong>Решение проблем на месте.</strong> Сообщим о проблемах при приемке и
@@ -232,14 +346,14 @@
                                     месте
                                     Сообщим о проблемах при приемке и поможем решить их на месте</span>
                             </li>
-                            <li>
+                            <li data-icon="img/icons/black/system-regular-154-swap.gif">
                                 <div class="line"></div>
                                 <div class="dot"></div>
                                 <span><strong>Бесплатное хранение.</strong> 6 дней бесплатного хранения ваших товаров на
                                     наших складах
                                     6 дней бесплатного хранения ваших товаров на наших складах</span>
                             </li>
-                            <li>
+                            <li data-icon="img/icons/black/system-regular-126-verified.gif">
                                 <div class="line"></div>
                                 <div class="dot"></div>
                                 <span><strong>Дополнительная проверка.</strong> Дополнительно проверим упаковку и
@@ -248,7 +362,7 @@
                                     Дополнительно проверим упаковку и маркировку ваших товаров перед отгрузкой в
                                     маркетплейс</span>
                             </li>
-                            <li>
+                            <li data-icon="img/icons/black/system-regular-161-trending-flat.gif">
                                 <div class="line"></div>
                                 <div class="dot"></div>
                                 <span><strong>Решение проблем на месте.</strong> Сообщим о проблемах при приемке и

@@ -1,8 +1,9 @@
 import { replaceDomElements } from "./static/replace.js";
 import { maskInputs } from "./static/inputmask.js";
-import { animateAction, animateMapIcons, animateStaggerAction } from "./parts/animations.js";
+import { animateAction, animateStaggerAction } from "./parts/animations.js";
 import { accordeon } from "./static/accordeon.js";
 
+import "./parts/tabs.js";
 import "./parts/popup.js";
 import "./parts/animations.js";
 import "./parts/menu.js";

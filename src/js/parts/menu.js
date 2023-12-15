@@ -15,7 +15,7 @@ if (burger) {
 
 
         if (!header.classList.contains('_scrolled')) {
-            header.classList.toggle('_sticky');
+            // header.classList.toggle('_sticky');
         }
 
         if (menu.classList.contains('_open')) lockPadding();
