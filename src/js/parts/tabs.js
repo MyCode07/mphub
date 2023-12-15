@@ -23,6 +23,10 @@ document.addEventListener('click', function (e) {
                 tab.classList.remove('_active')
         })
 
+        const titleCity = document.querySelector('.delivery .subtitle .city');
+
+        titleCity.textContent = targetEl.textContent
+
         const top = document.querySelector('.delivery').offsetTop;
         window.scrollTo(0, top - 100)
     }

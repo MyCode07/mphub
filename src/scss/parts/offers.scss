@@ -14,9 +14,17 @@
         }
 
         img {
-            width: 1680px;
+            position: relative;
+            left: 50%;
+            transform: translate(-50%, 0);
+            margin: 0 auto;
+            width: 100vw;
+            min-width: 1920px;
             height: 2763px;
-            max-width: unset;
+
+            @media (max-width: 1200px) {
+                height: 2700px;
+            }
         }
     }
 
@@ -274,6 +282,8 @@
     // .list__top
 
     &__top {
+        font-size: 12px;
+        
         span {
             color: rgba($color: $black, $alpha: 0.4);
             font-weight: 500;

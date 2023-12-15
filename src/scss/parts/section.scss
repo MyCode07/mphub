@@ -144,6 +144,8 @@
     // .delivary-tabs__content
 
     &-tabs__content {
+        width: 100%;
+
         // .delivary-tabs__content-item
 
         &-item {
@@ -1226,19 +1228,15 @@
 
     .section__content {
         display: flex;
-        gap: 18px;
-        width: fit-content;
-        right: -200px;
         bottom: 96px;
-        max-width: 892px;
         padding: 0;
-        overflow-x: scroll;
+        width: 50%;
+        max-width: none;
 
         @media (max-width: 992px) {
             right: 50px;
             bottom: 50px;
-            max-width: none;
-            left: 24px;
+            left: 0;
             bottom: 24px;
             width: 100%;
         }
@@ -1246,10 +1244,28 @@
         p {
             max-width: 467px;
             min-width: 250px;
+            color: inherit;
+        }
+    }
+
+    .swiper {
+        margin-bottom: 0;
+        margin-left: 0;
+        width: 100%;
+
+        @media (max-width: 992px) {
+            padding-left: 24px;
         }
 
-        .opacity {
+        &-slide {
             opacity: 0.4;
+            color: $white;
+            transition: opacity 0.3s ease 0s;
+            @include adaptive-value("max-width", 477, 280, 1);
+
+            &.swiper-slide-active {
+                opacity: 1;
+            }
         }
     }
 }
@@ -1592,7 +1608,11 @@
     }
 
     h2 {
-        color: red;
+        color: rgba($color: $black, $alpha: 0.2);
+
+        i {
+            font-style: normal;
+        }
 
         @media (max-width: 768px) {
             font-size: 30px;
@@ -1614,7 +1634,7 @@
     .grid {
         width: 100%;
 
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
             gap: 55px;
         }
     }
@@ -1775,7 +1795,6 @@
 
     .back-svg {
         top: -137px;
-        z-index: -1;
         width: 100%;
         left: -70px;
 
@@ -1831,12 +1850,8 @@
     }
 
     .swiper {
+        width: 100%;
         @include adaptive-value("margin-bottom", 60, 27, 1);
-
-        &-slide {
-            max-width: 467px;
-            width: 100%;
-        }
     }
 }
 

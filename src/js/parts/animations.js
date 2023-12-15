@@ -1,29 +1,11 @@
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger.js'
-// import { SplitText } from 'gsap/SplitText';
-gsap.registerPlugin(ScrollTrigger); 
+import { TextPlugin } from 'gsap/TextPlugin.js';
 
-// gsap.registerPlugin(SplitText ); 
+gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
-// const colorFillText = gsap.utils.toArray("._color");
-// const split = new SplitText(colorFillText, {
-//     type: "chars",
-// });
- 
-// const tl = gsap.timeline({
-//     scrollTrigger: { 
-//         trigger: ".guarantee",
-//         start: "top top",
-//         end: "+=150%",
-//         pin: true,      
-//         scrub: 0.75,
-//         markers: true,
-//     }
-// })
-//     .set(split.chars, {
-//         color: "#0e0e0e",
-//         stagger: 0.1,
-//     }, 0.1);
+
+
 
 
 const headlines = gsap.utils.toArray(".run .text-wrap li");
@@ -103,7 +85,6 @@ if (supportLines.length) {
             line.style.height = self.progress * 100 + '%';
             gsap.to(list, {
                 y: self.progress * -deltaHeight + self.progress * -168,
-
             })
         }
     })
@@ -136,15 +117,54 @@ if (supportLines.length) {
 
 
 
+const aniamatedTitle = document.querySelector('.guarantee ._color');
+if (aniamatedTitle) {
+    const text = aniamatedTitle.textContent
+    aniamatedTitle.innerHTML = text.split('').map(i => { return `<i>${i}</i>` }).join('');
 
+    const svgs = document.querySelectorAll('.guarantee-card .circle');
+    svgs.forEach(svg => {
+        radialProgress(25, svg);
+    })
 
+    const tl = gsap.timeline();
+    ScrollTrigger.create({
+        trigger: "section.guarantee",
+        start: "top 80px",
+        end: "bottom",
+        pin: true,
+        scrub: 0.75,
+        animation: tl,
+        onEnterBack: () => {
+            svgs.forEach(svg => {
+                radialProgress(25, svg);
+            })
+        }
+    })
 
+    tl.to(aniamatedTitle.querySelectorAll('i'), {
+        color: '#0e0e0e',
+        stagger: 0.1,
+        onComplete: () => {
+            svgs.forEach(svg => {
+                radialProgress(100, svg);
+            })
+        }
+    })
 
+    function radialProgress(update, svg) {
+        let rd = svg.getAttribute("r");
+        let i = 0;
+        let a = 0;
+        let x = rd * 2 * Math.PI;
+        i = update;
+        a = i / 100;
+        let p = x * a;
 
-
-
-
-
+        const totalLength = svg.getTotalLength();
+        svg.style.strokeDasharray = p + ", " + x
+    }
+}
 
 
 

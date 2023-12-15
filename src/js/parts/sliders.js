@@ -49,21 +49,30 @@ if (sliders.length) {
                     Navigation, Pagination, Scrollbar
                 ],
                 loop: true,
-                slidesPerView: 'auto',
                 spaceBetween: 20,
-
                 navigation: {
                     prevEl: prev,
                     nextEl: next,
                 },
-
                 scrollbar: {
                     el: scrollbar,
                     hide: false,
                 },
+                breakpoints: {
+                    300: {
+                        slidesPerView: 1,
+                    },
+                    769: {
+                        slidesPerView: 2,
+                    },
+                    1025: {
+                        slidesPerView: 3,
+                    }
+                }
             })
         }
         else if (section.classList.contains('delivery-swiper') && (window.innerWidth < 992)) {
+            let pagination = slider.closest('.delivery-tabs__content-item').querySelector('.pagination')
             new Swiper(slider, {
                 modules: [
                     Pagination
@@ -90,14 +99,19 @@ if (sliders.length) {
 
             })
         }
-
+        else if (section.classList.contains('about')) {
+            new Swiper(slider, {
+                modules: [
+                    Autoplay
+                ],
+                loop: true,
+                slidesPerView: 'auto',
+                spaceBetween: 20,
+                autoplay: {
+                    delay: 2000,
+                    pauseOnMouseEnter: true,
+                }
+            })
+        }
     })
 }
-
-import { Fancybox } from "@fancyapps/ui";
-
-Fancybox.bind("[data-fancybox]", {
-    beforeClose: function (instance, slide) {
-        console.log(slide)
-    }
-});
