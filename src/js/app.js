@@ -8,6 +8,7 @@ import "./parts/popup.js";
 import "./parts/animations.js";
 import "./parts/menu.js";
 import "./parts/sliders.js";
+import "./parts/offers.js";
 import { stickyHeader } from "./parts/header.js";
 import { calculator } from "./parts/calculator.js";
 

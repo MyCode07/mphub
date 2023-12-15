@@ -1,6 +1,30 @@
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger.js'
-gsap.registerPlugin(ScrollTrigger)
+// import { SplitText } from 'gsap/SplitText';
+gsap.registerPlugin(ScrollTrigger); 
+
+// gsap.registerPlugin(SplitText ); 
+
+// const colorFillText = gsap.utils.toArray("._color");
+// const split = new SplitText(colorFillText, {
+//     type: "chars",
+// });
+ 
+// const tl = gsap.timeline({
+//     scrollTrigger: { 
+//         trigger: ".guarantee",
+//         start: "top top",
+//         end: "+=150%",
+//         pin: true,      
+//         scrub: 0.75,
+//         markers: true,
+//     }
+// })
+//     .set(split.chars, {
+//         color: "#0e0e0e",
+//         stagger: 0.1,
+//     }, 0.1);
+
 
 const headlines = gsap.utils.toArray(".run .text-wrap li");
 if (headlines.length) {
@@ -131,14 +155,6 @@ if (supportLines.length) {
 
 
 
-
-
-
-
-
-
-
-
 let threshold = 0;
 const observer = new IntersectionObserver((entries, self) => {
     entries.forEach(entry => {
@@ -203,11 +219,11 @@ function animateStagger(elem) {
     if (elem) {
         gsap.to(elem, {
             opacity: 1,
-            duration: 0.5,
+            duration: 0.3,
             x: 0,
             y: 0,
             ease: 'ease',
-            stagger: 0.1
+            stagger: 0.3
         });
     }
 }
@@ -234,8 +250,8 @@ function animateMap() {
     mapIcons.forEach(elem => {
         gsap.to(elem, {
             opacity: 1,
-            duration: 0.3,
-            stagger: 0.2
+            duration: 0.4,
+            stagger: 0.3
         });
     })
 }
@@ -244,6 +260,6 @@ const mapIcons = document.querySelectorAll('.map-svg a');
 export const animateMapIcons = () => {
     if (!mapIcons.length) return
     const map = document.querySelector('.map-svg');
-
     observerMap.observe(map)
 }
+

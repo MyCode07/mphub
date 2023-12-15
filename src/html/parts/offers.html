@@ -13,13 +13,13 @@
                 </h2>
                 <p>У нас действуют две системы скидок, которые можно суммировать</p>
                 <div class="section__btns">
-                    <button class="_btn _btn-orange">
+                    <button class="_btn _active offer-btn" id="cumulative">
                         <svg viewBox="0 0 16 16" fill="none">
                             <use xlink:href="@img/svg/icons.svg#percent"></use>
                         </svg>
                         Накопительная
                     </button>
-                    <button class="_btn ">
+                    <button class="_btn offer-btn" id="offers-qty">
                         <svg viewBox="0 0 16 16" fill="none">
                             <use xlink:href="@img/svg/icons.svg#percent"></use>
                         </svg>
@@ -27,7 +27,7 @@
                     </button>
                 </div>
             </div>
-            <div class="section__content">
+            <div class="section__content offer-box _active" data-id="cumulative">
                 <div class="offers__flex">
                     <div class="offers__flex-left">
                         <h3>Клиентская накопительная скидка</h3>
@@ -68,6 +68,59 @@
                             </li>
                             <li>
                                 <span>6 000 000 руб.</span><span>10%</span>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section__content offers-qty  offer-box" data-id="offers-qty">
+                <div class="offers__flex">
+                    <div class="offers__flex-left">
+                        <h3>Скидка от количества перевозимого груза в одном направлении</h3>
+                    </div>
+                    <div class="offers__flex-right">
+                        <ol class="list">
+                            <li class="list__top">
+                                <span>Количество паллетов</span>
+                                <span>Скидка</span>
+                            </li>
+                            <li>
+                                <span>50 000 руб.</span><span>1%</span>
+                            </li>
+                            <li>
+                                <span>100 000 руб.</span><span>2%</span>
+                            </li>
+                            <li>
+                                <span>200 000 руб.</span><span>3%</span>
+                            </li>
+                            <li>
+                                <span>350 000 руб.</span><span>4%</span>
+                            </li>
+                            <li>
+                                <span>500 000 руб.</span><span>5%</span>
+                            </li>
+                        </ol>
+                        <p>ИЛИ</p>
+                        <ol class="list">
+                            <li class="list__top">
+                                <span>Объем груза</span>
+                                <span>Скидка</span>
+                            </li>
+                            <li>
+                                <span>50 000 руб.</span><span>1%</span>
+                            </li>
+                            <li>
+                                <span>100 000 руб.</span><span>2%</span>
+                            </li>
+                            <li>
+                                <span>200 000 руб.</span><span>3%</span>
+                            </li>
+                            <li>
+                                <span>350 000 руб.</span><span>4%</span>
+                            </li>
+                            <li>
+                                <span>500 000 руб.</span><span>5%</span>
                             </li>
                         </ol>
                     </div>
