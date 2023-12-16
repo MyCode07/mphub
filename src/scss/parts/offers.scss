@@ -20,7 +20,7 @@
             margin: 0 auto;
             width: 100vw;
             min-width: 1920px;
-            height: 2763px;
+            height: 2900px;
 
             @media (max-width: 1200px) {
                 height: 2700px;
@@ -204,6 +204,7 @@
     &._wb-offers {
         h2 {
             max-width: 500px;
+
             label {
                 color: #bd18a5;
             }
@@ -283,7 +284,7 @@
 
     &__top {
         font-size: 12px;
-        
+
         span {
             color: rgba($color: $black, $alpha: 0.4);
             font-weight: 500;
