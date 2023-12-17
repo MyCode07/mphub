@@ -1,3 +1,7 @@
+.sklad-delivery .delivery-card {
+    border: 1px solid rgba($color: $black, $alpha: 0.05);
+}
+
 .delivery-card {
     display: flex;
     flex-direction: column;
@@ -226,7 +230,7 @@
 
     // .pricing-card__top
 
-    &__top{
+    &__top {
         flex: 1 1 auto;
     }
 

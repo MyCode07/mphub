@@ -219,9 +219,9 @@
         }
     }
 
-    &._ym-delivery {
+    &._yandex-delivery {
         .grid-item {
-            &:not(._ym-card) {
+            &:not(._yandex-card) {
                 display: none;
             }
         }
@@ -416,7 +416,7 @@
         }
     }
 
-    &._ym-sklad {
+    &._yandex-sklad {
         &.geo {
             &:after {
                 background: linear-gradient(
@@ -929,7 +929,7 @@
         }
     }
 
-    &._ym-pricing {
+    &._yandex-pricing {
         &.sklads-pricing {
             &:after {
                 background: linear-gradient(0deg, rgba(252, 63, 29, 0.6) 16.21%, rgba(255, 255, 255, 0.24) 70.74%);
@@ -1200,7 +1200,7 @@
                 color: #005bff;
             }
         }
-        &._ym-consider {
+        &._yandex-consider {
             h2 span {
                 color: #fc3f1d;
             }
@@ -2208,7 +2208,7 @@
         }
     }
 
-    &._ym-separator {
+    &._yandex-separator {
         p {
             span {
                 color: #fc3f1d;

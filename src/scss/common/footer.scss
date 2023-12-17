@@ -85,7 +85,11 @@
                 width: 100%;
             }
 
-            a {
+            & > :first-child {
+                margin-bottom: 38px;
+            }
+
+            a:not(._btn) {
                 font-family: InterTight;
                 font-size: 20px;
                 font-weight: 500;
@@ -94,11 +98,7 @@
                 text-decoration-line: underline;
             }
 
-            & > :first-child {
-                margin-bottom: 38px;
-            }
-
-            button {
+            ._btn {
                 margin-top: 46px;
                 white-space: nowrap;
 

@@ -21,6 +21,7 @@
             width: 100vw;
             min-width: 1920px;
             height: 2900px;
+            object-fit: cover;
 
             @media (max-width: 1200px) {
                 height: 2700px;

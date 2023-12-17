@@ -36,9 +36,11 @@ if (menuLinks.length) {
                 else lockPadding()
             }
 
-            menu.classList.toggle('_open');
-            burger.classList.toggle('_active');
-            body.classList.toggle('_noscroll');
+            if (menu.classList.contains('_open')) {
+                menu.classList.remove('_open');
+                body.classList.remove('_noscroll');
+                burger.classList.remove('_active');
+            }
         })
 
         if (!isMobile.any() && submenu) {

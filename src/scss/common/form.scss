@@ -404,6 +404,33 @@
     }
 }
 
+.div-submit {
+    div {
+        position: relative;
+    }
+
+    input {
+        position: absolute;
+        inset: 0;
+        z-index: 3;
+        cursor: pointer;
+        opacity: 0;
+    }
+}
+
+.wpcf7-spinner {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+
+
+.wpcf7-response-output{
+    display: none;
+}
+
 ._error {
     input,
     .radio {
