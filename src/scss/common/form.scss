@@ -425,9 +425,7 @@
     transform: translate(0, -50%);
 }
 
-
-
-.wpcf7-response-output{
+.wpcf7-response-output {
     display: none;
 }
 
@@ -440,5 +438,61 @@
 
     .validate {
         display: block;
+    }
+}
+
+form {
+    position: relative;
+
+    &:before {
+        position: absolute;
+        content: "";
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba($color: $black, $alpha: 0.7);
+        z-index: 2;
+        transition: opacity 0.3s ease 0s;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    &:after {
+        position: absolute;
+        content: "";
+        left: calc(50% - 25px);
+        top: calc(50% - 25px);
+        z-index: 3;
+
+        display: block;
+        border: 2px solid $white;
+        border-radius: 50%;
+        border-top: 2px solid currentColor;
+        width: 50px;
+        height: 50px;
+
+        transition: opacity 0.3s ease 0s;
+        opacity: 0;
+        pointer-events: none;
+
+        animation: spinner 1s linear infinite;
+
+        @keyframes spinner {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    }
+
+    &._sending {
+        &:before,
+        &:after {
+            pointer-events: all;
+            opacity: 1;
+        }
     }
 }

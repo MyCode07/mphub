@@ -1,6 +1,8 @@
 "use strict"
 
-const url = '';
+import { lockPadding, unLockPadding } from "../utils/lockPadding.js";
+
+const url = adminajaxurl.ajaxurl;
 
 document.addEventListener('DOMContentLoaded', function () {
     const forms = document.querySelectorAll('form')
@@ -13,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 let error = validateForm(form)
 
                 let formData = new FormData(form);
+                formData.append('action', 'send_form');
 
                 if (formFile && formFile.files[0]) {
                     formData.append('file', formFile.files[0]);
@@ -28,21 +31,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
                     if (response.ok) {
-                        sentMessage(form)
+                        sentMessage()
                         form.reset();
                         form.classList.remove('_sending');
 
                         setTimeout(() => {
                             resetForm(form)
                         }, 5000);
+
                     }
                     else {
-                        failMessage(form)
+                        failMessage()
                         form.classList.remove('_sending');
 
                         setTimeout(() => {
                             resetForm(form)
                         }, 5000);
+
                     }
                 }
 
@@ -106,7 +111,7 @@ export function validateForm(form) {
         const checkBoxes = [...checkBoxContainers[i].querySelectorAll('input')]
 
         checkBoxes.forEach(input => {
-            
+
             input.addEventListener('input', function () {
                 input.closest('[data-checkbox-container]').classList.remove('_error')
                 resetForm(form)
@@ -139,11 +144,19 @@ function emailTest(input) {
     return !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(input.value);
 }
 
+const thanksPopup = document.querySelector('.popup#thanks');
+const failPopup = document.querySelector('.popup#fail');
+function sentMessage() {
+    const activePopup = document.querySelector('.popup._open');
+    if (activePopup) activePopup.classList.remove('_open');
 
-function sentMessage(form) {
+    thanksPopup.classList.add('_open')
+    lockPadding();
 }
 
-function failMessage(form) {
+function failMessage() {
+    failPopup.classList.add('_open')
+    lockPadding();
 }
 
 function fillAllFields(form) {

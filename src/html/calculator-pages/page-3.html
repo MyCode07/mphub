@@ -1,4 +1,4 @@
-<div class="calculator-form__page page-calculator page-calculator__result" data-page="3">
+<form action="#" class="calculator-form__page page-calculator page-calculator__result" data-page="3">
     <div class="_form-shape page-calculator__data">
         <div class="form__block">
             <h3>Детали заказа</h3>
@@ -47,11 +47,12 @@
         </div>
         <div class="form__block">
             <h3>Контактные данные</h3>
-            <div class="form__item">
+            <div class="form__item" data-required>
                 <label>Имя</label>
                 <input type="text" name="your_name" placeholder="Имя">
+                <span class="validate">*Заполните поле</span>
             </div>
-            <div class="form__item">
+            <div class="form__item" data-required>
                 <label>Номер телефона</label>
                 <input type="text" name="your_phone" class="_mask-phone" placeholder="Телефон">
                 <span class="validate">*Заполните поле</span>
@@ -131,4 +132,4 @@
         </div>
 
     </div>
-</div>
+</form>

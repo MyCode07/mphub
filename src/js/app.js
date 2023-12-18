@@ -3,6 +3,7 @@ import { maskInputs } from "./static/inputmask.js";
 import { animateAction, animateStaggerAction } from "./parts/animations.js";
 import { accordeon } from "./static/accordeon.js";
 
+import "./parts/forms.js";
 import "./parts/tabs.js";
 import "./parts/popup.js";
 import "./parts/animations.js";

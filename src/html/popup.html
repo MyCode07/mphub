@@ -16,11 +16,12 @@
                 </div>
 
                 <form class="form" action="#">
-                    <div class="form__item">
+                    <div class="form__item" data-required>
                         <label>Имя</label>
                         <input type="text" name="your_name" placeholder="Имя">
+                        <span class="validate">*Заполните поле</span>
                     </div>
-                    <div class="form__item">
+                    <div class="form__item" data-required>
                         <label>Номер телефона</label>
                         <input type="text" name="your_phone" class="_mask-phone" placeholder="Телефон">
                         <span class="validate">*Заполните поле</span>
@@ -37,7 +38,6 @@
                         </button>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>
