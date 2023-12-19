@@ -108,7 +108,7 @@ if (sliders.length) {
                 slidesPerView: 'auto',
                 spaceBetween: 20,
                 autoplay: {
-                    delay: 2000,
+                    delay: 4000,
                     pauseOnMouseEnter: true,
                 }
             })

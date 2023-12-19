@@ -1,24 +1,26 @@
 import { replaceDomElements } from "./static/replace.js";
 import { maskInputs } from "./static/inputmask.js";
-import { animateAction, animateStaggerAction } from "./parts/animations.js";
+import { animateAction, animateStaggerAction, aniamteTrigger, animateMapIcons } from "./parts/animations.js";
 import { accordeon } from "./static/accordeon.js";
 
 import "./parts/forms.js";
 import "./parts/tabs.js";
 import "./parts/popup.js";
-import "./parts/animations.js";
 import "./parts/menu.js";
 import "./parts/sliders.js";
 import "./parts/offers.js";
 import { stickyHeader } from "./parts/header.js";
 import { calculator } from "./parts/calculator.js";
 
-accordeon();
+aniamteTrigger();
 animateAction()
+animateMapIcons();
+animateStaggerAction();
+
+accordeon();
 maskInputs('+7 (999) 999-99-99', '._mask-phone')
 replaceDomElements();
 stickyHeader();
-animateStaggerAction();
 calculator.start();
 
 document.addEventListener('click', function (e) {

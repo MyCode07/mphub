@@ -365,10 +365,12 @@
         @media (max-width: 1024px) {
             height: 100%;
             overflow-y: auto;
+            flex-direction: column;
+            display: flex;
+            justify-content: space-between;
 
             ul {
                 width: 100%;
-                flex: 0 0 auto;
 
                 & > :not(:last-child) {
                     margin-bottom: 12px;
@@ -428,14 +430,16 @@
                     }
 
                     button {
-                        flex: 0 0 auto;
+                        flex: 1 1 auto;
                         margin-left: 8px;
                     }
 
                     svg {
+                        width: 12px;
                         flex: 0 0 auto;
                         fill: currentColor;
                         transition: all 0.3s ease 0s;
+                        margin-left: auto;
                         pointer-events: none;
                     }
 
@@ -443,6 +447,7 @@
                         max-height: 0;
                         overflow: hidden;
                         transition: max-height 0.3s ease 0s;
+                        flex: 0 0 auto;
 
                         & > :not(:last-child) {
                             margin-bottom: 20px;
