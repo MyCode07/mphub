@@ -48,7 +48,6 @@ if (sliders.length) {
                 modules: [
                     Navigation, Pagination, Scrollbar
                 ],
-                loop: true,
                 spaceBetween: 20,
                 navigation: {
                     prevEl: prev,

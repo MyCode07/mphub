@@ -1,4 +1,4 @@
-<header class="header _fixed" data-replace-width="1024">
+<header class="header _fixed">
     <div class="header__container _container">
         <div class="header__body">
             <div class="header__left">
@@ -8,9 +8,18 @@
                     </a>
                 </div>
             </div>
-            <div class="header__right" data-replace-old-position="beforeend">
+            <div class="header__right">
+                <div class="header__phone _mobile">
+                    <a href="" class="">+7 (961) 526 25 32</a>
+                </div>
+                <button class="header__burger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
                 <div class="header__menu">
-                    <nav data-replace-new-position="beforeend">
+                    <nav>
                         <ul>
                             <li>
                                 <a href="">Услуги</a>
@@ -42,33 +51,28 @@
                             </li>
                         </ul>
                     </nav>
-                </div>
 
-                <div class="header__phone">
-                    <a href="" class="">+7 (961) 526 25 32</a>
-                </div>
-
-                <div class="_flex" data-replace-element>
-                    <div class="header__social-btns">
-                        <a href class="_btn-social">
-                            <svg viewBox="0 0 24 24">
-                                <use xlink:href="@img/svg/icons.svg#tg"></use>
-                            </svg>
-                        </a>
-                        <a href class="_btn-social">
-                            <svg viewBox="0 0 24 24">
-                                <use xlink:href="@img/svg/icons.svg#wh"></use>
-                            </svg>
-                        </a>
+                    <div class="header__phone _desctop">
+                        <a href="" class="">+7 (961) 526 25 32</a>
                     </div>
-                    <a href="" class="_btn _btn-orange">Калькулятор</a>
+
+                    <div class="_flex">
+                        <div class="header__social-btns">
+                            <a href class="_btn-social">
+                                <svg viewBox="0 0 24 24">
+                                    <use xlink:href="@img/svg/icons.svg#tg"></use>
+                                </svg>
+                            </a>
+                            <a href class="_btn-social">
+                                <svg viewBox="0 0 24 24">
+                                    <use xlink:href="@img/svg/icons.svg#wh"></use>
+                                </svg>
+                            </a>
+                        </div>
+                        <a href="" class="_btn _btn-orange">Калькулятор</a>
+                    </div>
                 </div>
             </div>
-            <button class="header__burger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
         </div>
     </div>
 </header>

@@ -33,12 +33,15 @@ body {
         background-color: rgba($color: $black, $alpha: 0.6);
         opacity: 0;
         transition: opacity 0.3s ease 0s;
+        z-index: 10;
         pointer-events: none;
     }
 
     &:has(.hover-menu-item),
-    &:has(.header__menu._open) {
+    &:has(.header__menu._open),
+    &:has(.header__menu li[data-open]) {
         &:before {
+            pointer-events: all;
             opacity: 1;
         }
     }
@@ -315,4 +318,8 @@ h4 {
 
 .swiper-button-lock {
     display: none !important;
+}
+
+.swiper-button-disabled {
+    opacity: 0.5;
 }

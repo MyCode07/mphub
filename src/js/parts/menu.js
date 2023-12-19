@@ -40,6 +40,11 @@ if (menuLinks.length) {
                 menu.classList.remove('_open');
                 body.classList.remove('_noscroll');
                 burger.classList.remove('_active');
+
+                const openLi = document.querySelector('li[data-open]');
+                if (openLi) {
+                    openLi.removeAttribute('data-open')
+                }
             }
         })
 
