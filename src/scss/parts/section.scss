@@ -1242,6 +1242,7 @@
         position: absolute;
         color: $white;
         z-index: 2;
+        left: 0;
 
         @media (min-width: 769px) {
             @include adaptive-value("top", 120, 50, 1);
