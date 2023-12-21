@@ -13,13 +13,13 @@ if (sliders.length) {
         if (section.classList.contains('hero')) {
             new Swiper(slider, {
                 modules: [Pagination, Autoplay],
-                slidesPerView: 'auto',
-                spaceBetween: 20,
                 centeredSlides: true,
                 initialSlide: 1,
+                slidesPerView: 'auto',
+                loop: true,
                 autoplay: {
                     delay: 2000,
-                    pauseOnMouseEnter: true,
+                    disableOnInteraction: false,
                 },
                 pagination: {
                     el: pagination,
@@ -104,12 +104,12 @@ if (sliders.length) {
                     Autoplay
                 ],
                 loop: true,
+                spaceBetween: 40,
                 slidesPerView: 'auto',
-                spaceBetween: 20,
                 autoplay: {
                     delay: 4000,
-                    pauseOnMouseEnter: true,
-                }
+                    disableOnInteraction: false,
+                },
             })
         }
     })

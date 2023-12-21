@@ -851,7 +851,7 @@
             bottom: 0;
             width: 100%;
             height: 100%;
-            opacity: 0.2;
+            opacity: 0.6;
         }
 
         .pricing-images {
@@ -954,6 +954,8 @@
 }
 
 .map {
+    position: relative;
+    z-index: 1;
     width: 100%;
     @include adaptive-value("margin-bottom", 200, 110, 1);
 
@@ -1233,6 +1235,8 @@
     margin-left: auto;
     margin-right: auto;
     max-width: unset;
+    z-index: 1;
+    position: relative;
 
     &.big-container {
         padding: 0;
@@ -1248,8 +1252,11 @@
             @include adaptive-value("top", 120, 50, 1);
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: $containerWithPadding+px) {
             left: 24px;
+        }
+
+        @media (max-width: 768px) {
             top: 44px;
         }
     }
@@ -1280,9 +1287,9 @@
         }
 
         p {
-            max-width: 467px;
-            min-width: 250px;
             color: inherit;
+            width: 100%;
+            max-width: none;
         }
     }
 
@@ -1300,6 +1307,12 @@
             color: $white;
             transition: opacity 0.3s ease 0s;
             @include adaptive-value("max-width", 477, 280, 1);
+            width: 100%;
+
+            @media (max-width: 992px) {
+                width: 75%;
+                max-width: none;
+            }
 
             &.swiper-slide-active {
                 opacity: 1;
@@ -1854,14 +1867,20 @@
     position: relative;
 
     .back-svg {
-        top: -137px;
-        width: 100%;
-        left: -70px;
+        top: -200px;
 
         img {
-            margin-left: auto;
-            max-width: none;
-            width: 313px;
+            margin: 0 auto;
+            object-fit: cover;
+            width: 100vw;
+            position: relative;
+            left: 45%;
+            transform: translate(-50%, 0);
+            min-height: 1440px;
+
+            @media (max-width: 1440px) {
+                left: 50%;
+            }
         }
 
         @media (max-width: 992px) {
@@ -1917,16 +1936,19 @@
 
 .faq {
     position: relative;
+
     .back-svg {
         bottom: -142px;
-        z-index: -1;
         top: unset;
         height: unset;
+        left: 50%;
+        z-index: -1;
+        transform: translate(0, 0);
+        height: calc(100% - 150px);
 
         img {
-            max-width: none;
-            width: 1051px;
-            height: 2277.825px;
+            height: 100%;
+            width: 185px;
         }
 
         @media (max-width: 992px) {
@@ -1971,14 +1993,17 @@
 
         ol,
         ul {
-            margin: 22px 0;
+            @media (min-width: 769px) {
+                margin-top: 22px;
+                margin-bottom: 22px !important;
+            }
 
             * {
                 font-weight: 500;
             }
 
             & > :not(:last-child) {
-                margin-bottom: 5px;
+                margin-bottom: 0px !important;
             }
         }
     }
@@ -2046,6 +2071,8 @@
         color: rgba($color: $black, $alpha: 0.4);
         letter-spacing: -0.02em;
         padding-bottom: 32px;
+        font-weight: 500;
+        line-height: 1.375;
     }
 
     [data-open="open"] {
@@ -2088,7 +2115,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-top: 1px solid $gray;
+            border-top: 1px solid rgba($color: $black, $alpha: 0.1);
             width: 100%;
 
             @media (max-width: 992px) {
@@ -2124,7 +2151,7 @@
                         content: "";
                         width: 1px;
                         height: 100%;
-                        background-color: $gray;
+                        background-color: rgba($color: $black, $alpha: 0.1);
                         left: 50%;
                         transform: translate(-50%, 0);
                     }
@@ -2150,7 +2177,7 @@
                     align-items: center;
                     justify-content: center;
                     border-radius: 50%;
-                    border: 1px solid $gray;
+                    border: 1px solid rgba($color: $black, $alpha: 0.1);
                     width: 64px;
                     height: 64px;
                     color: rgba($color: $black, $alpha: 0.4);
@@ -2198,9 +2225,12 @@
     }
     ._btn {
         font-weight: 600;
+        width: 100%;
+        max-width: 345px;
 
         @media (max-width: 768px) {
             width: 100%;
+            max-width: none;
         }
     }
 }
@@ -2458,9 +2488,6 @@
     b,
     em,
     i {
-        @media (max-width: 768px) {
-            font-size: 15px;
-        }
     }
 
     ul {
@@ -2493,7 +2520,46 @@
     }
 }
 
-.read-more__text-content,
+.faq [data-accordion-item-content] {
+    p,
+    ol,
+    ul,
+    strong,
+    b,
+    em,
+    i {
+        font-size: 16px;
+
+        @media (max-width: 768px) {
+            font-size: 14px;
+        }
+    }
+}
+
+.read-more__text-content {
+    p,
+    ol,
+    ul,
+    strong,
+    b,
+    em,
+    i {
+        font-size: 16px;
+
+        @media (max-width: 768px) {
+            font-size: 13px;
+        }
+    }
+}
+
 .text-page__content {
-    @include adaptive-value("font-size", 20, 14, 1);
+    p,
+    ol,
+    ul,
+    strong,
+    b,
+    em,
+    i {
+        @include adaptive-value("font-size", 20, 14, 1);
+    }
 }
