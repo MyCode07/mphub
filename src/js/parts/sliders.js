@@ -18,12 +18,11 @@ if (sliders.length) {
                 slidesPerView: 'auto',
                 loop: true,
                 autoplay: {
-                    delay: 2000,
+                    delay: 3000,
                     disableOnInteraction: false,
                 },
                 pagination: {
                     el: pagination,
-                    clickable: true,
                 },
             })
         }

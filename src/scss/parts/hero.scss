@@ -129,6 +129,7 @@
         z-index: 2;
         margin-bottom: 32px;
         width: 800px;
+        overflow: visible;
 
         @media (max-width: 768px) {
             margin-bottom: 34px;
@@ -145,6 +146,7 @@
             width: fit-content;
             opacity: 0;
             padding: 0 10px;
+            max-width: 80vw;
 
             a {
                 display: flex;
@@ -158,6 +160,11 @@
                     margin-left: auto;
                     margin-right: auto;
                 }
+
+                @media (max-width: 500px) {
+                    white-space: unset;
+                    text-align: center;
+                }
             }
 
             img,
@@ -167,6 +174,8 @@
                 width: 24px;
                 height: 24px;
             }
+
+            transition: opacity 0.3s ease 0s;
 
             &.swiper-slide-prev,
             &.swiper-slide-next {

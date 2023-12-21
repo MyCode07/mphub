@@ -139,7 +139,7 @@ h4 {
     align-items: center;
     justify-content: center;
     border-radius: 4px;
-    padding: 24px 28px;
+    padding: 23px 27px;
     height: fit-content;
     width: fit-content;
     gap: 12px;
@@ -159,7 +159,7 @@ h4 {
 
     &-orange {
         background: $yellow;
-        border: none;
+        border-color: $yellow;
     }
 }
 
