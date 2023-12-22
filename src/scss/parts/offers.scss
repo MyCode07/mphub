@@ -247,7 +247,8 @@
 }
 
 .offers-2 {
-    padding-top: 0;
+    padding-top: 0 !important;
+
     @include adaptive-value("margin-bottom", 250, 80, 1);
 
     &.sklad-offers {
@@ -260,18 +261,19 @@
 
             &.off-1 {
                 position: absolute;
-                left: unset;
+                left: unset !important;
                 right: 0;
                 top: -153px;
                 min-width: 1680px;
             }
 
             &.off-2 {
-                top: unset;
                 position: absolute;
                 left: 50%;
                 transform: translate(-50%, 0);
                 bottom: -160px;
+                top: unset !important;
+                right: unset !important;
             }
         }
     }

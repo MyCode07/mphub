@@ -7,7 +7,7 @@
     flex-direction: column;
     justify-content: space-between;
     background-color: $white;
-    min-height: 486px;
+    min-height: 100%;
     width: 100%;
     padding: 24px;
 
@@ -47,9 +47,10 @@
     div {
         height: 26px;
         display: block;
-        margin-bottom: 37px;
         margin-inline: auto;
         max-width: 100%;
+        margin-top: 37px;
+        margin-bottom: 37px;
 
         img {
             object-fit: contain;
