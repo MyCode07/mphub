@@ -150,7 +150,6 @@
 
             a {
                 display: flex;
-                align-items: center;
                 justify-content: center;
                 gap: 8px;
                 white-space: nowrap;
@@ -163,7 +162,6 @@
 
                 @media (max-width: 500px) {
                     white-space: unset;
-                    text-align: center;
                 }
             }
 

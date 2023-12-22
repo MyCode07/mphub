@@ -23,6 +23,7 @@ if (sliders.length) {
                 },
                 pagination: {
                     el: pagination,
+                    clickable: true,
                 },
             })
         }
@@ -77,6 +78,7 @@ if (sliders.length) {
                 ],
                 slidesPerView: 'auto',
                 spaceBetween: 20,
+                autoHeight: true,
 
                 pagination: {
                     el: pagination,
