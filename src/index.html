@@ -4,16 +4,16 @@
 
 @@include('./html/header.html')
 
-<main> 
+<main>
 
     <section class="hero" data-replace-width="768">
         <div class="hero__container" data-replace-new-position="beforeend">
             <div class="hero__image">
-                <video preload="none" autoplay playsinline poster="img/hom-hero.png" muted loop>
+                <video playsinline poster="img/hom-hero.png" muted loop class="_video">
                     <source src="files/scaled/header.mp4" type="video/mp4">
                 </video>
             </div>
-            <div class="hero__body"> 
+            <div class="hero__body">
                 <div class="hero-slide  _container" data-replace-old-position="beforeend">
                     <h1>Доставка на <br> маркетплейсы</h1>
                     <p>Доставим и сдадим ваши грузы на склад Вайлдберриз, Ozon, Яндекс.Маркет, KazanExpress,
@@ -29,19 +29,27 @@
         </div>
     </section>
 
+    <!-- <video autoplay loop muted playsinline poster="<?php echo $poster?>">
+        <source src="<?php echo $video_url ?>" type="video/<?php echo $video_type ?>">
+    </video> -->
+
     @@include('./html/parts/geo.html')
 
     <section class="section delivery delivery-swiper" id="delivery">
         <div class="section__container _container">
             <div class="section__body">
                 <h2>Доставляем в: </h2>
-                <p class="subtitle">Доставим ваши товары из г.<span class="city">Москва</span> на склады маркетплейсов в следуюших городах:</p>
+                <p class="subtitle">Доставим ваши товары из г.<span class="city">Москва</span> на склады маркетплейсов в
+                    следуюших городах:</p>
                 <div class="delivery-tabs__content">
                     <div class="delivery-tabs__content-item _active" data-id="1">
                         <div class="swiper">
                             <div class="swiper-wrapper">
                                 <div class="_wb-card swiper-slide">
                                     <div class="delivery-card">
+                                        <a href="">
+                                            <img src="img/wb.png" alt="">
+                                        </a>
                                         <ol>
                                             <li>
                                                 <svg viewBox="0 0 12 16">
@@ -74,13 +82,13 @@
                                                 Санкт-Петербург, Уткина Заводь
                                             </li>
                                         </ol>
-                                        <a href="">
-                                            <img src="img/wb.png" alt="">
-                                        </a>
                                     </div>
                                 </div>
                                 <div class="_ozon-card swiper-slide">
                                     <div class="delivery-card">
+                                        <a href="">
+                                            <img src="img/ozon.png" alt="">
+                                        </a>
                                         <ol>
                                             <li>
                                                 <svg viewBox="0 0 12 16">
@@ -113,33 +121,30 @@
                                                 Санкт-Петербург, Уткина Заводь
                                             </li>
                                         </ol>
-                                        <a href="">
-                                            <img src="img/ozon.png" alt="">
-                                        </a>
                                     </div>
                                 </div>
                                 <div class="_yandex-card swiper-slide">
                                     <div class="delivery-card">
+                                        <a href="">
+                                            <img src="img/yandex.png" alt="">
+                                        </a>
                                         <ol>
                                             <li class="empty">
                                                 Нет опций доставки
                                             </li>
                                         </ol>
-                                        <a href="">
-                                            <img src="img/yandex.png" alt="">
-                                        </a>
                                     </div>
                                 </div>
                                 <div class="_mega-card swiper-slide">
                                     <div class="delivery-card">
+                                        <a href="">
+                                            <img src="img/mega.png" alt="">
+                                        </a>
                                         <ol>
                                             <li class="empty">
                                                 Нет опций доставки
                                             </li>
                                         </ol>
-                                        <a href="">
-                                            <img src="img/mega.png" alt="">
-                                        </a>
                                     </div>
                                 </div>
                             </div>

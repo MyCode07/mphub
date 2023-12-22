@@ -11,7 +11,9 @@ import "./parts/sliders.js";
 import "./parts/offers.js";
 import { stickyHeader } from "./parts/header.js";
 import { calculator } from "./parts/calculator.js";
+import { playVideoAction } from "./parts/video.js";
 
+playVideoAction();
 aniamteTrigger();
 animateAction()
 animateMapIcons();
