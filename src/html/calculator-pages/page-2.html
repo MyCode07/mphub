@@ -36,8 +36,8 @@
         <h3>Какие размеры короба (см)?</h3>
         <div class="form__row">
             <div class="form__item" data-required>
-                <label>Длина</label>
-                <input type="text" name="length" placeholder="Длина">
+                <label>Длина (см)</label>
+                <input type="number" value="60" name="length" placeholder="Длина">
             </div>
             <div class="cross">
                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
@@ -46,8 +46,8 @@
                 </svg>
             </div>
             <div class="form__item" data-required>
-                <label>Ширина</label>
-                <input type="text" name="width" placeholder="Ширина">
+                <label>Ширина (см)</label>
+                <input type="number" value="40" name="width" placeholder="Ширина">
             </div>
             <div class="cross">
                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
@@ -56,70 +56,32 @@
                 </svg>
             </div>
             <div class="form__item" data-required>
-                <label>Высота</label>
-                <input type="text" name="height" placeholder="Высота">
+                <label>Высота (см)</label>
+                <input type="number" value="40" name="height" placeholder="Высота">
             </div>
         </div>
         <div class="form__row">
             <div class="form__item" data-required>
-                <label>Вес</label>
-                <input type="text" name="weight" placeholder="Вес">
+                <label>Вес (кг)</label>
+                <input type="number" name="weight" placeholder="Вес">
             </div>
             <div class="form__item" data-required>
-                <label>Количество коробов</label>
-                <input type="text" name="count" placeholder="Количество">
+                <label>Количество коробов (шт)</label>
+                <input type="number" name="count" value="1" placeholder="Количество">
             </div>
-        </div>
-        <div class="form__row">
             <div class="form__item" data-required>
                 <label>Обьем (м<sup>3</sup>)</label>
-                <input type="text" name="volume" placeholder="(м3)">
+                <input type="number" name="volume" value="" readonly placeholder="(м3)">
             </div>
         </div>
     </div>
 
     <div class="form__block boxes hidden-item" data-id="pallets">
-        <h3>Какие размеры паллета (см)?</h3>
+        <h3>Какое количество коробов?</h3>
         <div class="form__row">
-            <div class="form__item" data-required>
-                <label>Длина</label>
-                <input type="text" name="length" placeholder="Длина">
-            </div>
-            <div class="cross">
-                <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                    <path d="M1.25 1.25L8.75 8.75M1.25 8.75L8.75 1.25" stroke="black" stroke-width="1.5"
-                        stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-            </div>
-            <div class="form__item" data-required>
-                <label>Ширина</label>
-                <input type="text" name="width" placeholder="Ширина">
-            </div>
-            <div class="cross">
-                <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                    <path d="M1.25 1.25L8.75 8.75M1.25 8.75L8.75 1.25" stroke="black" stroke-width="1.5"
-                        stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-            </div>
-            <div class="form__item" data-required>
-                <label>Высота</label>
-                <input type="text" name="height" placeholder="Высота">
-            </div>
-        </div>
-        <div class="form__row">
-            <div class="form__item" data-required>
-                <label>Вес</label>
-                <input type="text" name="weight" placeholder="Вес">
-            </div>
-            <div class="form__item" data-required>
-                <label>Количество коробов</label>
-                <input type="text" name="count" placeholder="Количество">
-            </div>
-        </div>
-        <div class="form__row">
-            <div class="form__item" data-required>
-                <label>Обьем (м<sup>3</sup>)</label>
-                <input type="text" name="volume" placeholder="(м3)">
+            <div class="form__item">
+                <label>Количество коробов (шт)</label>
+                <input type="number" name="count" value="1" placeholder="Количество">
             </div>
         </div>
     </div>
@@ -138,7 +100,7 @@
                         </i>
                         Паллета
                     </span>
-                    <input type="radio" id="more-pallets" value="Паллета" name="services" checked>
+                    <input type="checkbox" id="more-pallets" value="Паллета" name="services" checked>
                 </label>
             </div>
             <div class="form__item">
@@ -152,7 +114,7 @@
                         </i>
                         Паллетирование
                     </span>
-                    <input type="radio" id="palleting" value="Паллетирование" name="services">
+                    <input type="checkbox" id="palleting" value="Паллетирование" name="services">
                 </label>
             </div>
         </div>

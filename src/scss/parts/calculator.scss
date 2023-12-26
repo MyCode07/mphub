@@ -365,9 +365,39 @@
             width: 100%;
         }
     }
+
+    .back {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        height: 24px;
+        width: fit-content;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+
+        img,
+        svg {
+            width: 7px;
+            fill: currentColor;
+            transform: rotate(180deg);
+            pointer-events: none;
+        }
+
+        span {
+            display: block;
+            line-height: 1;
+            pointer-events: none;
+        }
+    }
 }
 
 .total-calculator {
+
+    [data-id="services"] span{
+        display: block;
+    }
+
     // .total-calculator__bottom
 
     &__bottom {
@@ -418,4 +448,8 @@
             }
         }
     }
+}
+
+sup {
+    line-height: 0;
 }

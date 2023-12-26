@@ -11,6 +11,8 @@ class Calculator {
             this.wrapper = this.calculator.querySelector('.calculator-form__wrapper');
             this.pageWrapper = this.calculator.querySelector('.calculator-form')
             this.resultPage = this.calculator.querySelector('.page-calculator__result')
+            this.allPages = this.calculator.querySelectorAll('.page-calculator')
+
         }
     }
 
@@ -20,12 +22,14 @@ class Calculator {
 
     calculate() {
         this.createSlider()
+        this.calculateSizes()
     }
 
     createSlider() {
         this.sliderAutoHeight()
         this.nextSlide()
         this.prevSlide()
+        this.goBack();
     }
 
     sliderAutoHeight() {
@@ -34,6 +38,10 @@ class Calculator {
     }
 
     showresulPage() {
+        const activeSlide = this.calculator.querySelector('.page-calculator._active');
+        activeSlide.classList.remove('_active')
+
+        this.resultPage.classList.add('_active')
         this.pageWrapper.style.display = "none";
         this.resultPage.style.display = "flex";
 
@@ -45,11 +53,11 @@ class Calculator {
         let page = +activeSlide.dataset.page;
         const gap = 40;
 
-        const nextSlide = activeSlide.nextElementSibling;
-        const prevSlide = activeSlide.previousElementSibling;
+        const nextSlide = this.allPages[page];
+        const prevSlide = this.allPages[page - 2];
 
         if (direction == -1) {
-            if (nextSlide) {
+            if (page !== this.allPages.length - 1) {
                 nextSlide.classList.add('_active');
                 activeSlide.classList.remove('_active');
             }
@@ -60,16 +68,16 @@ class Calculator {
         }
         else {
             if (prevSlide) {
-                page -= 2
-
                 prevSlide.classList.add('_active');
+
                 activeSlide.classList.remove('_active');
 
-                const firstSlide = prevSlide.previousElementSibling
-                if (!firstSlide) {
+                if (page == 2) {
                     console.log('start');
                     this.prev.setAttribute('disabled', true);
                 }
+
+                page -= 2
             }
         }
 
@@ -128,6 +136,24 @@ class Calculator {
         return error;
     }
 
+    calculateSizes() {
+        const length = this.calculator.querySelector('[data-required] [name="length"]');
+        const width = this.calculator.querySelector('[data-required] [name="width"]');
+        const height = this.calculator.querySelector('[data-required] [name="height"]');
+        const count = this.calculator.querySelector('[data-required] [name="count"]');
+        const sizes = this.calculator.querySelector('[data-required] [name="volume"]');
+
+        let value = +count.value * (+length.value / 100 * +width.value / 100 * +height.value / 100);
+        sizes.value = isNaN(value) ? 0 : value.toFixed(3)
+
+        Array.from([length, width, height, count]).forEach(input => {
+            input.addEventListener('input', () => {
+                value = +count.value * (+length.value / 100 * +width.value / 100 * +height.value / 100);
+                sizes.value = isNaN(value) ? 0 : value.toFixed(3)
+            })
+        });
+    }
+
     showHiddenBoxes() {
         const activeSlide = this.calculator.querySelector('.page-calculator._active');
         const checboxes = activeSlide.querySelectorAll('.show-items input');
@@ -180,11 +206,28 @@ class Calculator {
         })
     }
 
+    goBack() {
+        const backBtn = this.calculator.querySelector('.back');
+
+        if (backBtn) {
+            backBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+
+
+                this.pageWrapper.style.display = "block";
+                this.resultPage.style.display = "none";
+
+                this.slide(1)
+                this.changePageNumber(1);
+            })
+        }
+    }
+
     renderResults() {
         const fields = this.wrapper.querySelectorAll('input');
         const resultArray = []
         const sizes = []
-
+        const srevices = { name: 'services', value: '' }
         fields.forEach(field => {
             let name = field.name
             let value = field.value
@@ -194,11 +237,17 @@ class Calculator {
 
             if ((field.getAttribute('type') === 'radio' || field.getAttribute('type') === 'checkbox')) {
                 if (field.checked) {
-                    resultArray.push({ name: name, value: value })
+                    if (name == 'services') {
+                        srevices.value += value
+                    }
+                    else {
+                        resultArray.push({ name: name, value: value })
+                    }
                 }
             }
             else {
                 if (field.value != '') {
+
                     resultArray.push({ name: name, value: value })
 
                     if (name == 'length') sizes.push(value)
@@ -208,10 +257,14 @@ class Calculator {
             }
         })
 
-        let sisesString = sizes.join('x')
-        sisesString += ' см';
+        console.log(srevices);
+        resultArray.push(srevices)
 
-        resultArray.push({ name: 'sizes', value: sisesString })
+
+        let sizesString = sizes.join('x')
+        sizesString += ' см';
+
+        resultArray.push({ name: 'sizes', value: sizesString })
 
         this.renderResultsForm(resultArray);
         this.renderResultsHtml(resultArray);
@@ -228,6 +281,11 @@ class Calculator {
 
     renderResultsForm(array) {
         const formFieldsWrapper = this.resultPage.querySelector('.form-hidden-field');
+        const existfields = formFieldsWrapper.querySelectorAll('input');
+
+        if (existfields.length) {
+            existfields.forEach(f => f.remove())
+        }
 
         array.forEach(item => {
             const inp = document.createElement('input')

@@ -96,7 +96,7 @@ export function validateForm(form) {
 
                 }
                 else {
-                    if (input.value.length < 2) {
+                    if (input.value.length < 1) {
                         formAddError(input);
                         error++;
                     }
