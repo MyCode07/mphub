@@ -31,7 +31,7 @@ if (menuLinks.length) {
         const submenu = li.querySelector('ul');
 
         link.addEventListener('click', (е) => {
-            if (!isMobile.any()) {
+            if (isMobile.any()) {
                 if (menu.classList.contains('_open')) unLockPadding();
                 else lockPadding()
             }

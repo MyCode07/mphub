@@ -67,7 +67,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 export function validateForm(form) {
     let error = 0;
-    const formReq = [...form.querySelectorAll('[data-required] input')].concat([...form.querySelectorAll('[data-required] textarea')])
+    const formReq =
+        [...form.querySelectorAll('[data-required] input')]
+            .concat([...form.querySelectorAll('[data-required] textarea')])
+            .concat([...form.querySelectorAll('[data-required] select')])
 
     for (let i = 0; i < formReq.length; i++) {
         const input = formReq[i]
@@ -81,24 +84,42 @@ export function validateForm(form) {
         })
 
         function validateInput() {
-            if (input.getAttribute('type') === 'email') {
-                if (emailTest(input)) {
-                    formAddError(input);
-                    error++;
-                }
-            }
-            else {
-                if (input.getAttribute('name') === 'phone') {
-                    if (/[_]/.test(input.value) || input.value.length < 18) {
+            if (input.tagName === 'SELECT') {
+                const options = input.querySelectorAll('option[data-index]');
+
+                if (options.length) {
+                    const selectedoption = [...options].map(item => {
+                        if (item.selected) {
+                            return item;
+                        }
+                    }).filter(item => item != undefined);
+
+                    if (!selectedoption.length) {
                         formAddError(input);
                         error++;
                     }
-
                 }
-                else {
-                    if (input.value.length < 1) {
+            }
+            else {
+                if (input.getAttribute('type') === 'email') {
+                    if (emailTest(input)) {
                         formAddError(input);
                         error++;
+                    }
+                }
+                else {
+                    if (input.getAttribute('name') === 'phone') {
+                        if (/[_]/.test(input.value) || input.value.length < 18) {
+                            formAddError(input);
+                            error++;
+                        }
+
+                    }
+                    else {
+                        if (input.value.length < 1) {
+                            formAddError(input);
+                            error++;
+                        }
                     }
                 }
             }

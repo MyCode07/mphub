@@ -1,18 +1,21 @@
 import { validateForm } from "./forms.js";
 
+const data = delivery_data;
+console.log(data);
 class Calculator {
 
     constructor(calculator) {
         this.calculator = calculator;
 
         if (this.calculator) {
+            this.selectFrom = this.calculator.querySelector('select#from')
+            this.selectTo = this.calculator.querySelector('select#to')
             this.next = this.calculator.querySelector('.next')
             this.prev = this.calculator.querySelector('.prev')
             this.wrapper = this.calculator.querySelector('.calculator-form__wrapper');
             this.pageWrapper = this.calculator.querySelector('.calculator-form')
             this.resultPage = this.calculator.querySelector('.page-calculator__result')
             this.allPages = this.calculator.querySelectorAll('.page-calculator')
-
         }
     }
 
@@ -30,11 +33,84 @@ class Calculator {
         this.nextSlide()
         this.prevSlide()
         this.goBack();
+        this.createSelectFrom();
+        this.createSelectTo();
+        this.addDataToSelectedRout();
     }
 
     sliderAutoHeight() {
         const activeSlide = this.calculator.querySelector('.page-calculator._active');
         this.wrapper.style.maxHeight = activeSlide.getBoundingClientRect().height + 'px'
+    }
+
+
+    createSelectFrom() {
+        if (data.length) {
+            data.forEach((item, i) => {
+                const option = `<option value="${item.from}" data-index=${i}>${item.from}</option>`
+                this.selectFrom.insertAdjacentHTML('beforeend', option)
+            })
+        }
+    }
+
+    createSelectTo() {
+        this.selectFrom.addEventListener('change', (e) => {
+            const activeOption = this.selectFrom.selectedIndex;
+
+            if (data[activeOption - 1]) {
+                const routesTo = data[activeOption - 1].to;
+
+                if (routesTo.length) {
+                    this.removeExistOptions();
+
+                    routesTo.forEach((item, i) => {
+                        const option = `<option value="${item.sklad}" 
+                                            data-index="${i}" 
+                                            data-price-min="${item.price_min}"
+                                            data-price-cube="${item.price_cube}"
+                                            data-price-pallet="${item.price_pallet}"
+                                            data-palleta="${item.palleta}"
+                                            data-palletirovanie="${item.palletirovanie}"
+                                            data-zabor-gruza="${item.zabor_gruza}"
+                                        >${item.sklad}
+                                        </option>`
+                        this.selectTo.insertAdjacentHTML('beforeend', option)
+                    })
+                }
+            }
+        })
+    }
+
+    getSelectedRoutData(activeOption) {
+        if (!activeOption) return;
+
+        return {
+            "sklad": activeOption.value,
+            "price_min": activeOption.dataset.priceMin,
+            "price_pallet": activeOption.dataset.pricePallet,
+            "price_cube": activeOption.dataset.priceCube,
+            "palleta": activeOption.dataset.palleta,
+            "palletirovanie": activeOption.dataset.palletirovanie,
+            "zabor_gruza": activeOption.dataset.zaborGruza,
+        }
+    }
+
+    addDataToSelectedRout() {
+        this.selectTo.addEventListener('change', (e) => {
+            const activeOption = this.selectTo.querySelectorAll('option')[this.selectTo.selectedIndex];
+
+            const data = this.getSelectedRoutData(activeOption);
+            console.log(data);
+        })
+    }
+
+    removeExistOptions() {
+        const existOptions = this.selectTo.querySelectorAll('option[data-index]');
+        if (existOptions.length) {
+            this.selectTo.value = this.selectTo.querySelector('option[disabled]').value;
+
+            existOptions.forEach(item => item.remove())
+        }
     }
 
     showresulPage() {
@@ -224,7 +300,9 @@ class Calculator {
     }
 
     renderResults() {
-        const fields = this.wrapper.querySelectorAll('input');
+        const fields = [...this.wrapper.querySelectorAll('input')]
+            .concat([...this.wrapper.querySelectorAll('select')])
+
         const resultArray = []
         const sizes = []
         const srevices = { name: 'services', value: '' }

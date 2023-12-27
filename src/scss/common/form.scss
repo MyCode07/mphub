@@ -45,6 +45,7 @@
             margin-bottom: 20px;
         }
 
+        select,
         input,
         .radio {
             height: 80px;
@@ -64,6 +65,14 @@
             @media (max-width: 768px) {
                 height: 70px;
             }
+        }
+
+        select {
+            cursor: pointer;
+            background-color: #fff;
+            width: 100%;
+            max-width: 100%;
+            display: block;
         }
 
         .radio {
@@ -430,6 +439,7 @@
 }
 
 ._error {
+    select,
     input,
     .radio {
         border-color: red;
