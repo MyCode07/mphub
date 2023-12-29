@@ -273,11 +273,10 @@
             margin-bottom: 0;
 
             &:not(:has(.checkbox)) {
-                flex: 1 1 auto;
-                max-width: calc(50% - 10px);
+                flex: 0 0 auto;
+                width: calc(50% - 32px);
 
                 @media (max-width: 768px) {
-                    max-width: 100%;
                     width: 100%;
                     flex: unset;
                 }
@@ -302,6 +301,10 @@
             img,
             svg {
                 width: 17px;
+
+                @media (max-width: 768px) {
+                    transform: rotate(90deg);
+                }
             }
         }
 

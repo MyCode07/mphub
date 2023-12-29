@@ -220,7 +220,6 @@
     }
 
     .select {
-        
     }
 }
 
@@ -331,6 +330,22 @@
                     padding-top: 20px;
                     border-top: 1px dashed rgba($color: $black, $alpha: 0.1);
                 }
+            }
+        }
+
+        [data-id="count-pallet"] {
+            display: none;
+        }
+
+        &.show-pallet {
+            [data-id="sizes"],
+            [data-id="volume"],
+            [data-id="count-box"] {
+                display: none;
+            }
+
+            [data-id="count-pallet"] {
+                display: block;
             }
         }
     }

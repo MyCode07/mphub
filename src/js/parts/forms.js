@@ -9,58 +9,60 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (forms.length) {
         forms.forEach(form => {
-            form.addEventListener('submit', async function (e) {
-                e.preventDefault();
+            if (!form.closest('.b24-form') || !form.closest('.b24-window')) {
+                form.addEventListener('submit', async function (e) {
+                    e.preventDefault();
 
-                let error = validateForm(form)
+                    let error = validateForm(form)
 
-                let formData = new FormData(form);
-                formData.append('action', 'send_form');
+                    let formData = new FormData(form);
+                    formData.append('action', 'send_form');
 
-                if (formFile && formFile.files[0]) {
-                    formData.append('file', formFile.files[0]);
-                }
-
-                if (error === 0) {
-                    form.classList.add('_sending');
-
-                    let response = await fetch(url, {
-                        method: 'POST',
-                        body: formData
-                    });
-
-
-                    if (response.ok) {
-                        sentMessage()
-                        form.reset();
-                        form.classList.remove('_sending');
-
-                        setTimeout(() => {
-                            resetForm(form)
-                        }, 5000);
-
+                    if (formFile && formFile.files[0]) {
+                        formData.append('file', formFile.files[0]);
                     }
+
+                    if (error === 0) {
+                        form.classList.add('_sending');
+
+                        let response = await fetch(url, {
+                            method: 'POST',
+                            body: formData
+                        });
+
+
+                        if (response.ok) {
+                            sentMessage()
+                            form.reset();
+                            form.classList.remove('_sending');
+
+                            setTimeout(() => {
+                                resetForm(form)
+                            }, 5000);
+
+                        }
+                        else {
+                            failMessage()
+                            form.classList.remove('_sending');
+
+                            setTimeout(() => {
+                                resetForm(form)
+                            }, 5000);
+
+                        }
+                    }
+
                     else {
-                        failMessage()
-                        form.classList.remove('_sending');
+                        fillAllFields(form)
 
+                        form.classList.remove('_sending');
                         setTimeout(() => {
                             resetForm(form)
                         }, 5000);
-
                     }
-                }
 
-                else {
-                    fillAllFields(form)
-
-                    form.classList.remove('_sending');
-                    setTimeout(() => {
-                        resetForm(form)
-                    }, 5000);
-                }
-
-            })
+                })
+            }
         })
     }
 });
@@ -116,6 +118,13 @@ export function validateForm(form) {
 
                     }
                     else {
+                        if (input.getAttribute('type') === 'number' && input.getAttribute('name') !== "volume") {
+                            if (input.value < 0) {
+                                formAddError(input);
+                                error++;
+                            }
+                        }
+
                         if (input.value.length < 1) {
                             formAddError(input);
                             error++;

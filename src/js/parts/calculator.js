@@ -1,7 +1,11 @@
 import { validateForm } from "./forms.js";
 
-const data = delivery_data;
-console.log(data);
+// const data = delivery_data.routes;
+// const promocodes = delivery_data.promocodes;
+
+// console.log(data);
+// console.log(promocodes);
+
 class Calculator {
 
     constructor(calculator) {
@@ -216,7 +220,7 @@ class Calculator {
         const length = this.calculator.querySelector('[data-required] [name="length"]');
         const width = this.calculator.querySelector('[data-required] [name="width"]');
         const height = this.calculator.querySelector('[data-required] [name="height"]');
-        const count = this.calculator.querySelector('[data-required] [name="count"]');
+        const count = this.calculator.querySelector('[data-required] [name="count-box"]');
         const sizes = this.calculator.querySelector('[data-required] [name="volume"]');
 
         let value = +count.value * (+length.value / 100 * +width.value / 100 * +height.value / 100);
@@ -309,8 +313,10 @@ class Calculator {
         fields.forEach(field => {
             let name = field.name
             let value = field.value
+            console.log(name, value);
 
-            if (name == 'count') value += ' шт.'
+            if (name == 'count-box') value += ' шт.'
+            if (name == 'count-pallet') value += ' шт.'
             if (name == 'volume') value += ' м³'
 
             if ((field.getAttribute('type') === 'radio' || field.getAttribute('type') === 'checkbox')) {
@@ -352,6 +358,14 @@ class Calculator {
         array.forEach(item => {
             const outputelem = this.resultPage.querySelector(`[data-id="${item.name}"]`)
             if (outputelem) {
+                if (item.name == 'transporting') {
+                    if (item.value.includes('короб')) {
+                        this.resultPage.classList.remove('show-pallet')
+                    }
+                    else {
+                        this.resultPage.classList.add('show-pallet')
+                    }
+                }
                 outputelem.querySelector('span').innerHTML = item.value
             }
         })

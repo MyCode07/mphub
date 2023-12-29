@@ -10,7 +10,7 @@
                         <i></i>
                         В коробах
                     </span>
-                    <input type="radio" id="boxes" value="В коробах" name="transporting">
+                    <input type="radio" id="boxes" value="В коробах" min="1" name="transporting">
                     <div class="large-icon">
                         <img src="@img/icons/boxes.svg" alt="">
                     </div>
@@ -22,7 +22,7 @@
                         <i></i>
                         В паллетах
                     </span>
-                    <input type="radio" id="pallets" value="В паллетах" name="transporting">
+                    <input type="radio" id="pallets" value="В паллетах" min="1" name="transporting">
                     <div class="large-icon">
                         <img src="@img/icons/pallets.svg" alt="">
                     </div>
@@ -37,7 +37,7 @@
         <div class="form__row">
             <div class="form__item" data-required>
                 <label>Длина (см)</label>
-                <input type="number" value="60" name="length" placeholder="Длина">
+                <input type="number" value="60" name="length" min="1" placeholder="Длина">
             </div>
             <div class="cross">
                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
@@ -47,7 +47,7 @@
             </div>
             <div class="form__item" data-required>
                 <label>Ширина (см)</label>
-                <input type="number" value="40" name="width" placeholder="Ширина">
+                <input type="number" value="40" name="width" min="1" placeholder="Ширина">
             </div>
             <div class="cross">
                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
@@ -57,17 +57,17 @@
             </div>
             <div class="form__item" data-required>
                 <label>Высота (см)</label>
-                <input type="number" value="40" name="height" placeholder="Высота">
+                <input type="number" value="40" name="height" min="1" placeholder="Высота">
             </div>
         </div>
         <div class="form__row">
             <div class="form__item" data-required>
                 <label>Вес (кг)</label>
-                <input type="number" name="weight" placeholder="Вес">
+                <input type="number" name="weight" min="1" placeholder="Вес">
             </div>
             <div class="form__item" data-required>
                 <label>Количество коробов (шт)</label>
-                <input type="number" name="count" value="1" placeholder="Количество">
+                <input type="number" name="count-box" value="1" min="1" placeholder="Количество">
             </div>
             <div class="form__item" data-required>
                 <label>Обьем (м<sup>3</sup>)</label>
@@ -81,7 +81,7 @@
         <div class="form__row">
             <div class="form__item">
                 <label>Количество коробов (шт)</label>
-                <input type="number" name="count" value="1" placeholder="Количество">
+                <input type="number" name="count-pallet" value="1" min="1" placeholder="Количество">
             </div>
         </div>
     </div>
