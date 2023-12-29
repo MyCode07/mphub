@@ -148,6 +148,7 @@ h4 {
     font-weight: 600;
     line-height: 1.5;
     text-transform: uppercase;
+    max-height: 66px;
 
     svg {
         fill: currentColor;
@@ -160,6 +161,25 @@ h4 {
     &-orange {
         background: $yellow;
         border-color: $yellow;
+    }
+
+    // ._btn-dashed
+
+    &-dashed {
+        border-color: $white;
+        border-style: dashed;
+        color: $white;
+
+        label {
+            color: $black;
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 1.5;
+            text-transform: uppercase;
+            padding: 3px 5.8px 3.5px 5.8px;
+            background-color: $yellow;
+            border-radius: 20px;
+        }
     }
 }
 

@@ -14,15 +14,22 @@
                 </video>
             </div>
             <div class="hero__body">
-                <div class="hero-slide  _container" data-replace-old-position="beforeend">
+                <div class="hero-slide  _container">
                     <h1>Доставка на <br> маркетплейсы</h1>
                     <p>Доставим и сдадим ваши грузы на склад Вайлдберриз, Ozon, Яндекс.Маркет, KazanExpress,
                         и другие маркетплейсы безупречно</p>
-                    <a href="" class="_btn _btn-orange" data-replace-element>Рассчитать стоимость доставки
-                        <svg viewBox="0 0 22 16">
-                            <use xlink:href="@img/svg/icons.svg#btn-arrow"></use>
-                        </svg>
-                    </a>
+                    <div class="hero-slide__btns" data-replace-old-position="beforeend">
+                        <a href="" class="_btn _btn-orange" data-replace-element>Рассчитать стоимость доставки
+                            <svg viewBox="0 0 22 16">
+                                <use xlink:href="@img/svg/icons.svg#btn-arrow"></use>
+                            </svg>
+                        </a>
+                        <div class="_btn _btn-dashed">
+                            <span>скидка на первую доставку</span>
+                            <label>-10%</label>
+                        </div>
+                    </div>
+
                 </div>
             </div>
             @@include('./html/parts/hero-slider.html', {"icon-type":"white"})
@@ -497,5 +504,3 @@
 
 @@include('./html/footer.html')
 @@include('./html/scripts.html')
-
-

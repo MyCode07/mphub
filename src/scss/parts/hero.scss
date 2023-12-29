@@ -56,6 +56,18 @@
         @media (max-width: 768px) {
             margin-bottom: 170px;
         }
+
+        // .hero-slide__btns
+
+        &__btns {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+
+            div {
+            }
+        }
     }
 
     // .hero__body
