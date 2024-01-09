@@ -22,6 +22,7 @@ export const aniamteTrigger = () => {
                     start: "top center",
                     end: `+=${height}`,
                     scrub: 0,
+                    invalidateOnRefresh: true,
                     onUpdate: self => {
                         line.style.height = self.progress * 100 + '%';
                     },
@@ -47,6 +48,7 @@ export const aniamteTrigger = () => {
             end: `+=50%`,
             scrub: 0.75,
             animation: smallTimeline,
+            invalidateOnRefresh: true,
             onUpdate: self => {
             }
         })
@@ -80,6 +82,7 @@ export const aniamteTrigger = () => {
             end: `+=${listHeight}`,
             scrub: 0.75,
             // markers: true,
+            invalidateOnRefresh: true,
             pin: true,
             animation: smallTimeline,
             onUpdate: self => {
@@ -131,6 +134,7 @@ export const aniamteTrigger = () => {
             start: "top 80px",
             end: "bottom",
             pin: true,
+            invalidateOnRefresh: true,
             scrub: 0.75,
             animation: tl,
             onEnterBack: () => {

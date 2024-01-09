@@ -1,15 +1,24 @@
 import { validateForm } from "./forms.js";
 
-// const data = delivery_data.routes;
-// const promocodes = delivery_data.promocodes;
+const data = delivery_data.routes;
+const promocodes = delivery_data.promocodes;
 
-// console.log(data);
-// console.log(promocodes);
+console.log('data', data);
+
+// make price calculating and promode left
 
 class Calculator {
-
     constructor(calculator) {
         this.calculator = calculator;
+        this.minPrice = 0;
+        this.price = 0;
+        this.boxPrice = 0;
+        this.palletPrice = 0;
+        this.salePrice = 0;
+        this.servicesPrice = 0;
+        this.totalPrice = 0;
+        this.salePercent = 0
+        this.salePercentPromocode = null;
 
         if (this.calculator) {
             this.selectFrom = this.calculator.querySelector('select#from')
@@ -20,6 +29,12 @@ class Calculator {
             this.pageWrapper = this.calculator.querySelector('.calculator-form')
             this.resultPage = this.calculator.querySelector('.page-calculator__result')
             this.allPages = this.calculator.querySelectorAll('.page-calculator')
+            this.servicesBlock = this.calculator.querySelector('.more-fields .form__row');
+
+            this.deliveryPriceElem = this.resultPage.querySelector('#delivery .amount');
+            this.salePriceElem = this.resultPage.querySelector('#sale .amount');
+            this.servicesPriceElem = this.resultPage.querySelector('#services .amount');
+            this.totalPriceElem = this.resultPage.querySelector('#total .amount');
         }
     }
 
@@ -36,17 +51,18 @@ class Calculator {
         this.sliderAutoHeight()
         this.nextSlide()
         this.prevSlide()
-        this.goBack();
-        this.createSelectFrom();
-        this.createSelectTo();
-        this.addDataToSelectedRout();
+        this.goBack()
+        this.createSelectFrom()
+        this.createSelectTo()
+        this.addDataToSelectedRout()
+        this.changeSelectedMarket()
+        this.salePromocode()
     }
 
     sliderAutoHeight() {
         const activeSlide = this.calculator.querySelector('.page-calculator._active');
         this.wrapper.style.maxHeight = activeSlide.getBoundingClientRect().height + 'px'
     }
-
 
     createSelectFrom() {
         if (data.length) {
@@ -60,29 +76,57 @@ class Calculator {
     createSelectTo() {
         this.selectFrom.addEventListener('change', (e) => {
             const activeOption = this.selectFrom.selectedIndex;
+            const activeMarket = this.getSelectedMarket();
 
             if (data[activeOption - 1]) {
                 const routesTo = data[activeOption - 1].to;
+                const routesTomarket = routesTo[activeMarket];
 
-                if (routesTo.length) {
+                if (routesTomarket.length) {
                     this.removeExistOptions();
-
-                    routesTo.forEach((item, i) => {
+                    routesTomarket.forEach((item, i) => {
                         const option = `<option value="${item.sklad}" 
                                             data-index="${i}" 
                                             data-price-min="${item.price_min}"
                                             data-price-cube="${item.price_cube}"
                                             data-price-pallet="${item.price_pallet}"
-                                            data-palleta="${item.palleta}"
-                                            data-palletirovanie="${item.palletirovanie}"
-                                            data-zabor-gruza="${item.zabor_gruza}"
+                                            data-services='${JSON.stringify(item.services)}'
                                         >${item.sklad}
-                                        </option>`
+                                        </option>`;
                         this.selectTo.insertAdjacentHTML('beforeend', option)
                     })
                 }
             }
         })
+    }
+
+
+
+    getSelectedMarket() {
+        const marketInputs = this.calculator.querySelectorAll('input[name="marketplace"]');
+        let choosenMarketId = null;
+
+        for (let i = 0; i < marketInputs.length; i++) {
+            if (marketInputs[i].checked) {
+                choosenMarketId = marketInputs[i].getAttribute('id');
+                break;
+            }
+        };
+
+
+        return choosenMarketId;
+    }
+
+    changeSelectedMarket() {
+        const marketInputs = this.calculator.querySelectorAll('input[name="marketplace"]');
+        if (marketInputs.length) {
+            marketInputs.forEach(market => {
+                market.addEventListener('change', (e) => {
+                    this.removeExistOptions();
+                    this.selectFrom.value = this.selectFrom.querySelector('option[disabled]').value;
+                })
+            })
+        }
     }
 
     getSelectedRoutData(activeOption) {
@@ -93,10 +137,44 @@ class Calculator {
             "price_min": activeOption.dataset.priceMin,
             "price_pallet": activeOption.dataset.pricePallet,
             "price_cube": activeOption.dataset.priceCube,
-            "palleta": activeOption.dataset.palleta,
-            "palletirovanie": activeOption.dataset.palletirovanie,
-            "zabor_gruza": activeOption.dataset.zaborGruza,
+            "services": JSON.parse(activeOption.dataset.services),
         }
+    }
+
+    createMoreFields(services) {
+        const existFiedls = this.servicesBlock.querySelectorAll('.form__item');
+        if (existFiedls.length) {
+            existFiedls.forEach(item => item.remove())
+        }
+
+        console.log(services);
+
+        if (services.length) {
+            services.forEach(item => {
+                this.addFormItem(item)
+            })
+        }
+    }
+
+    addFormItem(service) {
+        if (!service.price || service.price == 0) return;
+
+        const item = `<div class="form__item">
+                            <label class="checkbox" for="${service.id}">
+                                <span>
+                                    <i class="before">
+                                        <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                                            <path d="M1.5 3.9998L4.5 6.6998L10.5 1.2998" stroke="#0E0E0E" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </i>
+                                    ${service.name}
+                                </span>
+                                <input type="checkbox" id="${service.id}" value="${service.name}" name="services">
+                            </label>
+                        </div>`;
+
+        this.servicesBlock.insertAdjacentHTML('beforeend', item)
     }
 
     addDataToSelectedRout() {
@@ -105,6 +183,11 @@ class Calculator {
 
             const data = this.getSelectedRoutData(activeOption);
             console.log(data);
+            this.createMoreFields(data.services)
+
+            this.minPrice = +data.price_min
+            this.boxPrice = +data.price_cube
+            this.palletPrice = +data.price_pallet
         })
     }
 
@@ -112,7 +195,6 @@ class Calculator {
         const existOptions = this.selectTo.querySelectorAll('option[data-index]');
         if (existOptions.length) {
             this.selectTo.value = this.selectTo.querySelector('option[disabled]').value;
-
             existOptions.forEach(item => item.remove())
         }
     }
@@ -142,7 +224,6 @@ class Calculator {
                 activeSlide.classList.remove('_active');
             }
             else {
-                console.log('end');
                 this.showresulPage();
             }
         }
@@ -153,7 +234,6 @@ class Calculator {
                 activeSlide.classList.remove('_active');
 
                 if (page == 2) {
-                    console.log('start');
                     this.prev.setAttribute('disabled', true);
                 }
 
@@ -171,8 +251,6 @@ class Calculator {
         this.next.addEventListener('click', () => {
             const activeSlide = this.calculator.querySelector('.page-calculator._active');
             const error = validateForm(activeSlide);
-
-            console.log('error ' + error);
 
             if (error === 0) {
                 this.slide(-1)
@@ -308,12 +386,12 @@ class Calculator {
             .concat([...this.wrapper.querySelectorAll('select')])
 
         const resultArray = []
+        const preiceArray = []
         const sizes = []
-        const srevices = { name: 'services', value: '' }
+        const srevices = { name: 'services', value: [] }
         fields.forEach(field => {
             let name = field.name
             let value = field.value
-            console.log(name, value);
 
             if (name == 'count-box') value += ' шт.'
             if (name == 'count-pallet') value += ' шт.'
@@ -322,7 +400,7 @@ class Calculator {
             if ((field.getAttribute('type') === 'radio' || field.getAttribute('type') === 'checkbox')) {
                 if (field.checked) {
                     if (name == 'services') {
-                        srevices.value += value
+                        srevices.value.push(value)
                     }
                     else {
                         resultArray.push({ name: name, value: value })
@@ -341,17 +419,16 @@ class Calculator {
             }
         })
 
-        console.log(srevices);
+
+        const sizesString = sizes.join('x') + ' см'
+        srevices.value = srevices.value.join(', ')
+
         resultArray.push(srevices)
-
-
-        let sizesString = sizes.join('x')
-        sizesString += ' см';
-
         resultArray.push({ name: 'sizes', value: sizesString })
 
         this.renderResultsForm(resultArray);
         this.renderResultsHtml(resultArray);
+        this.calculatePrice(resultArray);
     }
 
     renderResultsHtml(array) {
@@ -387,6 +464,142 @@ class Calculator {
 
             formFieldsWrapper.append(inp)
         })
+    }
+
+    calculatePrice(array) {
+        let transportingType = '';
+        let count = 1;
+        let countBox = 1;
+        let countPallet = 1;
+
+        array.forEach(item => {
+            if (item.name == 'transporting') {
+                if (item.value.includes('короб')) {
+                    transportingType = 'box';
+                }
+                else {
+                    transportingType = 'pallet';
+                }
+            }
+            if (item.name == 'count-box') {
+                countBox = +item.value.replace(/[^0-9]+/gi, '');
+            }
+            if (item.name == 'count-pallet') {
+                countPallet = +item.value.replace(/[^0-9]+/gi, '');
+            }
+        })
+
+
+        if (transportingType == 'box') {
+            count = countBox;
+            switch (true) {
+                case (count >= 4 && count < 8):
+                    this.salePercent = 0.1;
+                    break;
+                case (count >= 8):
+                    this.salePercent = 0.2;
+                    break;
+                default:
+                    this.salePercent = 0;
+                    break;
+            }
+
+            this.renderPrice(count, this.boxPrice);
+        }
+        else {
+            count = countPallet;
+            switch (true) {
+                case (count >= 2 && count <= 3):
+                    this.salePercent = 0.05;
+                    break;
+                case (count >= 4 && count <= 7):
+                    this.salePercent = 0.06;
+                    break;
+                case (count >= 8 && count <= 12):
+                    this.salePercent = 0.07;
+                    break;
+                case (count >= 13):
+                    this.salePercent = 0.08;
+                    break;
+                default:
+                    this.salePercent = 0;
+                    break;
+            }
+
+            this.renderPrice(count, this.palletPrice);
+        }
+
+
+
+        if (this.salePercentPromocode) {
+            this.updatePrice(this.salePercentPromocode);
+        }
+    }
+
+    renderPrice(count, price) {
+        this.price = count * price;
+
+        this.price = this.price > this.minPrice ? this.price : this.minPrice;
+        this.salePrice = this.price > this.minPrice ? this.price * this.salePercent : 0;
+
+        this.servicesPrice = this.servicesPrice
+        this.totalPrice = this.price - this.salePrice + this.servicesPrice;
+
+        console.log(this.minPrice);
+
+        this.deliveryPriceElem.textContent = this.price;
+        this.salePriceElem.textContent = this.salePrice;
+        this.servicesPriceElem.textContent = this.servicesPrice;
+        this.totalPriceElem.textContent = this.totalPrice;
+
+        console.log(this.price, this.salePercent);
+    }
+
+    updatePrice(perscent) {
+        console.log(perscent);
+        this.salePrice = this.price > this.minPrice ? this.price * perscent : 0;
+        this.totalPrice = this.price - this.salePrice + this.servicesPrice;
+
+        this.salePriceElem.textContent = this.salePrice;
+        this.totalPriceElem.textContent = this.totalPrice;
+    }
+
+    salePromocode() {
+        const promocodeBlock = this.resultPage.querySelector('.promocode');
+        const input = promocodeBlock.querySelector('input[name="promocode"]');
+        const span = promocodeBlock.querySelector('span');
+
+        if (input && promocodes.length) {
+            input.addEventListener('input', () => {
+                if (input.value != '') {
+                    span.classList.add('_active')
+
+                    for (let i = 0; i < promocodes.length; i++) {
+                        if (input.value == promocodes[i].code) {
+                            span.classList.add('_valid')
+                            span.innerHTML = 'Применен';
+
+                            this.salePercentPromocode = promocodes[i].sale / 100
+                            this.updatePrice(this.salePercentPromocode)
+                            break;
+                        }
+                        else {
+                            if (span.classList.contains('_valid')) {
+                                span.classList.remove('_valid')
+                                span.innerHTML = '<i></i><i></i><i></i>';
+
+                                this.salePercentPromocode = false
+                                this.updatePrice(this.salePercent);
+                            }
+                        }
+                    };
+                }
+                else {
+                    span.classList.remove('_active')
+                    this.updatePrice(this.salePercent);
+                }
+            })
+        }
     }
 }
 
