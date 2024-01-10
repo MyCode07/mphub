@@ -3,7 +3,7 @@ import { validateForm } from "./forms.js";
 const data = delivery_data.routes;
 const promocodes = delivery_data.promocodes;
 
-console.log('data', data);
+console.log(delivery_data);
 
 // make price calculating and promode left
 
@@ -100,8 +100,6 @@ class Calculator {
         })
     }
 
-
-
     getSelectedMarket() {
         const marketInputs = this.calculator.querySelectorAll('input[name="marketplace"]');
         let choosenMarketId = null;
@@ -147,8 +145,6 @@ class Calculator {
             existFiedls.forEach(item => item.remove())
         }
 
-        console.log(services);
-
         if (services.length) {
             services.forEach(item => {
                 this.addFormItem(item)
@@ -170,7 +166,7 @@ class Calculator {
                                     </i>
                                     ${service.name}
                                 </span>
-                                <input type="checkbox" id="${service.id}" value="${service.name}" name="services">
+                                <input type="checkbox" id="${service.id}" value="${service.name}" name="services" data-price="${service.price}">
                             </label>
                         </div>`;
 
@@ -182,7 +178,6 @@ class Calculator {
             const activeOption = this.selectTo.querySelectorAll('option')[this.selectTo.selectedIndex];
 
             const data = this.getSelectedRoutData(activeOption);
-            console.log(data);
             this.createMoreFields(data.services)
 
             this.minPrice = +data.price_min
@@ -386,9 +381,9 @@ class Calculator {
             .concat([...this.wrapper.querySelectorAll('select')])
 
         const resultArray = []
-        const preiceArray = []
         const sizes = []
-        const srevices = { name: 'services', value: [] }
+        const srevices = { name: 'services', value: [], price: 0 }
+
         fields.forEach(field => {
             let name = field.name
             let value = field.value
@@ -400,6 +395,7 @@ class Calculator {
             if ((field.getAttribute('type') === 'radio' || field.getAttribute('type') === 'checkbox')) {
                 if (field.checked) {
                     if (name == 'services') {
+                        srevices.price += +field.dataset.price
                         srevices.value.push(value)
                     }
                     else {
@@ -418,7 +414,6 @@ class Calculator {
                 }
             }
         })
-
 
         const sizesString = sizes.join('x') + ' см'
         srevices.value = srevices.value.join(', ')
@@ -472,6 +467,7 @@ class Calculator {
         let countBox = 1;
         let countPallet = 1;
 
+
         array.forEach(item => {
             if (item.name == 'transporting') {
                 if (item.value.includes('короб')) {
@@ -487,6 +483,16 @@ class Calculator {
             if (item.name == 'count-pallet') {
                 countPallet = +item.value.replace(/[^0-9]+/gi, '');
             }
+
+            if (item.name == 'services') {
+                if (item.price > 0) {
+                    this.servicesPrice = item.price
+                }
+                else {
+                    this.servicesPrice = 0
+                }
+            }
+
         })
 
 
@@ -529,10 +535,11 @@ class Calculator {
             this.renderPrice(count, this.palletPrice);
         }
 
-
-
         if (this.salePercentPromocode) {
             this.updatePrice(this.salePercentPromocode);
+        }
+        else {
+            this.updatePrice(this.salePercent);
         }
     }
 
@@ -540,25 +547,30 @@ class Calculator {
         this.price = count * price;
 
         this.price = this.price > this.minPrice ? this.price : this.minPrice;
-        this.salePrice = this.price > this.minPrice ? this.price * this.salePercent : 0;
+        this.salePrice = this.price > this.minPrice ? (this.price + this.servicesPrice) * this.salePercent : 0;
 
         this.servicesPrice = this.servicesPrice
         this.totalPrice = this.price - this.salePrice + this.servicesPrice;
 
-        console.log(this.minPrice);
+        this.price = Math.round(this.price);
+        this.salePrice = Math.round(this.salePrice);
+        this.servicesPrice = Math.round(this.servicesPrice);
+        this.totalPrice = Math.round(this.totalPrice);
 
         this.deliveryPriceElem.textContent = this.price;
         this.salePriceElem.textContent = this.salePrice;
         this.servicesPriceElem.textContent = this.servicesPrice;
         this.totalPriceElem.textContent = this.totalPrice;
 
-        console.log(this.price, this.salePercent);
     }
 
     updatePrice(perscent) {
-        console.log(perscent);
-        this.salePrice = this.price > this.minPrice ? this.price * perscent : 0;
+
+        this.salePrice = this.price > this.minPrice ? (this.price + this.servicesPrice) * perscent : 0;
         this.totalPrice = this.price - this.salePrice + this.servicesPrice;
+
+        this.salePrice = Math.round(this.salePrice);
+        this.totalPrice = Math.round(this.totalPrice);
 
         this.salePriceElem.textContent = this.salePrice;
         this.totalPriceElem.textContent = this.totalPrice;
@@ -596,6 +608,7 @@ class Calculator {
                 }
                 else {
                     span.classList.remove('_active')
+                    this.salePercentPromocode = false
                     this.updatePrice(this.salePercent);
                 }
             })
