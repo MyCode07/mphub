@@ -417,6 +417,7 @@ class Calculator {
 
         resultArray.push(srevices)
         resultArray.push({ name: 'sizes', value: sizesString })
+        resultArray.push({ name: 'price', value: this.totalPrice })
 
         this.renderResultsForm(resultArray);
         this.renderResultsHtml(resultArray);
@@ -559,6 +560,10 @@ class Calculator {
         this.servicesPriceElem.textContent = this.servicesPrice;
         this.totalPriceElem.textContent = this.totalPrice;
 
+        const formPriceField = this.resultPage.querySelector('.form-hidden-field input[name="price"]');
+        if (formPriceField) {
+            formPriceField.value = this.totalPrice;
+        }
     }
 
     updatePrice(perscent) {
@@ -571,6 +576,11 @@ class Calculator {
 
         this.salePriceElem.textContent = this.salePrice;
         this.totalPriceElem.textContent = this.totalPrice;
+
+        const formPriceField = this.resultPage.querySelector('.form-hidden-field input[name="price"]');
+        if (formPriceField) {
+            formPriceField.value = this.totalPrice;
+        }
     }
 
     salePromocode() {
