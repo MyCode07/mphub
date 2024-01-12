@@ -75,7 +75,6 @@ export const aniamteTrigger = () => {
         const wrapHeight = wrap.getBoundingClientRect().height;
         const deltaHeight = listHeight - wrapHeight
 
-        console.log('deltaHeight ' + deltaHeight);
         ScrollTrigger.create({
             trigger: '.support',
             start: "top top",
@@ -237,8 +236,6 @@ const observerStagger = new IntersectionObserver((entries, self) => {
             }
         })
         .filter(item => item != undefined);
-
-    console.log(targets);
 
     animateStagger(targets)
 });

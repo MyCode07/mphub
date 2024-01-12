@@ -2,10 +2,7 @@ import { validateForm } from "./forms.js";
 
 const data = delivery_data.routes;
 const promocodes = delivery_data.promocodes;
-
 console.log(delivery_data);
-
-// make price calculating and promode left
 
 class Calculator {
     constructor(calculator) {

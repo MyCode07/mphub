@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (forms.length) {
         forms.forEach(form => {
-            if (!form.closest('.b24-form') || !form.closest('.b24-window')) {
+            if (form.classList.contains('custom-form')) {
                 form.addEventListener('submit', async function (e) {
                     e.preventDefault();
 
@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     let formData = new FormData(form);
                     formData.append('action', 'send_form');
 
+
                     if (formFile && formFile.files[0]) {
                         formData.append('file', formFile.files[0]);
                     }
@@ -25,31 +26,38 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (error === 0) {
                         form.classList.add('_sending');
 
-                        let response = await fetch(url, {
-                            method: 'POST',
-                            body: formData
+                        jQuery.ajax({
+                            url: url,
+                            type: 'POST',
+                            data: formData,
+                            contentType: false,
+                            processData: false,
+                            cache: false,
+                            success: function (data) {
+                                data = JSON.parse(data);
+                                console.log(data);
+                                if (data.result) {
+                                    sentMessage()
+                                    form.reset();
+                                    form.classList.remove('_sending');
+
+                                    setTimeout(() => {
+                                        resetForm(form)
+                                    }, 5000);
+                                }
+                                else {
+                                    failMessage()
+                                    form.classList.remove('_sending');
+
+                                    setTimeout(() => {
+                                        resetForm(form)
+                                    }, 5000);
+                                }
+                            },
+                            complete: function () {
+                                form.classList.remove('_sending');
+                            },
                         });
-
-
-                        if (response.ok) {
-                            sentMessage()
-                            form.reset();
-                            form.classList.remove('_sending');
-
-                            setTimeout(() => {
-                                resetForm(form)
-                            }, 5000);
-
-                        }
-                        else {
-                            failMessage()
-                            form.classList.remove('_sending');
-
-                            setTimeout(() => {
-                                resetForm(form)
-                            }, 5000);
-
-                        }
                     }
 
                     else {
@@ -60,7 +68,6 @@ document.addEventListener('DOMContentLoaded', function () {
                             resetForm(form)
                         }, 5000);
                     }
-
                 })
             }
         })
