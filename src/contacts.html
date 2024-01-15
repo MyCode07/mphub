@@ -1,0 +1,55 @@
+@@include('./html/head.html', {
+"title":"Контакты",
+})
+
+@@include('./html/header.html', {
+"class":"",
+})
+
+<main>
+
+    <section class="section text-page page-top contacts title-center">
+        <div class="section__container _container">
+            <div class="section__body">
+                <h1>Наши контакты</h1>
+                <div class="grid grid-4">
+                    <div class="grid-item">
+                        <div class="contacts-item tel">
+                            <label>Телефон:</label>
+                            <span><a href="tel:">+7 (928) 223-75-46</a></span>
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                        <div class="contacts-item">
+                            <label>Адрес:</label>
+                            <span>119620, г. Москва, пр-кт Солнцевский д. 11, помещ. 1/1</span>
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                        <div class="contacts-item">
+                            <label>E-mail:</label>
+                            <span><a href="mailto:finance@mphub.ru">finance@mphub.ru</a></span>
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                        <div class="contacts-item">
+                            <label>График работы:</label>
+                            <span>Служба поддержки работает
+                                с 09:00 до 21:00 без выходных</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="contacts-map">
+                    <img src="img/c-map.png" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @@include('./html/parts/questions.html')
+
+
+</main>
+
+@@include('html/footer.html')
+@@include('html/scripts.html')

@@ -1,6 +1,7 @@
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger.js'
 import { TextPlugin } from 'gsap/TextPlugin.js';
+import { isMobile } from '../utils/isMobile.js';
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
@@ -279,9 +280,55 @@ function animateMap() {
     });
 }
 
+
+const mapPopup = document.querySelector('.map-popup');
+let hover = false;
+function showMapPopup(icon) {
+    if (!isMobile.any()) {
+        const height = mapPopup.getBoundingClientRect().height;
+        const width = icon.getBoundingClientRect().width;
+
+        icon.addEventListener('mouseenter', function (e) {
+            const left = icon.getBoundingClientRect().left;
+            const top = icon.getBoundingClientRect().top;
+
+            mapPopup.style.left = left + width / 2 + 'px'
+            mapPopup.style.top = top - height + 'px'
+
+            mapPopup.classList.add('_active')
+            hover = true
+        })
+
+        icon.addEventListener('mouseleave', function (e) {
+            mapPopup.classList.remove('_active')
+        })
+
+        mapPopup.addEventListener('mouseenter', function (e) {
+            mapPopup.classList.add('_hover')
+        })
+
+        mapPopup.addEventListener('mouseleave', function (e) {
+            mapPopup.classList.remove('_hover')
+        })
+
+    }
+
+    mapPopup.querySelector('button').addEventListener('click', function (e) {
+        mapPopup.classList.remove('_hover')
+        mapPopup.classList.remove('_active')
+    })
+
+}
+
+
 const mapIcons = document.querySelectorAll('.map-svg a');
 export const animateMapIcons = () => {
-    if (!mapIcons.length) return
+    if (!mapIcons.length) return;
+
+    mapIcons.forEach(icon => {
+        showMapPopup(icon)
+    })
+
     const map = document.querySelector('.map-svg');
     observerMap.observe(map)
 }

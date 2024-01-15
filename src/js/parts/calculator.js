@@ -30,7 +30,7 @@ class Calculator {
 
             this.deliveryPriceElem = this.resultPage.querySelector('#delivery .amount');
             this.salePriceElem = this.resultPage.querySelector('#sale .amount');
-            this.servicesPriceElem = this.resultPage.querySelector('#services .amount');
+            this.servicesPriceElem = this.resultPage.querySelector('#all_services .amount');
             this.totalPriceElem = this.resultPage.querySelector('#total .amount');
         }
     }
@@ -379,7 +379,7 @@ class Calculator {
 
         const resultArray = []
         const sizes = []
-        const srevices = { name: 'services', value: [], price: 0 }
+        const srevices = { name: 'all_services', value: [], price: 0 }
 
         fields.forEach(field => {
             let name = field.name
@@ -394,6 +394,8 @@ class Calculator {
                     if (name == 'services') {
                         srevices.price += +field.dataset.price
                         srevices.value.push(value)
+
+                        resultArray.push({ name: field.id, value: value })
                     }
                     else {
                         resultArray.push({ name: name, value: value })
@@ -417,7 +419,8 @@ class Calculator {
 
         resultArray.push(srevices)
         resultArray.push({ name: 'sizes', value: sizesString })
-        resultArray.push({ name: 'price', value: this.totalPrice })
+        resultArray.push({ name: 'no_sale_price', value: this.totalPrice })
+        resultArray.push({ name: 'total_price', value: this.price })
 
         this.renderResultsForm(resultArray);
         this.renderResultsHtml(resultArray);
@@ -482,7 +485,7 @@ class Calculator {
                 countPallet = +item.value.replace(/[^0-9]+/gi, '');
             }
 
-            if (item.name == 'services') {
+            if (item.name == 'all_services') {
                 if (item.price > 0) {
                     this.servicesPrice = item.price
                 }
@@ -560,10 +563,7 @@ class Calculator {
         this.servicesPriceElem.textContent = this.servicesPrice;
         this.totalPriceElem.textContent = this.totalPrice;
 
-        const formPriceField = this.resultPage.querySelector('.form-hidden-field input[name="price"]');
-        if (formPriceField) {
-            formPriceField.value = this.totalPrice;
-        }
+        this.updatePriceFieldsInForm();
     }
 
     updatePrice(perscent) {
@@ -577,9 +577,17 @@ class Calculator {
         this.salePriceElem.textContent = this.salePrice;
         this.totalPriceElem.textContent = this.totalPrice;
 
-        const formPriceField = this.resultPage.querySelector('.form-hidden-field input[name="price"]');
-        if (formPriceField) {
-            formPriceField.value = this.totalPrice;
+        this.updatePriceFieldsInForm();
+    }
+
+    updatePriceFieldsInForm() {
+        const formSalePriceField = this.resultPage.querySelector('.form-hidden-field input[name="no_sale_price"]');
+        const formTotalPriceField = this.resultPage.querySelector('.form-hidden-field input[name="total_price"]');
+        if (formSalePriceField) {
+            formSalePriceField.value = this.price + this.servicesPrice;
+        }
+        if (formTotalPriceField) {
+            formTotalPriceField.value = this.totalPrice;
         }
     }
 
