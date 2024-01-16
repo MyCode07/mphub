@@ -282,26 +282,19 @@ function animateMap() {
 
 
 const mapPopup = document.querySelector('.map-popup');
-let hover = false;
+const mapSvg = document.querySelector('.map-svg');
 function showMapPopup(icon) {
+    const width = icon.getBoundingClientRect().width;
+
     if (!isMobile.any()) {
-        const height = mapPopup.getBoundingClientRect().height;
-        const width = icon.getBoundingClientRect().width;
-
         icon.addEventListener('mouseenter', function (e) {
-            const left = icon.getBoundingClientRect().left;
-            const top = icon.getBoundingClientRect().top;
-
-            mapPopup.style.left = left + width / 2 + 'px'
-            mapPopup.style.top = top - height + 'px'
-
-            mapPopup.classList.add('_active')
-            hover = true
+            show(icon)
         })
 
         icon.addEventListener('mouseleave', function (e) {
             mapPopup.classList.remove('_active')
         })
+
 
         mapPopup.addEventListener('mouseenter', function (e) {
             mapPopup.classList.add('_hover')
@@ -310,6 +303,15 @@ function showMapPopup(icon) {
         mapPopup.addEventListener('mouseleave', function (e) {
             mapPopup.classList.remove('_hover')
         })
+    }
+    else {
+        if (icon.closest('.home-map')) {
+            icon.addEventListener('click', function (e) {
+                e.preventDefault();
+                show(icon)
+            })
+        }
+
 
     }
 
@@ -318,7 +320,29 @@ function showMapPopup(icon) {
         mapPopup.classList.remove('_active')
     })
 
+
+    function show(icon) {
+        const left = icon.getBoundingClientRect().left;
+        const top = icon.getBoundingClientRect().top;
+
+        mapPopup.style.left = left + width / 2 + 'px'
+        mapPopup.style.top = top - mapSvg.getBoundingClientRect().top + 'px'
+
+        mapPopup.querySelector('#loc-name').textContent = icon.getAttribute('title');
+        mapPopup.querySelector('#loc-address').textContent = icon.dataset.address;
+        mapPopup.querySelector('#loc-work').textContent = icon.dataset.work;
+
+        mapPopup.classList.add('_active')
+    }
 }
+
+document.addEventListener('click', function (e) {
+    let targetEl = e.target;
+    if (isMobile.any() && !targetEl.classList.contains('map-icon') && !targetEl.closest('.map-icon') && mapPopup && mapPopup.classList.contains('_active')) {
+        mapPopup.classList.remove('_hover')
+        mapPopup.classList.remove('_active')
+    }
+})
 
 
 const mapIcons = document.querySelectorAll('.map-svg a');

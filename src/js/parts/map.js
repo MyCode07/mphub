@@ -1,5 +1,4 @@
-// const mapIconPath = '/wp-content/themes/blank-sheet/assets/img/icons/map-icon.svg';
-const mapIconPath = 'img/icons/map-icon.svg';
+const mapIconPath = '/wp-content/themes/blank-sheet/assets/img/icons/map-icon.svg';
 const map = document.querySelector('#contacts-map');
 const zoom = 17;
 const defLat = 55.649479
