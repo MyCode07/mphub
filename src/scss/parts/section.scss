@@ -2753,7 +2753,7 @@
             display: block;
             color: rgba($color: $black, $alpha: 0.4);
 
-            a{
+            a {
                 color: inherit;
             }
         }
@@ -2775,17 +2775,39 @@
     // .contacts-map
 
     &-map {
+        @include adaptive-value("height", 775, 329, 1);
+        position: relative;
+
         @media (max-width: $containerWithPadding + px) {
             width: 100vw;
             margin-left: -24px;
         }
 
+        // &:before {
+        //     position: absolute;
+        //     content: "";
+        //     inset: 0;
+        //     display: block;
+        //     mix-blend-mode: difference;
+        //     pointer-events: none;
+        //     background-color: #fff;
+        //     z-index: 1;
+        // }
+
         img,
         iframe {
             display: block;
             width: 100%;
-            min-height: 329px;
+            height: 100%;
             object-fit: cover;
+        }
+
+        .ymaps-2-1-79-ground-pane {
+            filter: grayscale(1);
+            -ms-filter: grayscale(1);
+            -webkit-filter: grayscale(1);
+            -moz-filter: grayscale(1);
+            -o-filter: grayscale(1);
         }
     }
 }
