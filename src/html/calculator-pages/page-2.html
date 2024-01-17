@@ -32,12 +32,12 @@
     </div>
 
 
-    <div class="form__block boxes hidden-item" data-id="boxes">
+    <div class="form__block boxes hidden-item _hide" data-id="boxes">
         <h3>Какие размеры короба (см)?</h3>
         <div class="form__row">
             <div class="form__item" data-required>
                 <label>Длина (см)</label>
-                <input type="number" value="60" name="length" min="1" placeholder="Длина">
+                <input type="number" value="60" data-value="60" name="length" min="1" placeholder="Длина">
             </div>
             <div class="cross">
                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
@@ -47,7 +47,7 @@
             </div>
             <div class="form__item" data-required>
                 <label>Ширина (см)</label>
-                <input type="number" value="40" name="width" min="1" placeholder="Ширина">
+                <input type="number" value="40" data-value="40" name="width" min="1" placeholder="Ширина">
             </div>
             <div class="cross">
                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
@@ -57,7 +57,7 @@
             </div>
             <div class="form__item" data-required>
                 <label>Высота (см)</label>
-                <input type="number" value="40" name="height" min="1" placeholder="Высота">
+                <input type="number" value="40" data-value="40" name="height" min="1" placeholder="Высота">
             </div>
         </div>
         <div class="form__row">
@@ -76,7 +76,7 @@
         </div>
     </div>
 
-    <div class="form__block boxes hidden-item" data-id="pallets">
+    <div class="form__block boxes hidden-item _hide" data-id="pallets">
         <h3>Какое количество коробов?</h3>
         <div class="form__row">
             <div class="form__item">

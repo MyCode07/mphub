@@ -1,6 +1,7 @@
 "use strict"
 
 import { lockPadding, unLockPadding } from "../utils/lockPadding.js";
+import { calculator } from "./calculator.js";
 
 const url = adminajaxurl.ajaxurl;
 
@@ -12,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (form.classList.contains('custom-form')) {
                 form.addEventListener('submit', async function (e) {
                     e.preventDefault();
+                    // calculator.resetCalculator();
 
                     let error = validateForm(form)
 
@@ -44,6 +46,10 @@ document.addEventListener('DOMContentLoaded', function () {
                                     setTimeout(() => {
                                         resetForm(form)
                                     }, 5000);
+
+                                    if (form.closest('.calculator')) {
+                                        calculator.resetCalculator();
+                                    }
                                 }
                                 else {
                                     failMessage()
@@ -107,6 +113,10 @@ export function validateForm(form) {
                         formAddError(input);
                         error++;
                     }
+                }
+                else {
+                    formAddError(input);
+                    error++;
                 }
             }
             else {

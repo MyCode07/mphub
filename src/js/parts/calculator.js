@@ -62,6 +62,12 @@ class Calculator {
     }
 
     createSelectFrom() {
+        const existOptions = this.selectFrom.querySelectorAll('option[data-index]');
+        if (existOptions.length) {
+            this.selectFrom.value = this.selectFrom.querySelector('option[disabled]').value;
+            existOptions.forEach(item => item.remove())
+        }
+
         if (data.length) {
             data.forEach((item, i) => {
                 const option = `<option value="${item.from}" data-index=${i}>${item.from}</option>`
@@ -74,13 +80,13 @@ class Calculator {
         this.selectFrom.addEventListener('change', (e) => {
             const activeOption = this.selectFrom.selectedIndex;
             const activeMarket = this.getSelectedMarket();
+            this.removeExistOptions();
 
             if (data[activeOption - 1]) {
                 const routesTo = data[activeOption - 1].to;
                 const routesTomarket = routesTo[activeMarket];
 
                 if (routesTomarket.length) {
-                    this.removeExistOptions();
                     routesTomarket.forEach((item, i) => {
                         const option = `<option value="${item.sklad}" 
                                             data-index="${i}" 
@@ -93,8 +99,23 @@ class Calculator {
                         this.selectTo.insertAdjacentHTML('beforeend', option)
                     })
                 }
+                else {
+                    this.setNoRoutesSelectTo();
+                }
             }
         })
+    }
+
+    setNoRoutesSelectTo() {
+        this.selectTo.querySelector('option[disabled]').value = 'Нет маршрута доставки';
+        this.selectTo.querySelector('option[disabled]').textContent = 'Нет маршрута доставки';
+        this.selectTo.value = this.selectTo.querySelector('option[disabled]').value;
+    }
+
+    setDefalutSelectTo() {
+        this.selectTo.querySelector('option[disabled]').value = 'Куда';
+        this.selectTo.querySelector('option[disabled]').textContent = 'Куда';
+        this.selectTo.value = this.selectTo.querySelector('option[disabled]').value;
     }
 
     getSelectedMarket() {
@@ -107,7 +128,6 @@ class Calculator {
                 break;
             }
         };
-
 
         return choosenMarketId;
     }
@@ -189,9 +209,11 @@ class Calculator {
             this.selectTo.value = this.selectTo.querySelector('option[disabled]').value;
             existOptions.forEach(item => item.remove())
         }
+
+        this.setDefalutSelectTo();
     }
 
-    showresulPage() {
+    showResulPage() {
         const activeSlide = this.calculator.querySelector('.page-calculator._active');
         activeSlide.classList.remove('_active')
 
@@ -200,6 +222,15 @@ class Calculator {
         this.resultPage.style.display = "flex";
 
         this.renderResults();
+    }
+
+    hideResulPage() {
+        const activeSlide = this.calculator.querySelector('.page-calculator._active');
+        activeSlide.classList.remove('_active')
+
+        this.resultPage.classList.remove('_active')
+        this.pageWrapper.style.display = "block";
+        this.resultPage.style.display = "none";
     }
 
     slide(direction) {
@@ -216,7 +247,7 @@ class Calculator {
                 activeSlide.classList.remove('_active');
             }
             else {
-                this.showresulPage();
+                this.showResulPage();
             }
         }
         else {
@@ -259,6 +290,57 @@ class Calculator {
         })
     }
 
+    resetCalculator() {
+        this.hideResulPage();
+
+        const firstSlide = this.allPages[0];
+        firstSlide.classList.add('_active');
+
+        this.prev.setAttribute('disabled', true);
+        this.wrapper.style.transform = `translate(0, 0)`;
+
+        this.sliderAutoHeight();
+        this.resetPageNumber();
+        this.removeExistOptions();
+        this.createSelectFrom();
+        this.hideHiddenBoxes();
+
+        const marketInputs = this.calculator.querySelectorAll('input[name="marketplace"]');
+        if (marketInputs.length) {
+            marketInputs.forEach((market, i) => {
+                if (i == 0) {
+                    market.checked = true
+                }
+                else {
+                    market.checked = false
+                }
+            })
+        }
+
+        const checkboxContainers = this.calculator.querySelectorAll('[data-checkbox-container]');
+        if (checkboxContainers.length) {
+            checkboxContainers.forEach(item => {
+                item.querySelectorAll('input').forEach(input => {
+                    input.checked = false
+                })
+            })
+        }
+
+        this.resetFields();
+    }
+
+    resetFields() {
+        this.calculator.querySelector('input[name="weight"]').value = '';
+        this.calculator.querySelector('input[name="length"]').value = this.calculator.querySelector('input[name="length"]').dataset.value;
+        this.calculator.querySelector('input[name="width"]').value = this.calculator.querySelector('input[name="width"]').dataset.value;
+        this.calculator.querySelector('input[name="height"]').value = this.calculator.querySelector('input[name="height"]').dataset.value;
+
+        this.calculator.querySelector('input[name="count-box"]').value = 1;
+        this.calculator.querySelector('input[name="count-pallet"]').value = 1;
+
+        this.calculateSizes();
+    }
+
     changePageNumber(direction) {
         const curretnPage = document.querySelector('.current-page');
         const nextPage = curretnPage.nextElementSibling;
@@ -279,6 +361,19 @@ class Calculator {
         }
     }
 
+    resetPageNumber() {
+        const allPages = document.querySelectorAll('.calculator-pages div');
+
+        allPages.forEach((page, i) => {
+            page.classList.remove('valid-page')
+            page.classList.remove('current-page')
+
+            if (i == 0) {
+                page.classList.add('current-page')
+            }
+        });
+    }
+
     validateInputs() {
         const activeSlide = this.calculator.querySelector('.page-calculator._active');
         const error = validateForm(activeSlide);
@@ -287,11 +382,11 @@ class Calculator {
     }
 
     calculateSizes() {
-        const length = this.calculator.querySelector('[data-required] [name="length"]');
-        const width = this.calculator.querySelector('[data-required] [name="width"]');
-        const height = this.calculator.querySelector('[data-required] [name="height"]');
-        const count = this.calculator.querySelector('[data-required] [name="count-box"]');
-        const sizes = this.calculator.querySelector('[data-required] [name="volume"]');
+        const length = this.calculator.querySelector('input[name="length"]');
+        const width = this.calculator.querySelector('input[name="width"]');
+        const height = this.calculator.querySelector('input[name="height"]');
+        const count = this.calculator.querySelector('input[name="count-box"]');
+        const sizes = this.calculator.querySelector('input[name="volume"]');
 
         let value = +count.value * (+length.value / 100 * +width.value / 100 * +height.value / 100);
         sizes.value = isNaN(value) ? 0 : value.toFixed(3)
@@ -323,19 +418,35 @@ class Calculator {
 
                         hiddenItems.forEach(item => {
                             if (item.dataset.id == id) {
-                                item.classList.remove('hidden-item')
+                                item.classList.remove('_hide')
                                 this.changerequiredFields(item)
                             }
                             else {
-                                item.classList.add('hidden-item')
+                                item.classList.add('_hide')
                                 this.changerequiredFields(item, false)
                             }
                         })
 
+                        this.resetFields();
                         this.sliderAutoHeight();
                     }
                 })
             });
+        }
+    }
+
+    hideHiddenBoxes() {
+        const hiddenItems = this.calculator.querySelectorAll('.hidden-item');
+        const moreFields = this.calculator.querySelector('.more-fields');
+
+        if (hiddenItems.length) {
+            hiddenItems.forEach(item => {
+                item.classList.add('_hide')
+            })
+        }
+
+        if (moreFields) {
+            moreFields.classList.remove('_active')
         }
     }
 
