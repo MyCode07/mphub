@@ -329,8 +329,8 @@ function showMapPopup(icon) {
         mapPopup.style.top = top - mapSvg.getBoundingClientRect().top + 'px'
 
         mapPopup.querySelector('#loc-name').textContent = icon.getAttribute('title');
-        mapPopup.querySelector('#loc-address').textContent = icon.dataset.address;
-        mapPopup.querySelector('#loc-work').textContent = icon.dataset.work;
+        mapPopup.querySelector('#loc-address i').textContent = icon.dataset.address;
+        mapPopup.querySelector('#loc-work i').textContent = icon.dataset.work;
 
         mapPopup.classList.add('_active')
     }
