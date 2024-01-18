@@ -578,8 +578,9 @@ class Calculator {
         let count = 1;
         let countBox = 1;
         let countPallet = 1;
+        let volume = 1;
 
-
+        console.log(array);
         array.forEach(item => {
             if (item.name == 'transporting') {
                 if (item.value.includes('короб')) {
@@ -595,6 +596,11 @@ class Calculator {
             if (item.name == 'count-pallet') {
                 countPallet = +item.value.replace(/[^0-9]+/gi, '');
             }
+
+            if (item.name == 'volume') {
+                volume = +item.value.replace(/[^0-9.]+/gi, '');
+            }
+
 
             if (item.name == 'all_services') {
                 if (item.price > 0) {
@@ -622,7 +628,7 @@ class Calculator {
                     break;
             }
 
-            this.renderPrice(count, this.boxPrice);
+            this.renderPrice(volume, this.boxPrice);
         }
         else {
             count = countPallet;
@@ -657,6 +663,7 @@ class Calculator {
 
     renderPrice(count, price) {
         this.price = count * price;
+        console.log(this.price, count, price);
 
         this.price = this.price > this.minPrice ? this.price : this.minPrice;
         this.salePrice = this.price > this.minPrice ? (this.price + this.servicesPrice) * this.salePercent : 0;
