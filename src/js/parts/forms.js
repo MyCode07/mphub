@@ -192,7 +192,8 @@ function emailTest(input) {
 }
 
 const thanksPopup = document.querySelector('.popup#thanks');
-const failPopup = document.querySelector('.popup#fail');
+const failPopup = document.querySelector('.popup#error');
+
 function sentMessage() {
     const activePopup = document.querySelector('.popup._open');
     if (activePopup) activePopup.classList.remove('_open');
