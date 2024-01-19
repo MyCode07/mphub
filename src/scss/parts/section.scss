@@ -235,7 +235,9 @@
         }
     }
 
-    &.delivery-swiper {
+    // .delivery-swiper
+
+    &-swiper {
         .swiper {
             width: 100%;
 
@@ -262,6 +264,21 @@
                 @media (max-width: 425px) {
                     max-width: none;
                 }
+            }
+        }
+
+        // .delivery-swiper__controls
+
+        &__controls {
+            @media (min-width: 993px) {
+                display: none;
+            }
+
+            @media (max-width: 992px) {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 15px;
             }
         }
     }

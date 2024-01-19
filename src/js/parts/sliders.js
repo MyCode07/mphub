@@ -70,16 +70,22 @@ if (sliders.length) {
                 }
             })
         }
-        else if (section.classList.contains('delivery-swiper') && (window.innerWidth < 992)) {
-            let pagination = slider.closest('.delivery-tabs__content-item').querySelector('.pagination')
+        else if (section.classList.contains('delivery-swiper') && window.innerWidth <= 992) {
+            const pagination = slider.closest('.delivery-tabs__content-item').querySelector('.pagination')
+            const prev = slider.closest('.delivery-tabs__content-item').querySelector('.prev')
+            const next = slider.closest('.delivery-tabs__content-item').querySelector('.next')
+
             new Swiper(slider, {
                 modules: [
-                    Pagination
+                    Pagination, Navigation
                 ],
                 slidesPerView: 'auto',
                 spaceBetween: 20,
                 autoHeight: true,
-
+                navigation: {
+                    prevEl: prev,
+                    nextEl: next,
+                },
                 pagination: {
                     el: pagination,
                 },
