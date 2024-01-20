@@ -357,6 +357,7 @@
             &[disabled] {
                 cursor: no-drop;
                 align-items: flex-end;
+                pointer-events: none;
             }
 
             span {
@@ -364,6 +365,7 @@
                 vertical-align: bottom;
                 padding-left: 0.5em;
                 color: #00e300;
+                pointer-events: none;
             }
         }
 
