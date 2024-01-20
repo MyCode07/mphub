@@ -1,7 +1,7 @@
 document.addEventListener('click', function (e) {
     let targetEl = e.target;
 
-    if (targetEl.closest('.delivery-tabs') && !targetEl.classList.contains('_active')) {
+    if (targetEl.closest('.delivery-tabs') && !targetEl.hasAttribute('disabled') && !targetEl.classList.contains('_active')) {
         e.preventDefault();
 
         const tabId = targetEl.dataset.id;

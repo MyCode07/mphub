@@ -353,6 +353,18 @@
             @media (max-width: 768px) {
                 letter-spacing: -0.02em;
             }
+
+            &[disabled] {
+                cursor: no-drop;
+                align-items: flex-end;
+            }
+
+            span {
+                font-size: 14px;
+                vertical-align: bottom;
+                padding-left: 0.5em;
+                color: #00e300;
+            }
         }
 
         ._active {
