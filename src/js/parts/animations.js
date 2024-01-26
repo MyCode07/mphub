@@ -345,7 +345,7 @@ document.addEventListener('click', function (e) {
 })
 
 
-const mapIcons = document.querySelectorAll('.map-svg a');
+const mapIcons = document.querySelectorAll('.map-svg .map-icon');
 export const animateMapIcons = () => {
     if (!mapIcons.length) return;
 

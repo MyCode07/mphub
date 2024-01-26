@@ -1063,14 +1063,10 @@
                 height: 490px;
             }
 
-            a {
-                @media (max-width: 768px) {
-                    // display: none;
-                }
-            }
+            
         }
 
-        a {
+        .map-icon {
             opacity: 0;
         }
 
