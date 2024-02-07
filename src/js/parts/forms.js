@@ -38,8 +38,15 @@ document.addEventListener('DOMContentLoaded', function () {
                             success: function (data) {
                                 data = JSON.parse(data);
                                 console.log(data);
+
                                 if (data.result) {
-                                    sentMessage()
+                                    if (data.redirect) {
+                                        window.location = data.redirect
+                                    }
+                                    else {
+                                        sentMessage()
+                                    }
+
                                     form.reset();
                                     form.classList.remove('_sending');
 
