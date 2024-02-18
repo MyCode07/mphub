@@ -171,6 +171,18 @@ class Calculator {
 
     addFormItem(service) {
         if (!service.price || service.price == 0) return;
+        if (service.id === 'zabor_gruza') {
+            if ((!service.price.box_price || service.price.box_price == 0) &&
+                (!service.price.pallet_price || service.price.pallet_price == 0)) return;
+        };
+
+        console.log(service);
+
+        let input = `<input type="checkbox" id="${service.id}" value="${service.name}" name="services" data-price="${service.price}">`;
+        if (service.id == 'zabor_gruza') {
+            input = `<input type="checkbox" id="${service.id}" value="${service.name}" name="services" 
+            data-box-price="${service.price.box_price}" data-pallet-price="${service.price.pallet_price}"> `;
+        }
 
         const item = `<div class="form__item">
                             <label class="checkbox" for="${service.id}">
@@ -183,9 +195,11 @@ class Calculator {
                                     </i>
                                     ${service.name}
                                 </span>
-                                <input type="checkbox" id="${service.id}" value="${service.name}" name="services" data-price="${service.price}">
+                                ${input}
                             </label>
                         </div>`;
+
+
 
         this.servicesBlock.insertAdjacentHTML('beforeend', item)
     }
@@ -491,6 +505,8 @@ class Calculator {
         const resultArray = []
         const sizes = []
         const srevices = { name: 'all_services', value: [], price: 0 }
+        let transportingType = '';
+
 
         fields.forEach(field => {
             let name = field.name
@@ -500,10 +516,32 @@ class Calculator {
             if (name == 'count-pallet') value += ' шт.'
             if (name == 'volume') value += ' м³'
 
+
+
             if ((field.getAttribute('type') === 'radio' || field.getAttribute('type') === 'checkbox')) {
                 if (field.checked) {
+                    if (name == 'transporting') {
+                        if (value.includes('короб')) {
+                            transportingType = 'box';
+                        }
+                        else {
+                            transportingType = 'pallet';
+                        }
+                    }
+
                     if (name == 'services') {
-                        srevices.price += +field.dataset.price
+                        if (field.id == 'zabor_gruza') {
+                            if (transportingType == 'box') {
+                                srevices.price += +field.dataset.boxPrice
+                            }
+                            else {
+                                srevices.price += +field.dataset.palletPrice
+                            }
+                        }
+                        else {
+                            srevices.price += +field.dataset.price
+                        }
+
                         srevices.value.push(value)
 
                         resultArray.push({ name: field.id, value: value })
@@ -604,7 +642,12 @@ class Calculator {
 
             if (item.name == 'all_services') {
                 if (item.price > 0) {
-                    this.servicesPrice = item.price
+                    if (transportingType == 'box') {
+                        this.servicesPrice = item.price * countBox
+                    }
+                    else {
+                        this.servicesPrice = item.price * countPallet
+                    }
                 }
                 else {
                     this.servicesPrice = 0
