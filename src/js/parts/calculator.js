@@ -709,7 +709,7 @@ class Calculator {
         console.log(this.price, count, price);
 
         this.price = this.price > this.minPrice ? this.price : this.minPrice;
-        this.salePrice = this.price > this.minPrice ? (this.price + this.servicesPrice) * this.salePercent : 0;
+        this.salePrice = this.price > this.minPrice ? (this.price) * this.salePercent : 0;
 
         this.servicesPrice = this.servicesPrice
         this.totalPrice = this.price - this.salePrice + this.servicesPrice;
@@ -729,7 +729,7 @@ class Calculator {
 
     updatePrice(perscent) {
 
-        this.salePrice = this.price > this.minPrice ? (this.price + this.servicesPrice) * perscent : 0;
+        this.salePrice = this.price > this.minPrice ? (this.price) * perscent : 0;
         this.totalPrice = this.price - this.salePrice + this.servicesPrice;
 
         this.salePrice = Math.round(this.salePrice);
@@ -763,7 +763,8 @@ class Calculator {
                     span.classList.add('_active')
 
                     for (let i = 0; i < promocodes.length; i++) {
-                        if (input.value == promocodes[i].code) {
+                        const code = promocodes[i].code.toLocaleLowerCase()
+                        if (input.value == code) {
                             span.classList.add('_valid')
                             span.innerHTML = 'Применен';
 
