@@ -1,0 +1,151 @@
+<form action="#" class="calculator-form__page page-calculator page-calculator__result custom-form" data-page="3">
+    <div class="_form-shape page-calculator__data">
+        <div class="form__block">
+            <h3>Детали заказа</h3>
+            <div class="form__result">
+                <div class="form__result-block">
+                    <div class="form__result-row">
+                        <div class="form__result-output" data-id="marketplace">
+                            <label>Маркетплейс</label>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="form__result-row">
+                        <div class="form__result-output" data-id="from">
+                            <label>Откуда</label>
+                            <span></span>
+                        </div>
+                        <div class="form__result-output" data-id="to">
+                            <label>Куда</label>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form__result-block">
+                    <div class="form__result-row">
+                        <div class="form__result-output" data-id="transporting">
+                            <label>Форма отгрузки</label>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="form__result-row">
+                        <div class="form__result-output" data-id="sizes">
+                            <label>Размер</label>
+                            <span></span>
+                        </div>
+                        <div class="form__result-output" data-id="count-box">
+                            <label>Всего коробов</label>
+                            <span></span>
+                        </div>
+                        <div class="form__result-output" data-id="count-pallet">
+                            <label>Всего палетов</label>
+                            <span></span>
+                        </div>
+                        <div class="form__result-output" data-id="volume">
+                            <label>Обьем</label>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form__block">
+            <h3>Контактные данные</h3>
+            <div class="form__item" data-required>
+                <label>Имя</label>
+                <input type="text" name="your_name" placeholder="Имя">
+                <span class="validate">*Заполните поле</span>
+            </div>
+            <div class="form__item" data-required>
+                <label>Номер телефона</label>
+                <input type="text" name="your_phone" class="_mask-phone" placeholder="Телефон">
+                <span class="validate">*Заполните поле</span>
+            </div>
+            <div class="form-hidden-field" hidden></div>
+        </div>
+        <a href="#" class="back">
+            <svg width="8" height="16" viewBox="0 0 8 16" fill="none">
+                <path
+                    d="M0.593096 13.9861C0.53129 14.0548 0.482972 14.1356 0.4509 14.2239C0.418827 14.3122 0.403629 14.4063 0.406174 14.5008C0.408718 14.5953 0.428956 14.6883 0.46573 14.7746C0.502504 14.8608 0.555094 14.9387 0.620499 15.0036C0.685904 15.0685 0.762843 15.1192 0.846922 15.1529C0.931 15.1866 1.02057 15.2026 1.11052 15.1999C1.20048 15.1972 1.28905 15.176 1.37118 15.1374C1.45331 15.0987 1.52739 15.0435 1.5892 14.9748L7.41235 8.49859C7.53261 8.36499 7.59961 8.1881 7.59961 8.00424C7.59961 7.82038 7.53261 7.64349 7.41235 7.50989L1.5892 1.03297C1.5278 0.962768 1.45373 0.906079 1.3713 0.866196C1.28887 0.826314 1.19971 0.804034 1.10901 0.800649C1.01831 0.797264 0.927874 0.812844 0.842954 0.846481C0.758034 0.880118 0.680324 0.931142 0.614337 0.996591C0.54835 1.06204 0.495402 1.14061 0.458568 1.22773C0.421734 1.31486 0.401748 1.4088 0.399772 1.50411C0.397796 1.59941 0.413869 1.69418 0.447056 1.78291C0.480244 1.87163 0.529886 1.95255 0.593097 2.02095L5.97232 8.00424L0.593096 13.9861Z" />
+            </svg>
+            <span>Назад</span>
+        </a>
+    </div>
+
+    <div class="_form-shape page-calculator__total total-calculator">
+        <div class="page-calculator__title">Расчет</div>
+        <ol>
+            <li>
+                <span>Доставка:</span>
+                <strong><span id="delivery"><span class="amount">0</span> ₽</span></strong>
+            </li>
+            <li>
+                <span data-id="all_services">Дополнительные услуги:
+                    <span></span>
+                </span>
+                <strong><span id="all_services"><span class="amount">0</span> ₽</span></strong>
+            </li>
+            <li>
+                <span>Скидка:</span>
+                <strong><span id="sale"><span class="amount">0</span> ₽</span></strong>
+            </li>
+            <li class="total-price">
+                <span>Итого:</span>
+                <strong><span id="total"><span class="amount">0</span> ₽</span></strong>
+            </li>
+        </ol>
+
+        <div class="total-calculator__bottom">
+            <div class="form__item">
+                <label>Введите промокод (если есть)</label>
+                <div class="promocode">
+                    <input type="text" name="promocode" id="promocode" placeholder="10off">
+                    <span>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form__item">
+                <label class="checkbox" for="accept">
+                    <span>
+                        <i class="before">
+                            <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                                <path d="M1.5 3.9998L4.5 6.6998L10.5 1.2998" stroke="#0E0E0E" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </i>
+                        <p>Нажимая кнопку «Оформить», я даю свое согласие на обработку моих персональных данных, в
+                            соответствии
+                            с
+                            Федеральным
+                            законом от 27.07.2006 года №152-Ф3 «О персональных данных», на условиях и для целей,
+                            определенных в
+                            Согласии на
+                            обработку персональных данных</p>
+                    </span>
+                    <input type="checkbox" id="accept" name="accept" checked>
+                </label>
+            </div>
+
+            <div class="form__button">
+                <button>Оформить заявку</button>
+            </div>
+        </div>
+
+        <div class="total-calculator__advantages">
+            <p class="has-icon">
+                <i class="icon"></i>
+                За эти деньги вы получите:
+            </p>
+            <p><strong>Бесплатное хранение.</strong> До 6 дней бесплатного хранения вашего груза на наших складах</p>
+            <p><strong>Гарантию,</strong> что ваш товар не побьется, не потеряется и обязательно будет доставлен и сдан
+                на склад</p>
+            <p><strong>Всестороннюю помощь</strong> – от тщательной проверки упаковки и маркировки ваших грузов до
+                решения проблем при приемке</p>
+            <p><strong>Бесплатную доставку вашего груза на фулфилмент,</strong> если что-то пойдет не так</p>
+        </div>
+    </div>
+</form>

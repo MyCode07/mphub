@@ -32,6 +32,7 @@ class Calculator {
             this.salePriceElem = this.resultPage.querySelector('#sale .amount');
             this.servicesPriceElem = this.resultPage.querySelector('#all_services .amount');
             this.totalPriceElem = this.resultPage.querySelector('#total .amount');
+            this.totalSaleElem = this.resultPage.querySelector('#sale-price .amount');
         }
     }
 
@@ -719,10 +720,22 @@ class Calculator {
         this.servicesPrice = Math.round(this.servicesPrice);
         this.totalPrice = Math.round(this.totalPrice);
 
+
         this.deliveryPriceElem.textContent = this.price;
         this.salePriceElem.textContent = this.salePrice;
         this.servicesPriceElem.textContent = this.servicesPrice;
-        this.totalPriceElem.textContent = this.totalPrice;
+
+        const totalPriceWithoutSales = Math.round(this.totalPrice + this.salePrice);
+
+        if (totalPriceWithoutSales > this.totalPrice) {
+            this.totalSaleElem.closest('li').classList.add('_active')
+        }
+        else {
+            this.totalSaleElem.closest('li').classList.remove('_active')
+        }
+
+        this.totalPriceElem.textContent = totalPriceWithoutSales;
+        this.totalSaleElem.textContent = this.totalPrice;
 
         this.updatePriceFieldsInForm();
     }
@@ -735,8 +748,18 @@ class Calculator {
         this.salePrice = Math.round(this.salePrice);
         this.totalPrice = Math.round(this.totalPrice);
 
+        const totalPriceWithoutSales = Math.round(this.totalPrice + this.salePrice);
+
+        if (totalPriceWithoutSales > this.totalPrice) {
+            this.totalSaleElem.closest('li').classList.add('_active')
+        }
+        else {
+            this.totalSaleElem.closest('li').classList.remove('_active')
+        }
+
         this.salePriceElem.textContent = this.salePrice;
-        this.totalPriceElem.textContent = this.totalPrice;
+        this.totalPriceElem.textContent = totalPriceWithoutSales;
+        this.totalSaleElem.textContent = this.totalPrice;
 
         this.updatePriceFieldsInForm();
     }
