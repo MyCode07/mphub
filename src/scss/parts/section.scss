@@ -1062,8 +1062,6 @@
                 bottom: -40px;
                 height: 490px;
             }
-
-            
         }
 
         .map-icon {
@@ -2855,6 +2853,125 @@
             -webkit-filter: grayscale(1);
             -moz-filter: grayscale(1);
             -o-filter: grayscale(1);
+        }
+    }
+}
+
+.page-archive {
+    .section__top {
+        h1 {
+            margin-bottom: 20px;
+        }
+        p {
+        }
+
+        margin-bottom: 40px;
+    }
+
+    .grid {
+        &-item {
+            min-height: 100%;
+        }
+    }
+}
+
+.single-page {
+    h1 {
+        @include adaptive-value("font-size", 45, 30, 1);
+
+        @media (min-width: 1025px) {
+            max-width: calc(100% - 400px);
+
+            @media (max-width: 1200px) {
+                max-width: calc(100% - 340px);
+            }
+        }
+    }
+
+    .section__body {
+        position: relative;
+    }
+
+    .text-page__content {
+        @media (min-width: 1025px) {
+            flex: 1 1 auto;
+            max-width: calc(100% - 400px);
+
+            @media (max-width: 1200px) {
+                max-width: calc(100% - 340px);
+            }
+        }
+
+        h2 {
+            font-size: 30px;
+
+            @media (max-width: 768px) {
+                font-size: 24px;
+            }
+        }
+
+        picture,
+        figure {
+            height: auto;
+        }
+
+        img {
+            border-radius: 4px;
+            height: auto;
+        }
+    }
+
+    .other-posts {
+        padding: 20px;
+        border-radius: 4px;
+        background-color: $gray;
+
+        @media (min-width: 1025px) {
+            position: sticky;
+            top: 80px;
+            width: 300px;
+            flex: 0 0 auto;
+        }
+
+        @media (max-width: 1024px) {
+            margin-top: 40px;
+        }
+
+        h3 {
+            margin-bottom: 1em;
+            font-size: 18px;
+
+            @media (max-width: 768px) {
+                font-size: 16px;
+            }
+        }
+
+        ul {
+            @media (max-width: 768px) {
+                font-size: 14px;
+            }
+
+            & > :not(:last-child) {
+                margin-bottom: 8px;
+            }
+
+            a {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    // .single-page__wrapper
+
+    &__wrapper {
+        @media (min-width: 1025px) {
+            display: flex;
+            align-items: flex-start;
+            gap: 100px;
+
+            @media (max-width: 1200px) {
+                gap: 60px;
+            }
         }
     }
 }

@@ -417,3 +417,38 @@
         object-fit: contain;
     }
 }
+
+.single-post {
+    background-color: $gray;
+    padding: 20px;
+    border-radius: 4px;
+
+    // .single-post__img
+
+    &__img {
+        display: block;
+        width: 100%;
+        position: relative;
+        padding-bottom: calc((100% / 16) * 9);
+        margin-bottom: 20px;
+
+        img {
+            border-radius: 4px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    h3 {
+        line-height: 1.2;
+        font-size: 18px;
+
+        @media (max-width: 768px) {
+            font-size: 16px;
+        }
+    }
+}
