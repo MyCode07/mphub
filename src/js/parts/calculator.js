@@ -283,6 +283,7 @@ class Calculator {
 
         this.showHiddenBoxes();
         this.sliderAutoHeight();
+        window.scrollTo(0, 0)
     }
 
     nextSlide() {
