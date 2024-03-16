@@ -2,6 +2,7 @@ import { validateForm } from "./forms.js";
 
 const data = delivery_data.routes;
 const promocodes = delivery_data.promocodes;
+const sales = delivery_data.sales
 console.log(delivery_data);
 
 class Calculator {
@@ -661,40 +662,83 @@ class Calculator {
 
         if (transportingType == 'box') {
             count = countBox;
-            switch (true) {
-                case (count >= 4 && count < 8):
-                    this.salePercent = 0.1;
-                    break;
-                case (count >= 8):
-                    this.salePercent = 0.2;
-                    break;
-                default:
-                    this.salePercent = 0;
-                    break;
-            }
+            console.log('volume', volume);
 
+            for (let i = 0; i < sales['box'].length; i++) {
+                const sale = sales['box'][i];
+                if (i != sales['box'].length - 1) {
+                    if (volume >= +sale['diapason'][0] && volume <= +sale['diapason'][1]) {
+                        console.log('not last');
+                        this.salePercent = +sale['percent'] / 100
+                    }
+                    else {
+                        this.salePercent = 0
+                    }
+                }
+                else {
+                    if (volume >= +sale['diapason'][0]) {
+                        console.log(' last');
+                        this.salePercent = +sale['percent'] / 100
+                    }
+                }
+            }
+            // switch (true) {
+            //     case (volume >= 0.42 && volume <= 0.71):
+            //         this.salePercent = 0.05;
+            //         break;
+            //     case (volume >= 0.72):
+            //         this.salePercent = 0.1;
+            //         break;
+            //     default:
+            //         this.salePercent = 0;
+            //         break;
+            // }
+            console.log('this.salePercent', this.salePercent);
             this.renderPrice(volume, this.boxPrice);
         }
         else {
             count = countPallet;
-            switch (true) {
-                case (count >= 2 && count <= 3):
-                    this.salePercent = 0.05;
-                    break;
-                case (count >= 4 && count <= 7):
-                    this.salePercent = 0.06;
-                    break;
-                case (count >= 8 && count <= 12):
-                    this.salePercent = 0.07;
-                    break;
-                case (count >= 13):
-                    this.salePercent = 0.08;
-                    break;
-                default:
-                    this.salePercent = 0;
-                    break;
+            for (let i = 0; i < sales['pallet'].length; i++) {
+                const sale = sales['pallet'][i];
+                if (i != sales['pallet'].length - 1) {
+                    if (count >= +sale['diapason'][0] && count <= +sale['diapason'][1]) {
+                        console.log('not last');
+                        this.salePercent = +sale['percent'] / 100
+                        break;
+                    }
+                    else {
+                        this.salePercent = 0
+                    }
+                }
+                else {
+                    if (count >= +sale['diapason'][0]) {
+                        console.log('last');
+                        this.salePercent = +sale['percent'] / 100
+                    }
+                }
             }
 
+            // switch (true) {
+            //     case (count >= 3 && count <= 6):
+            //         this.salePercent = 0.03;
+            //         break;
+            //     case (count >= 7 && count <= 10):
+            //         this.salePercent = 0.04;
+            //         break;
+            //     case (count >= 11 && count <= 15):
+            //         this.salePercent = 0.05;
+            //         break;
+            //     case (count >= 16 && count <= 20):
+            //         this.salePercent = 0.06;
+            //         break;
+            //     case (count >= 21):
+            //         this.salePercent = 0.07;
+            //         break;
+            //     default:
+            //         this.salePercent = 0;
+            //         break;
+            // }
+            console.log('this.salePercent', this.salePercent);
             this.renderPrice(count, this.palletPrice);
         }
 
