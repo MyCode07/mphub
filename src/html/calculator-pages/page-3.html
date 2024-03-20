@@ -64,9 +64,17 @@
                             </span>
                             <strong><span id="all_services"><span class="amount">0</span> ₽</span></strong>
                         </li>
-                        <li>
-                            <span>Скидка:</span>
-                            <strong><span id="sale"><span class="amount">0</span> ₽</span></strong>
+                        <li class="sale-first _none">
+                            <span>Скидка на первую доставку: <span class="percent">10</span>%</span>
+                            <strong><span id="sale-first"><span class="amount">0</span> ₽</span></strong>
+                        </li>
+                        <li class="sale-count _none">
+                            <span>Скидка от количества перевозимого груза: <span class="percent"></span>%</span>
+                            <strong><span id="sale-count"><span class="amount">0</span> ₽</span></strong>
+                        </li>
+                        <li class="sale-promocode _none">
+                            <span>Скидка промокода: <span class="percent"></span>%</span>
+                            <strong><span id="sale-promocode"><span class="amount">0</span> ₽</span></strong>
                         </li>
                         <li class="total-price">
                             <span>Итого:</span>
@@ -77,25 +85,10 @@
                             <strong><span id="sale-price"><span class="amount">0</span> ₽</span></strong>
                         </li>
                     </ol>
-
-                    <div class="total-calculator__bottom">
-                        <div class="form__item">
-                            <label>Введите промокод (если есть)</label>
-                            <div class="promocode">
-                                <input type="text" name="promocode" id="promocode" placeholder="10off">
-                                <span>
-                                    <i></i>
-                                    <i></i>
-                                    <i></i>
-                                </span>
-                            </div>
-                        </div>
-
-
-                    </div>
                 </div>
                 <div class="form__block">
-                    <h3>Контактные данные</h3>
+                    <h3>Остались вопросы?</h3>
+                    <p>Заполните форму ниже. Мы вам перезвоним и учтем все ваши пожелания.</p>
                     <div class="form__item" data-required>
                         <label>Имя</label>
                         <input type="text" name="your_name" placeholder="Имя">
@@ -137,9 +130,33 @@
                     <p><strong>Бесплатную доставку вашего груза на фулфилмент,</strong> если что-то пойдет не так</p>
                 </div>
 
+                <div class="total-calculator__bottom">
+                    <div class="form__item">
+                        <label>Введите промокод (если есть)</label>
+                        <div class="promocode">
+                            <input type="text" name="promocode" id="promocode" placeholder="10off">
+                            <span>
+                                <i></i>
+                                <i></i>
+                                <i></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="total-calculator__descr total-calculator__advantages">
+                    <p>Обращаем ваше внимание, что мы работаем по предоплате.
+                        Если вы запрашиваете счет впервые, просим указать ваши
+                        реквизиты.</p>
+                    <p>Напоминаем, что <b>для постоянных клиентов</b> у нас предусмотрены
+                        <b>накопительные скидки</b> по всем заявкам, с первого дня нащего
+                        сотрудничества.
+                    </p>
+                </div>
+
                 <div class="form__aside">
                     <div class="form__button">
-                        <button>Оформить заявку</button>
+                        <button>Отправить заявку</button>
                     </div>
                     <div class="form__item">
                         <label class="checkbox" for="accept">

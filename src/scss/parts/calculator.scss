@@ -127,8 +127,16 @@
         display: block;
     }
 
-    .form__block h3 {
-        letter-spacing: 0;
+    .form__block {
+        h3 {
+            letter-spacing: 0;
+        }
+
+        .form__item select,
+        .form__item input,
+        .form__item .radio {
+            height: 70px;
+        }
     }
 }
 
@@ -376,10 +384,6 @@
                     flex: 0 0 auto;
                 }
 
-                #sale {
-                    color: #10c72d;
-                }
-
                 #total {
                     font-size: 32px;
                 }
@@ -405,6 +409,13 @@
             [data-id="count-pallet"] {
                 display: block;
             }
+        }
+
+        label[for="accept"] {
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1.42;
+            color: rgba(14, 14, 14, 0.4);
         }
     }
 
@@ -544,6 +555,20 @@
             }
         }
     }
+
+    // .total-calculator__descr
+
+    &__descr {
+        margin: 20px 0;
+
+        p {
+            color: $black;
+        }
+
+        & > :not(:last-child) {
+            margin-bottom: 10px;
+        }
+    }
 }
 
 sup {
@@ -554,6 +579,18 @@ sup {
     &:not(._active) {
         display: none;
     }
+}
+
+.page-calculator__result ol li.sale-count._none,
+.page-calculator__result ol li.sale-promocode._none,
+.page-calculator__result ol li.sale-first._none {
+    display: none;
+}
+
+#sale-first,
+#sale-count,
+#sale-promocode {
+    color: #10c72d;
 }
 
 .page-calculator__result ol li.total-sale > span {

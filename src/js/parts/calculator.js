@@ -8,6 +8,7 @@ const defalutPromocode = delivery_data.defalut_promocode
 class Calculator {
     constructor(calculator) {
         this.calculator = calculator;
+        this.minimum = 850;
         this.minPrice = 0;
         this.price = 0;
         this.boxPrice = 0;
@@ -15,6 +16,8 @@ class Calculator {
         this.salePrice = 0;
         this.servicesPrice = 0;
         this.totalPrice = 0;
+        this.saleFirstPercent = 0.1
+        this.saleMaxtPercent = 0.2
         this.salePercent = 0.1
         this.salePercentPromocode = 0.1;
         this.defaultPromocode = defalutPromocode;
@@ -32,10 +35,13 @@ class Calculator {
             this.servicesBlock = this.calculator.querySelector('.more-fields .form__row');
 
             this.deliveryPriceElem = this.resultPage.querySelector('#delivery .amount');
-            this.salePriceElem = this.resultPage.querySelector('#sale .amount');
             this.servicesPriceElem = this.resultPage.querySelector('#all_services .amount');
             this.totalPriceElem = this.resultPage.querySelector('#total .amount');
             this.totalSaleElem = this.resultPage.querySelector('#sale-price .amount');
+
+            this.saleFromCountElem = this.resultPage.querySelector('.sale-count');
+            this.saleFromFisrtElem = this.resultPage.querySelector('.sale-first');
+            this.saleFromPrmocodeElem = this.resultPage.querySelector('.sale-promocode');
         }
     }
 
@@ -347,7 +353,6 @@ class Calculator {
     }
 
     resetFields() {
-        this.calculator.querySelector('input[name="weight"]').value = '';
         this.calculator.querySelector('input[name="length"]').value = this.calculator.querySelector('input[name="length"]').dataset.value;
         this.calculator.querySelector('input[name="width"]').value = this.calculator.querySelector('input[name="width"]').dataset.value;
         this.calculator.querySelector('input[name="height"]').value = this.calculator.querySelector('input[name="height"]').dataset.value;
@@ -620,8 +625,8 @@ class Calculator {
         let countBox = 1;
         let countPallet = 1;
         let volume = 1;
-        this.salePercent = 0.1
-        
+        this.salePercent = this.saleFirstPercent
+
         array.forEach(item => {
             if (item.name == 'transporting') {
                 if (item.value.includes('короб')) {
@@ -669,7 +674,7 @@ class Calculator {
                         this.salePercent += +sale['percent'] / 100
                     }
                     else {
-                        this.salePercent = 0.1
+                        this.salePercent = this.saleFirstPercent
                     }
                 }
                 else {
@@ -690,7 +695,7 @@ class Calculator {
                         break;
                     }
                     else {
-                        this.salePercent = 0.1
+                        this.salePercent = this.saleFirstPercent
                     }
                 }
                 else {
@@ -702,8 +707,6 @@ class Calculator {
 
             this.renderPrice(count, this.palletPrice);
         }
-
-        console.log('this.salePercent', this.salePercent);
 
         if (this.salePercentPromocode && this.promocode != this.defaultPromocode) {
             this.updatePrice(this.salePercentPromocode);
@@ -729,16 +732,19 @@ class Calculator {
 
 
         this.deliveryPriceElem.textContent = this.price;
-        this.salePriceElem.textContent = this.salePrice;
         this.servicesPriceElem.textContent = this.servicesPrice;
 
-        const totalPriceWithoutSales = Math.round(this.totalPrice + this.salePrice);
+        let totalPriceWithoutSales = Math.round(this.totalPrice + this.salePrice);
 
         if (totalPriceWithoutSales > this.totalPrice) {
             this.totalSaleElem.closest('li').classList.add('_active')
         }
         else {
             this.totalSaleElem.closest('li').classList.remove('_active')
+        }
+
+        if (totalPriceWithoutSales < this.minimum) {
+            totalPriceWithoutSales = this.minimum
         }
 
         this.totalPriceElem.textContent = totalPriceWithoutSales;
@@ -748,14 +754,13 @@ class Calculator {
     }
 
     updatePrice(perscent) {
-        this.salePrice = this.price > this.minPrice ? (this.price) * perscent : 0;
+        this.salePrice = this.price > this.minimum ? (this.price) * perscent : 0;
         this.totalPrice = this.price - this.salePrice + this.servicesPrice;
 
         this.salePrice = Math.round(this.salePrice);
         this.totalPrice = Math.round(this.totalPrice);
 
         const totalPriceWithoutSales = Math.round(this.totalPrice + this.salePrice);
-
         if (totalPriceWithoutSales > this.totalPrice) {
             this.totalSaleElem.closest('li').classList.add('_active')
         }
@@ -763,11 +768,41 @@ class Calculator {
             this.totalSaleElem.closest('li').classList.remove('_active')
         }
 
-        this.salePriceElem.textContent = this.salePrice;
         this.totalPriceElem.textContent = totalPriceWithoutSales;
         this.totalSaleElem.textContent = this.totalPrice;
 
+        this.showDiferentSales();
         this.updatePriceFieldsInForm();
+    }
+
+    showDiferentSales() {
+        console.log(132456789);
+        if (this.salePercentPromocode && this.promocode != this.defaultPromocode) {
+            this.saleFromCountElem.classList.add('_none')
+            this.saleFromFisrtElem.classList.add('_none')
+            this.saleFromPrmocodeElem.classList.remove('_none')
+            this.saleFromPrmocodeElem.querySelector('.percent').textContent = this.salePercentPromocode * 100
+            this.saleFromPrmocodeElem.querySelector('.amount').textContent = Math.round(this.price * this.salePercentPromocode)
+        }
+        else {
+            this.saleFromPrmocodeElem.classList.add('_none')
+            this.saleFromFisrtElem.classList.remove('_none')
+
+            this.saleFromFisrtElem.querySelector('.percent').textContent = this.saleFirstPercent * 100
+            this.saleFromFisrtElem.querySelector('.amount').textContent = Math.round(this.price * this.saleFirstPercent)
+
+            let perc = this.salePercent;
+
+            if (this.salePercent + this.saleFirstPercent > this.saleMaxtPercent) {
+                perc = this.salePercent - this.saleFirstPercent;
+            }
+
+            if (this.salePercent != this.saleFirstPercent) {
+                this.saleFromCountElem.classList.remove('_none')
+                this.saleFromCountElem.querySelector('.percent').textContent = Math.round(perc * 100)
+                this.saleFromCountElem.querySelector('.amount').textContent = Math.round(this.price * perc)
+            }
+        }
     }
 
     updatePriceFieldsInForm() {
@@ -798,8 +833,8 @@ class Calculator {
                             span.innerHTML = 'Применен';
 
                             this.salePercentPromocode = promocodes[i].sale / 100
-                            this.updatePrice(this.salePercentPromocode)
                             this.promocode = code
+                            this.updatePrice(this.salePercentPromocode)
                             break;
                         }
                         else {
@@ -808,8 +843,8 @@ class Calculator {
                                 span.innerHTML = '<i></i><i></i><i></i>';
 
                                 this.salePercentPromocode = false
-                                this.updatePrice(this.salePercent);
                                 this.promocode = this.defaultPromocode
+                                this.updatePrice(this.salePercent);
                             }
                         }
                     };
@@ -817,8 +852,8 @@ class Calculator {
                 else {
                     span.classList.remove('_active')
                     this.salePercentPromocode = false
-                    this.updatePrice(this.salePercent);
                     this.promocode = this.defaultPromocode
+                    this.updatePrice(this.salePercent);
                 }
             })
         }
