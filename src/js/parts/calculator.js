@@ -620,7 +620,8 @@ class Calculator {
         let countBox = 1;
         let countPallet = 1;
         let volume = 1;
-
+        this.salePercent = 0.1
+        
         array.forEach(item => {
             if (item.name == 'transporting') {
                 if (item.value.includes('короб')) {
