@@ -3,7 +3,7 @@ import { validateForm } from "./forms.js";
 const data = delivery_data.routes;
 const promocodes = delivery_data.promocodes;
 const sales = delivery_data.sales
-console.log(delivery_data);
+const defalutPromocode = delivery_data.defalut_promocode
 
 class Calculator {
     constructor(calculator) {
@@ -15,8 +15,10 @@ class Calculator {
         this.salePrice = 0;
         this.servicesPrice = 0;
         this.totalPrice = 0;
-        this.salePercent = 0
-        this.salePercentPromocode = null;
+        this.salePercent = 0.1
+        this.salePercentPromocode = 0.1;
+        this.defaultPromocode = defalutPromocode;
+        this.promocode = defalutPromocode;
 
         if (this.calculator) {
             this.selectFrom = this.calculator.querySelector('select#from')
@@ -177,8 +179,6 @@ class Calculator {
             if ((!service.price.box_price || service.price.box_price == 0) &&
                 (!service.price.pallet_price || service.price.pallet_price == 0)) return;
         };
-
-        console.log(service);
 
         let input = `<input type="checkbox" id="${service.id}" value="${service.name}" name="services" data-price="${service.price}">`;
         if (service.id == 'zabor_gruza') {
@@ -621,7 +621,6 @@ class Calculator {
         let countPallet = 1;
         let volume = 1;
 
-        console.log(array);
         array.forEach(item => {
             if (item.name == 'transporting') {
                 if (item.value.includes('короб')) {
@@ -662,38 +661,22 @@ class Calculator {
 
         if (transportingType == 'box') {
             count = countBox;
-            console.log('volume', volume);
-
             for (let i = 0; i < sales['box'].length; i++) {
                 const sale = sales['box'][i];
                 if (i != sales['box'].length - 1) {
                     if (volume >= +sale['diapason'][0] && volume <= +sale['diapason'][1]) {
-                        console.log('not last');
-                        this.salePercent = +sale['percent'] / 100
+                        this.salePercent += +sale['percent'] / 100
                     }
                     else {
-                        this.salePercent = 0
+                        this.salePercent = 0.1
                     }
                 }
                 else {
                     if (volume >= +sale['diapason'][0]) {
-                        console.log(' last');
-                        this.salePercent = +sale['percent'] / 100
+                        this.salePercent += +sale['percent'] / 100
                     }
                 }
             }
-            // switch (true) {
-            //     case (volume >= 0.42 && volume <= 0.71):
-            //         this.salePercent = 0.05;
-            //         break;
-            //     case (volume >= 0.72):
-            //         this.salePercent = 0.1;
-            //         break;
-            //     default:
-            //         this.salePercent = 0;
-            //         break;
-            // }
-            console.log('this.salePercent', this.salePercent);
             this.renderPrice(volume, this.boxPrice);
         }
         else {
@@ -702,47 +685,26 @@ class Calculator {
                 const sale = sales['pallet'][i];
                 if (i != sales['pallet'].length - 1) {
                     if (count >= +sale['diapason'][0] && count <= +sale['diapason'][1]) {
-                        console.log('not last');
-                        this.salePercent = +sale['percent'] / 100
+                        this.salePercent += +sale['percent'] / 100
                         break;
                     }
                     else {
-                        this.salePercent = 0
+                        this.salePercent = 0.1
                     }
                 }
                 else {
                     if (count >= +sale['diapason'][0]) {
-                        console.log('last');
-                        this.salePercent = +sale['percent'] / 100
+                        this.salePercent += +sale['percent'] / 100
                     }
                 }
             }
 
-            // switch (true) {
-            //     case (count >= 3 && count <= 6):
-            //         this.salePercent = 0.03;
-            //         break;
-            //     case (count >= 7 && count <= 10):
-            //         this.salePercent = 0.04;
-            //         break;
-            //     case (count >= 11 && count <= 15):
-            //         this.salePercent = 0.05;
-            //         break;
-            //     case (count >= 16 && count <= 20):
-            //         this.salePercent = 0.06;
-            //         break;
-            //     case (count >= 21):
-            //         this.salePercent = 0.07;
-            //         break;
-            //     default:
-            //         this.salePercent = 0;
-            //         break;
-            // }
-            console.log('this.salePercent', this.salePercent);
             this.renderPrice(count, this.palletPrice);
         }
 
-        if (this.salePercentPromocode) {
+        console.log('this.salePercent', this.salePercent);
+
+        if (this.salePercentPromocode && this.promocode != this.defaultPromocode) {
             this.updatePrice(this.salePercentPromocode);
         }
         else {
@@ -752,7 +714,6 @@ class Calculator {
 
     renderPrice(count, price) {
         this.price = count * price;
-        console.log(this.price, count, price);
 
         this.price = this.price > this.minPrice ? this.price : this.minPrice;
         this.salePrice = this.price > this.minPrice ? (this.price) * this.salePercent : 0;
@@ -786,7 +747,6 @@ class Calculator {
     }
 
     updatePrice(perscent) {
-
         this.salePrice = this.price > this.minPrice ? (this.price) * perscent : 0;
         this.totalPrice = this.price - this.salePrice + this.servicesPrice;
 
@@ -838,6 +798,7 @@ class Calculator {
 
                             this.salePercentPromocode = promocodes[i].sale / 100
                             this.updatePrice(this.salePercentPromocode)
+                            this.promocode = code
                             break;
                         }
                         else {
@@ -847,6 +808,7 @@ class Calculator {
 
                                 this.salePercentPromocode = false
                                 this.updatePrice(this.salePercent);
+                                this.promocode = this.defaultPromocode
                             }
                         }
                     };
@@ -855,6 +817,7 @@ class Calculator {
                     span.classList.remove('_active')
                     this.salePercentPromocode = false
                     this.updatePrice(this.salePercent);
+                    this.promocode = this.defaultPromocode
                 }
             })
         }

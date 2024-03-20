@@ -20,6 +20,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     let formData = new FormData(form);
                     formData.append('action', 'send_form');
 
+                    const promocode = form.querySelector('input[name="promocode"]');
+                    if (promocode && promocode.value == '') {
+                        formData.append('promocode', delivery_data.defalut_promocode);
+                    }
 
                     if (formFile && formFile.files[0]) {
                         formData.append('file', formFile.files[0]);
