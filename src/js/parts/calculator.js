@@ -772,11 +772,11 @@ class Calculator {
         this.totalSaleElem.textContent = this.totalPrice;
 
         this.showDiferentSales();
+
         this.updatePriceFieldsInForm();
     }
 
     showDiferentSales() {
-        console.log(132456789);
         if (this.salePercentPromocode && this.promocode != this.defaultPromocode) {
             this.saleFromCountElem.classList.add('_none')
             this.saleFromFisrtElem.classList.add('_none')
