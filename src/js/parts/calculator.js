@@ -177,6 +177,8 @@ class Calculator {
                 this.addFormItem(item)
             })
         }
+
+        this.checkChoosedServiceMethod();
     }
 
     addFormItem(service) {
@@ -207,9 +209,26 @@ class Calculator {
                             </label>
                         </div>`;
 
-
-
         this.servicesBlock.insertAdjacentHTML('beforeend', item)
+    }
+
+    checkChoosedServiceMethod() {
+        const palleta = this.servicesBlock.querySelector('input#palleta');
+        const palletirovanie = this.servicesBlock.querySelector('input#palletirovanie');
+        if (!palleta && !palletirovanie) return;
+
+        check(palleta, palletirovanie);
+        check(palletirovanie, palleta);
+
+        function check(currInput, checkedInput) {
+            if (!currInput && !checkedInput) return;
+
+            currInput.addEventListener('change', (e) => {
+                if (currInput.checked) {
+                    checkedInput.checked = false
+                }
+            })
+        }
     }
 
     addDataToSelectedRout() {
