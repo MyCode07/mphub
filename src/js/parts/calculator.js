@@ -739,7 +739,14 @@ class Calculator {
         this.price = count * price;
 
         this.price = this.price > this.minPrice ? this.price : this.minPrice;
-        this.salePrice = this.price > this.minPrice ? (this.price) * this.salePercent : 0;
+
+        if (this.price > this.minimum) {
+            this.salePrice = this.price * this.salePercent
+        }
+        else {
+            this.price = this.minimum
+            this.salePrice = 0
+        }
 
         this.servicesPrice = this.servicesPrice
         this.totalPrice = this.price - this.salePrice + this.servicesPrice;
@@ -748,7 +755,6 @@ class Calculator {
         this.salePrice = Math.round(this.salePrice);
         this.servicesPrice = Math.round(this.servicesPrice);
         this.totalPrice = Math.round(this.totalPrice);
-
 
         this.deliveryPriceElem.textContent = this.price;
         this.servicesPriceElem.textContent = this.servicesPrice;
@@ -773,11 +779,18 @@ class Calculator {
     }
 
     updatePrice(perscent) {
-        this.salePrice = this.price > this.minimum ? (this.price) * perscent : 0;
+        if (this.price > this.minimum) {
+            this.salePrice = this.price * perscent
+        }
+        else {
+            this.salePrice = 0
+        }
+
         this.totalPrice = this.price - this.salePrice + this.servicesPrice;
 
         this.salePrice = Math.round(this.salePrice);
         this.totalPrice = Math.round(this.totalPrice);
+
 
         const totalPriceWithoutSales = Math.round(this.totalPrice + this.salePrice);
         if (totalPriceWithoutSales > this.totalPrice) {
@@ -804,11 +817,18 @@ class Calculator {
             this.saleFromPrmocodeElem.querySelector('.amount').textContent = Math.round(this.price * this.salePercentPromocode)
         }
         else {
-            this.saleFromPrmocodeElem.classList.add('_none')
-            this.saleFromFisrtElem.classList.remove('_none')
+            if (this.price > this.minimum) {
+                this.saleFromFisrtElem.classList.remove('_none')
+                this.saleFromFisrtElem.querySelector('.percent').textContent = this.saleFirstPercent * 100
+                this.saleFromFisrtElem.querySelector('.amount').textContent = Math.round(this.price * this.saleFirstPercent)
+            }
+            else {
+                this.saleFromFisrtElem.classList.add('_none')
+                this.saleFromFisrtElem.querySelector('.percent').textContent = ''
+                this.saleFromFisrtElem.querySelector('.amount').textContent = ''
+            }
 
-            this.saleFromFisrtElem.querySelector('.percent').textContent = this.saleFirstPercent * 100
-            this.saleFromFisrtElem.querySelector('.amount').textContent = Math.round(this.price * this.saleFirstPercent)
+            this.saleFromPrmocodeElem.classList.add('_none')
 
             let perc = this.salePercent;
 
