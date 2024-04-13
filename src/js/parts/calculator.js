@@ -738,8 +738,6 @@ class Calculator {
     renderPrice(count, price) {
         this.price = count * price;
 
-        this.price = this.price > this.minPrice ? this.price : this.minPrice;
-
         if (this.price > this.minimum) {
             this.salePrice = this.price * this.salePercent
         }
@@ -793,6 +791,7 @@ class Calculator {
 
 
         const totalPriceWithoutSales = Math.round(this.totalPrice + this.salePrice);
+
         if (totalPriceWithoutSales > this.totalPrice) {
             this.totalSaleElem.closest('li').classList.add('_active')
         }
@@ -810,11 +809,18 @@ class Calculator {
 
     showDiferentSales() {
         if (this.salePercentPromocode && this.promocode != this.defaultPromocode) {
-            this.saleFromCountElem.classList.add('_none')
-            this.saleFromFisrtElem.classList.add('_none')
-            this.saleFromPrmocodeElem.classList.remove('_none')
-            this.saleFromPrmocodeElem.querySelector('.percent').textContent = this.salePercentPromocode * 100
-            this.saleFromPrmocodeElem.querySelector('.amount').textContent = Math.round(this.price * this.salePercentPromocode)
+            if (this.price > this.minimum) {
+                this.saleFromCountElem.classList.add('_none')
+                this.saleFromFisrtElem.classList.add('_none')
+                this.saleFromPrmocodeElem.classList.remove('_none')
+                this.saleFromPrmocodeElem.querySelector('.percent').textContent = this.salePercentPromocode * 100
+                this.saleFromPrmocodeElem.querySelector('.amount').textContent = Math.round(this.price * this.salePercentPromocode)
+            }
+            else {
+                this.saleFromPrmocodeElem.classList.add('_none')
+                this.saleFromPrmocodeElem.querySelector('.percent').textContent = ''
+                this.saleFromPrmocodeElem.querySelector('.amount').textContent = ''
+            }
         }
         else {
             if (this.price > this.minimum) {
@@ -842,6 +848,11 @@ class Calculator {
                 this.saleFromCountElem.querySelector('.amount').textContent = Math.round(this.price * perc)
             }
         }
+    }
+
+
+    checkMinimumPrice() {
+
     }
 
     updatePriceFieldsInForm() {
