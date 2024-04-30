@@ -738,13 +738,13 @@ class Calculator {
     renderPrice(count, price) {
         this.price = count * price;
 
-        if (this.price > this.minimum) {
+        // if (this.price > this.minimum) {
             this.salePrice = this.price * this.salePercent
-        }
-        else {
-            this.price = this.minimum
-            this.salePrice = 0
-        }
+        // }
+        // else {
+            // this.price = this.minimum
+            // this.salePrice = 0
+        // }
 
         this.servicesPrice = this.servicesPrice
         this.totalPrice = this.price - this.salePrice + this.servicesPrice;
@@ -777,12 +777,12 @@ class Calculator {
     }
 
     updatePrice(perscent) {
-        if (this.price > this.minimum) {
+        // if (this.price > this.minimum) {
             this.salePrice = this.price * perscent
-        }
-        else {
-            this.salePrice = 0
-        }
+        // }
+        // else {
+            // this.salePrice = 0
+        // }
 
         this.totalPrice = this.price - this.salePrice + this.servicesPrice;
 
@@ -809,30 +809,30 @@ class Calculator {
 
     showDiferentSales() {
         if (this.salePercentPromocode && this.promocode != this.defaultPromocode) {
-            if (this.price > this.minimum) {
+            // if (this.price > this.minimum) {
                 this.saleFromCountElem.classList.add('_none')
                 this.saleFromFisrtElem.classList.add('_none')
                 this.saleFromPrmocodeElem.classList.remove('_none')
                 this.saleFromPrmocodeElem.querySelector('.percent').textContent = this.salePercentPromocode * 100
                 this.saleFromPrmocodeElem.querySelector('.amount').textContent = Math.round(this.price * this.salePercentPromocode)
-            }
-            else {
-                this.saleFromPrmocodeElem.classList.add('_none')
-                this.saleFromPrmocodeElem.querySelector('.percent').textContent = ''
-                this.saleFromPrmocodeElem.querySelector('.amount').textContent = ''
-            }
+            // }
+            // else {
+                // this.saleFromPrmocodeElem.classList.add('_none')
+                // this.saleFromPrmocodeElem.querySelector('.percent').textContent = ''
+                // this.saleFromPrmocodeElem.querySelector('.amount').textContent = ''
+            // }
         }
         else {
-            if (this.price > this.minimum) {
+            // if (this.price > this.minimum) {
                 this.saleFromFisrtElem.classList.remove('_none')
                 this.saleFromFisrtElem.querySelector('.percent').textContent = this.saleFirstPercent * 100
                 this.saleFromFisrtElem.querySelector('.amount').textContent = Math.round(this.price * this.saleFirstPercent)
-            }
-            else {
-                this.saleFromFisrtElem.classList.add('_none')
-                this.saleFromFisrtElem.querySelector('.percent').textContent = ''
-                this.saleFromFisrtElem.querySelector('.amount').textContent = ''
-            }
+            // }
+            // else {
+                // this.saleFromFisrtElem.classList.add('_none')
+                // this.saleFromFisrtElem.querySelector('.percent').textContent = ''
+                // this.saleFromFisrtElem.querySelector('.amount').textContent = ''
+            // }
 
             this.saleFromPrmocodeElem.classList.add('_none')
 
