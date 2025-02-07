@@ -1,3 +1,8 @@
-git reset +- fildername or filename 
-git rm -r --cached fildername or filename 
-git add -- . :!<path>
+# открыть папку в редакторе кода набрать в терминале npm i
+# готово: далее 2 варсии сборки
+
+# 1 - версия разработки
+npm run dev: разработке ведется в папке src, други папки  и  файлы не трогать
+
+# 2 - версия продакшн
+npm run build: dist - папка с готовой версткой
